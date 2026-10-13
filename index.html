@@ -169,6 +169,8 @@ button { font: inherit; }
 .chip[data-t="4"] { background: var(--sev4); } .chip[data-t="3"] { background: var(--sev3); } .chip[data-t="2"] { background: var(--sev2); color: #2b2000; } .chip[data-t="1"] { background: var(--sev1); color: #06251a; } .chip[data-t="0"] { background: var(--sev0); }
 .stripe { width: 5px; align-self: stretch; border-radius: 4px; }
 .stripe[data-t="4"] { background: var(--sev4); } .stripe[data-t="3"] { background: var(--sev3); } .stripe[data-t="2"] { background: var(--sev2); } .stripe[data-t="1"] { background: var(--sev1); } .stripe[data-t="0"] { background: var(--sev0); }
+.you { margin-top: 5px; font-size: .82rem; color: var(--muted); }
+.you[data-in="1"] { color: var(--fg); font-weight: 500; }
 .why { margin: 6px 0 0; padding-inline-start: 18px; font-size: .82rem; color: var(--muted); }
 .why li { margin: 2px 0; }
 .srcl { font-size: .78rem; }
@@ -385,7 +387,7 @@ select, input[type="text"] { width: 100%; background: var(--bg-2); color: var(--
       srcTitle: 'Sources', disclaimer: 'Community awareness tool. Not an official warning system. Site positions marked ≈ are approximate. Predictions are estimates drawn from recent targeting patterns and public statements, refreshed by an automated monitor.',
       updated: 'Data updated', staleWarn: 'No monitor update for {h}. Treat the picture as stale.', staleBad: 'No monitor update for {h}. The monitor may be down; rely on official alerts.',
       alarmTitle: 'ALERT', testTitle: 'TEST ALARM', testText: 'This is what an alert looks like.', ok: 'OK', shareText: 'Riyadh Sky Watch: {level} at {place}. Nearest risk: {near}. Live map: {url} — Keep Emergency Alerts on; official warnings come only from Civil Defense.',
-      offline: 'Showing the last saved data (live file unreachable).', recent: 'Recent', predShort: 'Predicted', zoneHere: 'zone where you are', outsideRings: 'Outside its rings', locSet: 'Location set', tapAgain: 'Tap anywhere on the map to move your spot.',
+      offline: 'Showing the last saved data (live file unreachable).', recent: 'Recent', predShort: 'Predicted', zoneHere: 'zone where you are', outsideRings: 'Outside its rings', locSet: 'Location set', tapAgain: 'Tap anywhere on the map to move your spot.', siteThreat: 'Site threat', youInside: 'You are inside its {level} zone (within {r} km)', youOutside: 'You are outside its danger zone (beyond {r} km)',
       installBtn: 'Install app', installTitle: 'Keep this on your home screen',
       inst: {
         iosSafari: 'Tap Share (the square with an arrow at the bottom), then "Add to Home Screen", then Add.',
@@ -425,7 +427,7 @@ select, input[type="text"] { width: 100%; background: var(--bg-2); color: var(--
       srcTitle: 'المصادر', disclaimer: 'أداة توعية مجتمعية وليست نظام إنذار رسمي. المواقع المعلّمة بـ ≈ تقريبية. التوقعات تقديرات مبنية على أنماط الاستهداف الأخيرة والتصريحات العلنية ويحدّثها مرصد آلي.',
       updated: 'آخر تحديث للبيانات', staleWarn: 'لا تحديث من المرصد منذ {h}. اعتبر الصورة قديمة.', staleBad: 'لا تحديث من المرصد منذ {h}. قد يكون المرصد متوقفاً؛ اعتمد على الإنذارات الرسمية.',
       alarmTitle: 'إنذار', testTitle: 'تجربة المنبّه', testText: 'هكذا يبدو الإنذار.', ok: 'حسناً', shareText: 'رصد سماء الرياض: {level} في {place}. أقرب خطر: {near}. الخريطة الحية: {url} — أبقِ تنبيهات الطوارئ مفعّلة؛ الإنذار الرسمي يأتي فقط من الدفاع المدني.',
-      offline: 'تُعرض آخر بيانات محفوظة (تعذّر الوصول للملف الحي).', recent: 'حديث', predShort: 'التوقع', zoneHere: 'نطاقك هنا', outsideRings: 'خارج نطاقاته', locSet: 'تم تحديد الموقع', tapAgain: 'اضغط في أي مكان على الخريطة لنقل موقعك.',
+      offline: 'تُعرض آخر بيانات محفوظة (تعذّر الوصول للملف الحي).', recent: 'حديث', predShort: 'التوقع', zoneHere: 'نطاقك هنا', outsideRings: 'خارج نطاقاته', locSet: 'تم تحديد الموقع', tapAgain: 'اضغط في أي مكان على الخريطة لنقل موقعك.', siteThreat: 'تهديد الموقع', youInside: 'أنت داخل نطاقه ({level}) ضمن {r} كم', youOutside: 'أنت خارج نطاق خطره (أبعد من {r} كم)',
       installBtn: 'تثبيت التطبيق', installTitle: 'أبقِ الصفحة على شاشتك الرئيسية',
       inst: {
         iosSafari: 'اضغط زر المشاركة (المربع ذو السهم في الأسفل)، ثم "إضافة إلى الشاشة الرئيسية"، ثم إضافة.',
@@ -464,6 +466,9 @@ select, input[type="text"] { width: 100%; background: var(--bg-2); color: var(--
     return 2 * R * Math.asin(Math.min(1, Math.sqrt(s)));
   }
   function daysSince(dateStr, now) { var d = new Date(dateStr); if (isNaN(d)) return 1e9; return (now - d.getTime()) / 864e5; }
+  function riyadhDate(ms) { try { return new Intl.DateTimeFormat('en-CA', { timeZone: 'Asia/Riyadh', year: 'numeric', month: '2-digit', day: '2-digit' }).format(new Date(ms)); } catch (e) { return new Date(ms + 3 * 36e5).toISOString().slice(0, 10); } }
+  function calDays(dateStr, now) { var a = String(dateStr || '').slice(0, 10), b = riyadhDate(now); var pa = a.split('-'), pb = b.split('-'); if (pa.length < 3) return 1e9; return Math.round((Date.UTC(+pb[0], +pb[1] - 1, +pb[2]) - Date.UTC(+pa[0], +pa[1] - 1, +pa[2])) / 864e5); }
+  function dayWord(n) { return n <= 0 ? t('today') : n === 1 ? t('yesterday') : n + ' ' + t('daysAgo'); }
   var PRED_TIER = { high: 3, medium: 2, low: 1 };
   function activityTier(site, now) {
     var tier = 1, lastImpact = null, lastAny = null;
@@ -542,8 +547,17 @@ select, input[type="text"] { width: 100%; background: var(--bg-2); color: var(--
   function fmtDate(iso) { var d = new Date(iso); if (isNaN(d)) return iso; try { return new Intl.DateTimeFormat(st.lang === 'ar' ? 'ar' : 'en-GB', { timeZone: 'Asia/Riyadh', calendar: 'gregory', numberingSystem: 'latn', day: 'numeric', month: 'short' }).format(d); } catch (e) { return iso; } }
   function lastHitText(info, now) {
     var a = info.act;
-    if (a.lastImpact) { var dd = Math.floor(a.lastImpact.age); return t('lastHit') + ' ' + (dd === 0 ? t('today') : dd === 1 ? t('yesterday') : dd <= 60 ? dd + ' ' + t('daysAgo') : fmtMonth(a.lastImpact.h.date)); }
-    if (a.lastAny && a.lastAny.age <= 30) { var k = a.lastAny.h.kind; var dd2 = Math.floor(a.lastAny.age); return (t('kinds')[k] || k) + ' ' + (dd2 === 0 ? t('today') : dd2 === 1 ? t('yesterday') : dd2 + ' ' + t('daysAgo')); }
+    if (a.lastImpact) { var dd = calDays(a.lastImpact.h.date, now); return t('lastHit') + ' ' + (dd <= 60 ? dayWord(dd) : fmtMonth(a.lastImpact.h.date)); }
+    if (a.lastAny && calDays(a.lastAny.h.date, now) <= 30) { var k = a.lastAny.h.kind; return (t('kinds')[k] || k) + ' ' + dayWord(calDays(a.lastAny.h.date, now)); }
+    return '';
+  }
+  function siteContext(site, info, now) {
+    var n = recentImpacts(site, now), th = site.threat, a = info.act;
+    if (n) return st.lang === 'ar' ? 'أُصيب ' + n + ' مرات خلال ٧ أيام' : 'struck ' + n + '× in 7 days';
+    if (th && th.date && calDays(th.date, now) <= 14) return t('threatNamed') + ' ' + fmtDate(th.date);
+    if (a.lastImpact && calDays(a.lastImpact.h.date, now) <= 60) return t('lastHit') + ' ' + dayWord(calDays(a.lastImpact.h.date, now));
+    if (a.lastAny && a.lastAny.h.kind !== 'impact' && calDays(a.lastAny.h.date, now) <= 7) return (t('kinds')[a.lastAny.h.kind] || a.lastAny.h.kind) + ' ' + dayWord(calDays(a.lastAny.h.date, now));
+    if (a.lastImpact) return t('lastHit') + ' ' + fmtMonth(a.lastImpact.h.date);
     return '';
   }
   function recentImpacts(site, now) { return (site.history || []).filter(function (h) { return h.kind === 'impact' && daysSince(h.date + 'T12:00:00+03:00', now) <= 7; }).length; }
@@ -745,10 +759,8 @@ select, input[type="text"] { width: 100%; background: var(--bg-2); color: var(--
       var top = a.sites.filter(function (s) { return s.t === lvl && lvl > 0; }).sort(function (x, y) { return x.d - y.d; })[0] || near;
       if (top) {
         head = fmtKm(top.d) + ' ' + (st.lang === 'ar' ? 'من' : 'from') + ' ' + nm(top.site);
-        var parts = [], n = recentImpacts(top.site, now), th = top.site.threat;
-        if (n) parts.push(st.lang === 'ar' ? 'أُصيب ' + n + ' مرات خلال ٧ أيام' : 'struck ' + n + '× in 7 days');
-        else if (th && th.date && daysSince(th.date + 'T12:00:00+03:00', now) <= 14) parts.push(t('threatNamed') + ' ' + fmtDate(th.date));
-        else { var lh = lastHitText(top.info, now); if (lh) parts.push(lh); }
+        var parts = [], ctx = siteContext(top.site, top.info, now);
+        if (ctx) parts.push(ctx);
         if (top.site.prediction && top.site.prediction.level) parts.push(t('predShort') + ': ' + (t('predL')[top.site.prediction.level] || ''));
         if (parts.length) head += ' (' + parts.join(' · ') + ')';
       }
@@ -765,11 +777,11 @@ select, input[type="text"] { width: 100%; background: var(--bg-2); color: var(--
     var el = $('nearest');
     if (!st.me) { el.innerHTML = '<div class="small">' + esc(t('noLoc')) + '</div>'; return; }
     el.innerHTML = a.sites.slice(0, 6).map(function (x) {
-      var s = x.site, meta = [];
-      var lh = lastHitText(x.info, now); if (lh) meta.push(lh);
+      var s = x.site, meta = [], zones = siteZones(s, now), outer = zones.length ? zones[zones.length - 1].r : 0;
+      var ctx = siteContext(s, x.info, now); if (ctx) meta.push(ctx);
       if (s.prediction) meta.push(t('predShort') + ': ' + (t('predL')[s.prediction.level] || s.prediction.level));
-      var zoneTxt = x.t ? '<span class="chip" data-t="' + x.t + '">' + esc(t('levels')[x.t]) + '</span> <span class="small">' + esc(t('zoneHere')) + '</span>' : '<span class="chip" data-t="0">' + esc(t('outsideRings')) + '</span>';
-      return '<div class="row"><span class="stripe" data-t="' + x.tier + '"></span><div style="min-width:0"><div class="ttl">' + esc(nm(s)) + (s.approx ? ' <span class="small">≈</span>' : '') + '</div><div class="meta">' + esc(meta.join(' · ')) + '</div><div style="margin-top:4px">' + zoneTxt + '</div></div><div class="dist"><b class="num">' + esc(fmtKm(x.d)) + '</b><span class="small">' + esc(st.lang === 'ar' ? 'من موقعك' : 'from you') + '</span></div></div>';
+      var you = x.t ? t('youInside').replace('{level}', t('levels')[x.t]).replace('{r}', String(Math.round(x.zone.r))) : t('youOutside').replace('{r}', String(Math.round(outer)));
+      return '<div class="row"><span class="stripe" data-t="' + x.tier + '"></span><div style="min-width:0"><div class="ttl">' + esc(nm(s)) + (s.approx ? ' <span class="small">≈</span>' : '') + '</div><div class="meta"><span class="chip" data-t="' + x.tier + '">' + esc(t('siteThreat')) + ': ' + esc(t('levels')[x.tier]) + '</span>' + (meta.length ? ' · ' + esc(meta.join(' · ')) : '') + '</div><div class="you" data-in="' + (x.t ? '1' : '0') + '">' + esc(you) + '</div></div><div class="dist"><b class="num">' + esc(fmtKm(x.d)) + '</b><span class="small">' + esc(st.lang === 'ar' ? 'من موقعك' : 'from you') + '</span></div></div>';
     }).join('');
   }
   function renderPred(now) {

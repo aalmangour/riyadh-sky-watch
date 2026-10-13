@@ -114,7 +114,7 @@ button { font: inherit; }
 
 /* map */
 .mapwrap { min-width: 0; }
-#map { height: min(62vh, 560px); min-height: 340px; width: 100%; border-radius: 12px; border: 1px solid var(--line); background: var(--map-bg); background-image: linear-gradient(var(--map-grid) 1px, transparent 1px), linear-gradient(90deg, var(--map-grid) 1px, transparent 1px); background-size: 28px 28px; overflow: hidden; font-family: var(--font); }
+#map { height: min(50vh, 520px); min-height: 300px; width: 100%; border-radius: 12px; border: 1px solid var(--line); background: var(--map-bg); background-image: linear-gradient(var(--map-grid) 1px, transparent 1px), linear-gradient(90deg, var(--map-grid) 1px, transparent 1px); background-size: 28px 28px; overflow: hidden; font-family: var(--font); }
 .mapbar { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; align-items: center; }
 .mapbar .spacer { flex: 1; }
 .btn { background: var(--bg-2); color: var(--fg); border: 1px solid var(--line); border-radius: 8px; padding: 7px 10px; cursor: pointer; font-size: .85rem; font-weight: 500; display: inline-flex; align-items: center; gap: 6px; }
@@ -204,10 +204,33 @@ select, input[type="text"] { width: 100%; background: var(--bg-2); color: var(--
 .toast { position: fixed; bottom: calc(env(safe-area-inset-bottom, 0px) + 16px); left: 50%; transform: translateX(-50%); background: var(--fg); color: var(--bg); padding: 8px 14px; border-radius: 999px; font-size: .85rem; z-index: 1500; box-shadow: 0 6px 20px rgba(0,0,0,.3); }
 .toast[hidden] { display: none; }
 .disc { font-size: .78rem; color: var(--muted); margin-top: 14px; }
+.you-line { grid-column: 1 / -1; font-size: .8rem; color: var(--muted); }
+.you-line b { color: var(--fg); font-weight: 600; }
+.linkbtn { background: none; border: 0; color: var(--accent); font: inherit; font-size: .85rem; cursor: pointer; padding: 0; text-decoration: underline; }
+details.card > summary { list-style: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+details.card > summary::-webkit-details-marker { display: none; }
+details.card > summary h2 { flex: 1 1 auto; }
+details.card > summary::after { content: ""; width: 9px; height: 9px; border-right: 2px solid var(--muted); border-bottom: 2px solid var(--muted); transform: rotate(45deg); flex: 0 0 auto; margin-inline-end: 4px; transition: transform .15s; }
+details.card[open] > summary::after { transform: rotate(-135deg); }
+details.card[open] > summary { margin-bottom: 4px; }
+.row .note { font-size: .84rem; color: var(--muted); margin-top: 4px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.row.open .note { display: block; -webkit-line-clamp: unset; }
+.row[data-x] { cursor: pointer; }
+.bar { position: fixed; left: 0; right: 0; bottom: 0; z-index: 1300; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0; background: var(--panel); border-top: 1px solid var(--line); padding-bottom: env(safe-area-inset-bottom, 0px); }
+.bar > * { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; padding: 8px 4px; font-size: .72rem; font-weight: 600; color: var(--muted); background: none; border: 0; text-decoration: none; cursor: pointer; min-height: 54px; }
+.bar > *:hover, .bar > *:focus-visible { color: var(--fg); }
+.bar #barAlarm.on { color: var(--sev1); }
+.bar #barWa { color: #25d366; }
+@media (min-width: 960px) { .bar { display: none; } }
+@media (max-width: 959px) { #vMe, #armbtn { display: none; } }
+@media (max-width: 959px) { #app { padding-bottom: calc(76px + env(safe-area-inset-bottom, 0px)); } }
+.leaflet-bottom.leaflet-left { margin-bottom: 0; }
 .stale { margin-top: 8px; padding: 8px 10px; border-radius: 8px; font-size: .85rem; border: 1px solid var(--sev2); color: var(--fg); background: rgba(242,193,78,.16); background: color-mix(in srgb, var(--sev2) 16%, transparent); }
 .stale[data-bad="1"] { border-color: var(--sev4); background: rgba(255,75,92,.16); background: color-mix(in srgb, var(--sev4) 16%, transparent); }
 .stale[hidden] { display: none; }
-.sumtxt { margin-top: 8px; font-size: .9rem; }
+.sumtxt { margin-top: 8px; font-size: .9rem; display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden; }
+.sumtxt.open { display: block; -webkit-line-clamp: unset; }
+#sitcard { cursor: pointer; }
 .srclist { margin: 8px 0 0; padding-inline-start: 18px; font-size: .8rem; }
 .srclist li { margin: 3px 0; }
 </style>
@@ -227,13 +250,14 @@ select, input[type="text"] { width: 100%; background: var(--bg-2); color: var(--
       <span class="pill" id="pill">—</span>
       <div class="head" id="lvhead">—</div>
       <div class="sub" id="lvsub">—</div>
+      <div class="you-line" id="youline"></div>
     </div>
     <div class="official"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 9v4M12 17h.01M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/></svg><span data-i="official">Real-time warnings come only from Civil Defense phone alerts. This page lags events by minutes to an hour.</span></div>
   </div>
   <div class="install" id="install" hidden>
     <div class="install-row">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="5" y="2" width="14" height="20" rx="2.5"/><path d="M12 8v8M8.5 12.5 12 16l3.5-3.5"/></svg>
-      <div class="install-text"><b id="installTitle"></b><div class="small" id="installSteps"></div></div>
+      <div class="install-text"><b id="installTitle"></b> <button type="button" class="linkbtn" id="installHow" data-i="installHow">How?</button><div class="small" id="installSteps" hidden></div></div>
       <button class="btn primary" id="installBtn" type="button" hidden data-i="installBtn">Install app</button>
       <button class="hintx" id="installX" type="button" aria-label="Dismiss">×</button>
     </div>
@@ -263,17 +287,15 @@ select, input[type="text"] { width: 100%; background: var(--bg-2); color: var(--
     </div>
 
     <div class="stack">
-      <section class="card" id="mecard">
-        <h2><span data-i="whereTitle">Where you are</span><span class="small" id="meSrc"></span></h2>
-        <div class="mepos" id="mepos"></div>
-        <div class="field">
-          <label for="district" data-i="district">Pick a Riyadh district</label>
-          <select id="district"></select>
-        </div>
-        <div class="field">
-          <label for="paste" data-i="paste">Or paste a Google Maps link or coordinates</label>
-          <div class="inline"><input type="text" id="paste" placeholder="24.7136, 46.6753" inputmode="text" autocomplete="off" style="flex:1 1 200px"><button class="btn" id="pastebtn" type="button" data-i="use">Use</button><button class="btn" id="gpsbtn" type="button" data-i="gps">Try GPS</button></div>
-        </div>
+      <section class="card" id="sitcard">
+        <h2><span data-i="sitTitle">Situation now</span><span class="small" id="sitUpdated"></span></h2>
+        <p class="sumtxt" id="summary"></p>
+        <div class="stale" id="stale" hidden></div>
+      </section>
+
+      <section class="card">
+        <h2><span data-i="incTitle">Recent incidents</span><span class="small" id="incCount"></span></h2>
+        <div class="rows" id="incidents"></div>
       </section>
 
       <section class="card">
@@ -287,10 +309,24 @@ select, input[type="text"] { width: 100%; background: var(--bg-2); color: var(--
         <div class="rows" id="pred"></div>
       </section>
 
-      <section class="card">
-        <h2><span data-i="incTitle">Recent incidents</span><span class="small" id="incCount"></span></h2>
-        <p class="sumtxt" id="summary"></p>
-        <div class="rows" id="incidents"></div>
+      <section class="card safety">
+        <h2 data-i="safetyTitle">What to do</h2>
+        <div class="numbers"><span><b>911</b> <span data-i="n911">Unified emergency</span></span><span><b>998</b> <span data-i="n998">Civil Defense</span></span><span><b>997</b> <span data-i="n997">Ambulance</span></span></div>
+        <div class="eyebrow" style="margin-top:10px" data-i="duringTitle">During an alert or after an explosion</div>
+        <ol>
+          <li data-i="d1">Move away from windows, balconies and rooftops into an interior room, ideally on a low floor.</li>
+          <li data-i="d2">If you are outside, get into the nearest building or behind a solid barrier.</li>
+          <li data-i="d3">Stay there until the Civil Defense all-clear. Interception debris can fall for several minutes.</li>
+          <li data-i="d4">Do not approach debris or impact sites, do not gather, and do not film: the Ministry of Interior has warned that filming interceptions or debris sites is an offence.</li>
+        </ol>
+        <details class="more">
+          <summary data-i="enableTitle">Make sure official alerts reach your phone</summary>
+          <ul>
+            <li data-i="enIos">iPhone: Settings → Notifications → scroll to the bottom → turn on Government / Emergency Alerts.</li>
+            <li data-i="enAndroid">Android: Settings → Safety &amp; emergency → Wireless emergency alerts → on.</li>
+            <li data-i="enNote">The National Early Warning Platform (Civil Defense) sends a loud alert to every phone in the threatened area, and an all-clear afterwards.</li>
+          </ul>
+        </details>
       </section>
 
       <section class="card">
@@ -303,45 +339,46 @@ select, input[type="text"] { width: 100%; background: var(--bg-2); color: var(--
         </div>
       </section>
 
-      <section class="card safety">
-        <h2 data-i="safetyTitle">What to do</h2>
-        <div class="eyebrow" style="margin-top:8px" data-i="enableTitle">1. Make sure official alerts reach your phone</div>
-        <ul>
-          <li data-i="enIos">iPhone: Settings → Notifications → scroll to the bottom → turn on Government / Emergency Alerts.</li>
-          <li data-i="enAndroid">Android: Settings → Safety &amp; emergency → Wireless emergency alerts → on.</li>
-          <li data-i="enNote">The National Early Warning Platform (Civil Defense) sends a loud alert to every phone in the threatened area, and an all-clear afterwards.</li>
-        </ul>
-        <div class="eyebrow" style="margin-top:10px" data-i="duringTitle">2. During an alert or after an explosion</div>
-        <ol>
-          <li data-i="d1">Move away from windows, balconies and rooftops into an interior room, ideally on a low floor.</li>
-          <li data-i="d2">If you are outside, get into the nearest building or behind a solid barrier.</li>
-          <li data-i="d3">Stay there until the Civil Defense all-clear. Interception debris can fall for several minutes.</li>
-          <li data-i="d4">Do not approach debris or impact sites, do not gather, and do not film: the Ministry of Interior has warned that filming interceptions or debris sites is an offence.</li>
-        </ol>
-        <div class="eyebrow" style="margin-top:10px" data-i="numTitle">Emergency numbers</div>
-        <div class="numbers"><span><b>911</b> <span data-i="n911">Unified emergency</span></span><span><b>998</b> <span data-i="n998">Civil Defense</span></span><span><b>997</b> <span data-i="n997">Ambulance</span></span></div>
-      </section>
+      <details class="card" id="mecard">
+        <summary><h2><span data-i="whereTitle">Your location</span><span class="small" id="meSrc"></span></h2></summary>
+        <div class="mepos" id="mepos"></div>
+        <div class="field">
+          <label for="district" data-i="district">Pick a Riyadh district</label>
+          <select id="district"></select>
+        </div>
+        <div class="field">
+          <label for="paste" data-i="paste">Or paste a Google Maps link or coordinates</label>
+          <div class="inline"><input type="text" id="paste" placeholder="24.7136, 46.6753" inputmode="text" autocomplete="off" style="flex:1 1 200px"><button class="btn" id="pastebtn" type="button" data-i="use">Use</button><button class="btn" id="gpsbtn" type="button" data-i="gps">Use GPS</button></div>
+        </div>
+        <div class="inline" style="margin-top:10px"><button class="btn" id="clearloc" type="button" data-i="clearLoc">Forget my location</button></div>
+      </details>
 
-      <section class="card">
-        <h2 data-i="settingsTitle">Settings</h2>
+      <details class="card">
+        <summary><h2 data-i="settingsTitle">Settings</h2></summary>
         <div class="field">
           <label class="toggle"><input type="checkbox" id="optSound" checked><span data-i="optSound">Sound the alarm when a new alert lands in my zone (page must be open)</span></label>
           <label class="toggle"><input type="checkbox" id="optVibrate" checked><span data-i="optVibrate">Vibrate (Android)</span></label>
           <label class="toggle"><input type="checkbox" id="optWake"><span data-i="optWake">Keep the screen on while this page is open</span></label>
         </div>
-        <div class="inline" style="margin-top:10px"><button class="btn" id="testalarm" type="button" data-i="testAlarm">Test the alarm</button><button class="btn" id="clearloc" type="button" data-i="clearLoc">Forget my location</button></div>
+        <div class="inline" style="margin-top:10px"><button class="btn" id="testalarm" type="button" data-i="testAlarm">Test the alarm</button></div>
         <p class="small" style="margin-top:10px"><span data-i="monitorLbl">Monitor:</span> <span id="monitorNote"></span></p>
-      </section>
+      </details>
 
-      <section class="card">
-        <h2 data-i="srcTitle">Sources</h2>
+      <details class="card">
+        <summary><h2 data-i="srcTitle">Sources</h2></summary>
         <ul class="srclist" id="sources"></ul>
-      </section>
+      </details>
 
       <p class="disc" data-i="disclaimer">Community awareness tool. Not an official warning system. Site positions marked ≈ are approximate. Predictions are estimates drawn from recent targeting patterns and public statements, refreshed by an automated monitor.</p>
     </div>
   </div>
 </div>
+
+<nav class="bar" id="bar" aria-label="Quick actions">
+  <button type="button" id="barMe"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/><circle cx="12" cy="12" r="8"/></svg><span data-i="barMe">Me</span></button>
+  <button type="button" id="barAlarm"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg><span id="barAlarmLabel" data-i="barAlarm">Alarm</span></button>
+  <a id="barWa" href="#" target="_blank" rel="noopener"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5.1-1.3A10 10 0 1 0 12 2zm0 18a8 8 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 20zm4.4-6c-.2-.1-1.4-.7-1.6-.8s-.4-.1-.6.1-.6.8-.8 1-.3.2-.5.1a6.5 6.5 0 0 1-3.2-2.8c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.5l-.7-1.7c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 11.9 11.9 0 0 0 4.6 4 5.3 5.3 0 0 0 3.2.6 2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.3-.2-.5-.3z"/></svg><span data-i="barWa">WhatsApp</span></a>
+</nav>
 
 <div id="alarm" hidden role="alertdialog" aria-live="assertive">
   <h2 id="alarmTitle">ALERT</h2>
@@ -370,7 +407,7 @@ select, input[type="text"] { width: 100%; background: var(--bg-2); color: var(--
       setLocation: 'Set my location', tapMap: 'Tap your location on the map, as often as you like (or pick a district below)', viewRiyadh: 'Riyadh', viewKsa: 'Kingdom', viewMe: 'Me',
       arm: 'Arm alarm', disarm: 'Alarm armed', armedToast: 'Alarm armed. Keep this page open.', disarmedToast: 'Alarm off.',
       lg4: 'Critical', lg3: 'High', lg2: 'Elevated', lg1: 'Low', lgMe: 'You', lgInc: 'Incident (last 48 h)',
-      whereTitle: 'Where you are', district: 'Pick a Riyadh district', paste: 'Or paste a Google Maps link or coordinates', use: 'Use', gps: 'Try GPS',
+      whereTitle: 'Your location', district: 'Pick a Riyadh district', paste: 'Or paste a Google Maps link or coordinates', use: 'Use', gps: 'Use GPS',
       gpsFail: 'GPS is not available in this viewer. Tap the map or pick a district.', gpsOk: 'Location set from GPS.', pasteFail: 'No coordinates found. Paste something like 24.7136, 46.6753 or a maps link that contains @lat,lng.',
       meSet: 'Your location', meUnset: 'No location set yet.', approx: '≈ approximate position', chooseDistrict: '— choose a district —',
       nearTitle: 'Nearest risk sites', nearSub: 'distance from you', predTitle: 'Predicted next targets', predSub: 'Ranked from recent strikes, named threats and strategic value. An estimate that the monitor re-rates on every run.',
@@ -379,16 +416,16 @@ select, input[type="text"] { width: 100%; background: var(--bg-2); color: var(--
       weapons: { ballistic: 'ballistic missile', cruise: 'cruise missile', drone: 'drone', unknown: 'unidentified weapon' },
       struckRecent: 'struck', interceptRecent: 'interception', lastHit: 'last hit', daysAgo: 'd ago', today: 'today', yesterday: 'yesterday', threatNamed: 'named as a target', source: 'source',
       shareTitle: 'Share', shareSub: 'Send the live map and your current status to family and friends.', whatsapp: 'Share on WhatsApp', copyLink: 'Copy link', copyStatus: 'Copy status', copied: 'Copied', copyFail: 'Could not copy. Select the text and copy it.',
-      safetyTitle: 'What to do', enableTitle: '1. Make sure official alerts reach your phone',
+      safetyTitle: 'What to do', enableTitle: 'Make sure official alerts reach your phone',
       enIos: 'iPhone: Settings → Notifications → scroll to the bottom → turn on Government / Emergency Alerts.', enAndroid: 'Android: Settings → Safety & emergency → Wireless emergency alerts → on.', enNote: 'The National Early Warning Platform (Civil Defense) sends a loud alert to every phone in the threatened area, and an all-clear afterwards.',
-      duringTitle: '2. During an alert or after an explosion', d1: 'Move away from windows, balconies and rooftops into an interior room, ideally on a low floor.', d2: 'If you are outside, get into the nearest building or behind a solid barrier.', d3: 'Stay there until the Civil Defense all-clear. Interception debris can fall for several minutes.', d4: 'Do not approach debris or impact sites, do not gather, and do not film: the Ministry of Interior has warned that filming interceptions or debris sites is an offence.',
+      duringTitle: 'During an alert or after an explosion', d1: 'Move away from windows, balconies and rooftops into an interior room, ideally on a low floor.', d2: 'If you are outside, get into the nearest building or behind a solid barrier.', d3: 'Stay there until the Civil Defense all-clear. Interception debris can fall for several minutes.', d4: 'Do not approach debris or impact sites, do not gather, and do not film: the Ministry of Interior has warned that filming interceptions or debris sites is an offence.',
       numTitle: 'Emergency numbers', n911: 'Unified emergency', n998: 'Civil Defense', n997: 'Ambulance',
       settingsTitle: 'Settings', optSound: 'Sound the alarm when a new alert lands in my zone (page must be open)', optVibrate: 'Vibrate (Android)', optWake: 'Keep the screen on while this page is open', testAlarm: 'Test the alarm', clearLoc: 'Forget my location', monitorLbl: 'Monitor:',
       srcTitle: 'Sources', disclaimer: 'Community awareness tool. Not an official warning system. Site positions marked ≈ are approximate. Predictions are estimates drawn from recent targeting patterns and public statements, refreshed by an automated monitor.',
       updated: 'Data updated', staleWarn: 'No monitor update for {h}. Treat the picture as stale.', staleBad: 'No monitor update for {h}. The monitor may be down; rely on official alerts.',
       alarmTitle: 'ALERT', testTitle: 'TEST ALARM', testText: 'This is what an alert looks like.', ok: 'OK', shareText: 'Riyadh Sky Watch: {level} at {place}. Nearest risk: {near}. Live map: {url} — Keep Emergency Alerts on; official warnings come only from Civil Defense.',
-      offline: 'Showing the last saved data (live file unreachable).', recent: 'Recent', predShort: 'Predicted', zoneHere: 'zone where you are', outsideRings: 'Outside its rings', locSet: 'Location set', tapAgain: 'Tap anywhere on the map to move your spot.', siteThreat: 'Site threat', youInside: 'You are inside its {level} zone (within {r} km)', youOutside: 'You are outside its danger zone (beyond {r} km)',
-      installBtn: 'Install app', installTitle: 'Keep this on your home screen',
+      offline: 'Showing the last saved data (live file unreachable).', recent: 'Recent', predShort: 'Predicted', zoneHere: 'zone where you are', outsideRings: 'Outside its rings', locSet: 'Location set', tapAgain: 'Tap anywhere on the map to move your spot.', sitTitle: 'Situation now', changeLoc: 'change', locating: 'Finding your location…', tapMapShort: 'Tap the map to set your location', barMe: 'Me', barAlarm: 'Alarm', barAlarmOn: 'Alarm on', installHow: 'How?', siteThreat: 'Site threat', youInside: 'You are inside its {level} zone (within {r} km)', youOutside: 'You are outside its danger zone (beyond {r} km)',
+      installBtn: 'Install app', installTitle: 'Add to your home screen for one-tap access.',
       inst: {
         iosSafari: 'Tap Share (the square with an arrow at the bottom), then "Add to Home Screen", then Add.',
         iosChrome: 'Tap Share (top right), then "Add to Home Screen".',
@@ -410,7 +447,7 @@ select, input[type="text"] { width: 100%; background: var(--bg-2); color: var(--
       setLocation: 'حدّد موقعي', tapMap: 'اضغط على موقعك في الخريطة، وكرر ذلك متى شئت (أو اختر حياً أدناه)', viewRiyadh: 'الرياض', viewKsa: 'المملكة', viewMe: 'موقعي',
       arm: 'تفعيل المنبّه', disarm: 'المنبّه مفعّل', armedToast: 'تم تفعيل المنبّه. أبقِ الصفحة مفتوحة.', disarmedToast: 'تم إيقاف المنبّه.',
       lg4: 'حرج', lg3: 'مرتفع', lg2: 'متوسط', lg1: 'منخفض', lgMe: 'أنت', lgInc: 'حادثة (آخر ٤٨ ساعة)',
-      whereTitle: 'موقعك', district: 'اختر حياً في الرياض', paste: 'أو الصق رابط خرائط قوقل أو إحداثيات', use: 'استخدم', gps: 'جرّب GPS',
+      whereTitle: 'موقعك', district: 'اختر حياً في الرياض', paste: 'أو الصق رابط خرائط قوقل أو إحداثيات', use: 'استخدم', gps: 'استخدم GPS',
       gpsFail: 'تحديد الموقع غير متاح في هذا العارض. اضغط على الخريطة أو اختر حياً.', gpsOk: 'تم تحديد الموقع من GPS.', pasteFail: 'لم أجد إحداثيات. الصق شيئاً مثل 24.7136, 46.6753 أو رابط خرائط يحتوي @lat,lng.',
       meSet: 'موقعك', meUnset: 'لم يُحدَّد موقع بعد.', approx: '≈ موقع تقريبي', chooseDistrict: '— اختر حياً —',
       nearTitle: 'أقرب مواقع الخطر', nearSub: 'المسافة من موقعك', predTitle: 'الأهداف المتوقعة التالية', predSub: 'ترتيب مبني على الضربات الأخيرة والتهديدات المعلنة والقيمة الاستراتيجية. تقدير يعيد المرصد تقييمه في كل دورة.',
@@ -419,16 +456,16 @@ select, input[type="text"] { width: 100%; background: var(--bg-2); color: var(--
       weapons: { ballistic: 'صاروخ باليستي', cruise: 'صاروخ كروز', drone: 'مسيّرة', unknown: 'سلاح غير محدد' },
       struckRecent: 'أُصيب', interceptRecent: 'اعتراض', lastHit: 'آخر إصابة', daysAgo: 'يوم', today: 'اليوم', yesterday: 'أمس', threatNamed: 'سُمّي هدفاً', source: 'المصدر',
       shareTitle: 'مشاركة', shareSub: 'أرسل الخريطة الحية وحالتك الحالية للعائلة والأصدقاء.', whatsapp: 'مشاركة عبر واتساب', copyLink: 'نسخ الرابط', copyStatus: 'نسخ الحالة', copied: 'تم النسخ', copyFail: 'تعذّر النسخ. حدّد النص وانسخه يدوياً.',
-      safetyTitle: 'ماذا تفعل', enableTitle: '١. تأكد أن الإنذارات الرسمية تصل إلى جوالك',
+      safetyTitle: 'ماذا تفعل', enableTitle: 'تأكد أن الإنذارات الرسمية تصل إلى جوالك',
       enIos: 'آيفون: الإعدادات ← الإشعارات ← أسفل الصفحة ← تفعيل التنبيهات الحكومية / تنبيهات الطوارئ.', enAndroid: 'أندرويد: الإعدادات ← الأمان والطوارئ ← تنبيهات الطوارئ اللاسلكية ← تفعيل.', enNote: 'منصة الإنذار المبكر الوطنية (الدفاع المدني) ترسل إنذاراً بصوت عالٍ لكل جوال في المنطقة المهددة، ثم رسالة زوال الخطر.',
-      duringTitle: '٢. أثناء الإنذار أو بعد سماع انفجار', d1: 'ابتعد عن النوافذ والشرفات والأسطح إلى غرفة داخلية، ويفضَّل في طابق منخفض.', d2: 'إذا كنت في الخارج فادخل أقرب مبنى أو احتمِ خلف حاجز صلب.', d3: 'ابقَ حتى يعلن الدفاع المدني زوال الخطر؛ شظايا الاعتراض قد تسقط لعدة دقائق.', d4: 'لا تقترب من الشظايا أو مواقع السقوط، ولا تتجمع، ولا تصوّر: حذّرت وزارة الداخلية من أن تصوير الاعتراضات ومواقع السقوط مخالفة.',
+      duringTitle: 'أثناء الإنذار أو بعد سماع انفجار', d1: 'ابتعد عن النوافذ والشرفات والأسطح إلى غرفة داخلية، ويفضَّل في طابق منخفض.', d2: 'إذا كنت في الخارج فادخل أقرب مبنى أو احتمِ خلف حاجز صلب.', d3: 'ابقَ حتى يعلن الدفاع المدني زوال الخطر؛ شظايا الاعتراض قد تسقط لعدة دقائق.', d4: 'لا تقترب من الشظايا أو مواقع السقوط، ولا تتجمع، ولا تصوّر: حذّرت وزارة الداخلية من أن تصوير الاعتراضات ومواقع السقوط مخالفة.',
       numTitle: 'أرقام الطوارئ', n911: 'الطوارئ الموحد', n998: 'الدفاع المدني', n997: 'الإسعاف',
       settingsTitle: 'الإعدادات', optSound: 'إطلاق المنبّه عند وصول إنذار جديد في منطقتي (يجب أن تبقى الصفحة مفتوحة)', optVibrate: 'اهتزاز (أندرويد)', optWake: 'إبقاء الشاشة مضاءة أثناء فتح الصفحة', testAlarm: 'تجربة المنبّه', clearLoc: 'نسيان موقعي', monitorLbl: 'المرصد:',
       srcTitle: 'المصادر', disclaimer: 'أداة توعية مجتمعية وليست نظام إنذار رسمي. المواقع المعلّمة بـ ≈ تقريبية. التوقعات تقديرات مبنية على أنماط الاستهداف الأخيرة والتصريحات العلنية ويحدّثها مرصد آلي.',
       updated: 'آخر تحديث للبيانات', staleWarn: 'لا تحديث من المرصد منذ {h}. اعتبر الصورة قديمة.', staleBad: 'لا تحديث من المرصد منذ {h}. قد يكون المرصد متوقفاً؛ اعتمد على الإنذارات الرسمية.',
       alarmTitle: 'إنذار', testTitle: 'تجربة المنبّه', testText: 'هكذا يبدو الإنذار.', ok: 'حسناً', shareText: 'رصد سماء الرياض: {level} في {place}. أقرب خطر: {near}. الخريطة الحية: {url} — أبقِ تنبيهات الطوارئ مفعّلة؛ الإنذار الرسمي يأتي فقط من الدفاع المدني.',
-      offline: 'تُعرض آخر بيانات محفوظة (تعذّر الوصول للملف الحي).', recent: 'حديث', predShort: 'التوقع', zoneHere: 'نطاقك هنا', outsideRings: 'خارج نطاقاته', locSet: 'تم تحديد الموقع', tapAgain: 'اضغط في أي مكان على الخريطة لنقل موقعك.', siteThreat: 'تهديد الموقع', youInside: 'أنت داخل نطاقه ({level}) ضمن {r} كم', youOutside: 'أنت خارج نطاق خطره (أبعد من {r} كم)',
-      installBtn: 'تثبيت التطبيق', installTitle: 'أبقِ الصفحة على شاشتك الرئيسية',
+      offline: 'تُعرض آخر بيانات محفوظة (تعذّر الوصول للملف الحي).', recent: 'حديث', predShort: 'التوقع', zoneHere: 'نطاقك هنا', outsideRings: 'خارج نطاقاته', locSet: 'تم تحديد الموقع', tapAgain: 'اضغط في أي مكان على الخريطة لنقل موقعك.', sitTitle: 'الوضع الآن', changeLoc: 'تغيير', locating: 'جارٍ تحديد موقعك…', tapMapShort: 'اضغط على الخريطة لتحديد موقعك', barMe: 'موقعي', barAlarm: 'المنبّه', barAlarmOn: 'المنبّه مفعّل', installHow: 'كيف؟', siteThreat: 'تهديد الموقع', youInside: 'أنت داخل نطاقه ({level}) ضمن {r} كم', youOutside: 'أنت خارج نطاق خطره (أبعد من {r} كم)',
+      installBtn: 'تثبيت التطبيق', installTitle: 'أضف الصفحة لشاشتك الرئيسية للوصول بضغطة واحدة.',
       inst: {
         iosSafari: 'اضغط زر المشاركة (المربع ذو السهم في الأسفل)، ثم "إضافة إلى الشاشة الرئيسية"، ثم إضافة.',
         iosChrome: 'اضغط زر المشاركة (أعلى اليمين)، ثم "إضافة إلى الشاشة الرئيسية".',
@@ -667,7 +704,7 @@ select, input[type="text"] { width: 100%; background: var(--bg-2); color: var(--
     L.circleMarker(st.me, { radius: 8, color: '#fff', weight: 2, fillColor: cssVar('--accent'), fillOpacity: 1, interactive: false }).bindTooltip(t('lgMe'), { permanent: true, direction: 'top', className: 'melabel', offset: [0, -8], interactive: false, opacity: 1 }).addTo(meMarker);
     meMarker.addTo(map);
   }
-  var gpsWatch = null, gpsTried = false;
+  var gpsWatch = null, gpsTried = false, gpsFailed = false;
   function stopGps() { try { if (gpsWatch != null && navigator.geolocation) navigator.geolocation.clearWatch(gpsWatch); } catch (e) {} gpsWatch = null; }
   function gpsPosition(p, quiet) {
     var lat = p.coords.latitude, lng = p.coords.longitude;
@@ -680,13 +717,13 @@ select, input[type="text"] { width: 100%; background: var(--bg-2); color: var(--
   function tryGps(opts) {
     opts = opts || {};
     var done = false;
-    function fail() { if (done) return; done = true; if (!opts.quiet) { toast(t('gpsFail')); enterMode(); } }
+    function fail() { if (done) return; done = true; gpsFailed = true; if (!opts.quiet) { toast(t('gpsFail')); enterMode(); } else if (!st.me) { enterMode(); var mc2 = $('mecard'); if (mc2) mc2.open = true; } renderYou(); }
     try {
       if (!navigator.geolocation) return fail();
       gpsTried = true;
       navigator.geolocation.getCurrentPosition(function (p) {
         if (done) return; done = true;
-        gpsPosition(p, opts.quiet); if (!opts.quiet) toast(t('gpsOk'));
+        gpsFailed = false; gpsPosition(p, opts.quiet); if (!opts.quiet) toast(t('gpsOk'));
         stopGps();
         try { gpsWatch = navigator.geolocation.watchPosition(function (q) { gpsPosition(q, true); }, function () {}, { enableHighAccuracy: true, maximumAge: 30000, timeout: 60000 }); } catch (e) {}
       }, fail, { enableHighAccuracy: true, timeout: opts.timeout || 10000, maximumAge: 60000 });
@@ -699,7 +736,9 @@ select, input[type="text"] { width: 100%; background: var(--bg-2); color: var(--
   function setMe(lat, lng, label, src, quiet) {
     lat = Math.round(lat * 1e4) / 1e4; lng = Math.round(lng * 1e4) / 1e4;
     if (src !== 'gps') stopGps();
+    var had = !!st.me;
     st.me = [lat, lng]; st.meLabel = label || districtAt(lat, lng) || ''; st.meSrc = src || ''; save();
+    if (!had) { var mc0 = $('mecard'); if (mc0) mc0.open = false; }
     render();
     if (!quiet) toast(t('locSet') + (st.meLabel ? ': ' + st.meLabel : ''));
   }
@@ -739,7 +778,7 @@ select, input[type="text"] { width: 100%; background: var(--bg-2); color: var(--
     var now = Date.now();
     drawSites(now); drawIncidents(now); drawMe();
     var a = assess(st.me, now);
-    renderStatus(a, now); renderMe(); renderNearest(a, now); renderPred(now); renderIncidents(a, now); renderShare(a); renderMeta(now);
+    renderStatus(a, now); renderYou(); renderMe(); renderSummary(now); renderNearest(a, now); renderPred(now); renderIncidents(a, now); renderShare(a); renderMeta(now);
     checkAlarms(a, now);
   }
   function renderStatus(a, now) {
@@ -768,21 +807,21 @@ select, input[type="text"] { width: 100%; background: var(--bg-2); color: var(--
     }
   }
   function renderMe() {
-    var el = $('mepos');
+    var el = $('mepos'), mc = $('mecard');
     if (!st.me) { el.innerHTML = '<span class="small">' + esc(t('meUnset')) + '</span>'; $('meSrc').textContent = ''; return; }
     el.innerHTML = '<b>' + esc(t('meSet')) + ':</b> ' + esc(st.meLabel || '') + ' <span class="num small">' + st.me[0].toFixed(4) + ', ' + st.me[1].toFixed(4) + '</span>';
-    $('meSrc').textContent = st.meSrc === 'gps' ? (gpsWatch != null ? 'GPS · live' : 'GPS') : '';
+    $('meSrc').textContent = (st.meLabel || '') + (st.meSrc === 'gps' ? ' · GPS' + (gpsWatch != null ? ' live' : '') : '');
   }
   function renderNearest(a, now) {
     var el = $('nearest');
     if (!st.me) { el.innerHTML = '<div class="small">' + esc(t('noLoc')) + '</div>'; return; }
-    el.innerHTML = a.sites.slice(0, 6).map(function (x) {
+    el.innerHTML = moreList(a.sites.slice(0, 10), 4, function (x) {
       var s = x.site, meta = [], zones = siteZones(s, now), outer = zones.length ? zones[zones.length - 1].r : 0;
       var ctx = siteContext(s, x.info, now); if (ctx) meta.push(ctx);
       if (s.prediction) meta.push(t('predShort') + ': ' + (t('predL')[s.prediction.level] || s.prediction.level));
       var you = x.t ? t('youInside').replace('{level}', t('levels')[x.t]).replace('{r}', String(Math.round(x.zone.r))) : t('youOutside').replace('{r}', String(Math.round(outer)));
       return '<div class="row"><span class="stripe" data-t="' + x.tier + '"></span><div style="min-width:0"><div class="ttl">' + esc(nm(s)) + (s.approx ? ' <span class="small">≈</span>' : '') + '</div><div class="meta"><span class="chip" data-t="' + x.tier + '">' + esc(t('siteThreat')) + ': ' + esc(t('levels')[x.tier]) + '</span>' + (meta.length ? ' · ' + esc(meta.join(' · ')) : '') + '</div><div class="you" data-in="' + (x.t ? '1' : '0') + '">' + esc(you) + '</div></div><div class="dist"><b class="num">' + esc(fmtKm(x.d)) + '</b><span class="small">' + esc(st.lang === 'ar' ? 'من موقعك' : 'from you') + '</span></div></div>';
-    }).join('');
+    });
   }
   function renderPred(now) {
     var order = { high: 0, medium: 1, low: 2 };
@@ -792,7 +831,7 @@ select, input[type="text"] { width: 100%; background: var(--bg-2); color: var(--
     });
     var when = ''; list.forEach(function (s) { if (s.prediction && s.prediction.assessed_at && (!when || s.prediction.assessed_at > when)) when = s.prediction.assessed_at; });
     $('predWhen').textContent = when ? t('assessed') + ' ' + ago(when, now) : '';
-    var top = list.slice(0, 8), rest = list.slice(8);
+    var top = list.slice(0, 5), rest = list.slice(5);
     function row(s) {
       var p = s.prediction || {}, why = (st.lang === 'ar' ? p.why_ar : p.why_en) || [], tr = PRED_TIER[p.level] || 1;
       var d = st.me ? fmtKm(hav(st.me, [s.lat, s.lng])) : '';
@@ -802,13 +841,14 @@ select, input[type="text"] { width: 100%; background: var(--bg-2); color: var(--
   }
   function regionName(r) { var m = { Riyadh: ['Riyadh region', 'منطقة الرياض'], Eastern: ['Eastern Province', 'المنطقة الشرقية'], South: ['South', 'الجنوب'], West: ['West', 'الغرب'], North: ['North', 'الشمال'] }; var v = m[r]; return v ? (st.lang === 'ar' ? v[1] : v[0]) : (r || ''); }
   function renderIncidents(a, now) {
-    var list = (data.incidents || []).slice().sort(function (x, y) { return new Date(y.time) - new Date(x.time); });
+    var ref = st.me || [24.7136, 46.6753];
+    var list = (data.incidents || []).slice().sort(function (x, y) { var nx = hav(ref, [x.lat, x.lng]) <= 150 ? 0 : 1, ny = hav(ref, [y.lat, y.lng]) <= 150 ? 0 : 1; if (nx !== ny) return nx - ny; return new Date(y.time) - new Date(x.time); });
     $('incCount').textContent = list.length ? list.length + (st.lang === 'ar' ? ' حادثة' : ' listed') : '';
-    $('summary').textContent = data.summary ? (st.lang === 'ar' ? data.summary.ar : data.summary.en) || '' : '';
-    $('incidents').innerHTML = list.slice(0, 30).map(function (inc) {
+    function row(inc) {
       var lt = incidentLive(inc, now), sev = inc.severity || 3, d = st.me ? hav(st.me, [inc.lat, inc.lng]) : null;
-      return '<div class="row"><span class="stripe" data-t="' + (lt || 0) + '"></span><div style="min-width:0"><div class="ttl">' + esc(t('kinds')[inc.kind] || inc.kind) + ' · ' + esc(L8(inc, 'place')) + '</div><div class="meta">' + esc(fmtTime(inc.time, inc.tprec)) + ' · ' + esc(ago(inc.time, now)) + ' · ' + esc(t('weapons')[inc.weapon] || '') + (inc.casualties_en && inc.casualties_en !== 'None reported' && inc.casualties_en !== 'Not reported' ? ' · ' + esc(L8(inc, 'casualties')) : '') + '</div><div class="small" style="margin-top:4px">' + esc(L8(inc, 'note')) + '</div>' + (inc.source && inc.source.url ? '<a class="srcl" href="' + esc(inc.source.url) + '" target="_blank" rel="noopener">' + esc(inc.source.title || t('source')) + '</a>' : '') + '</div><div class="dist">' + (d != null ? '<b class="num">' + esc(fmtKm(d)) + '</b><span class="chip" data-t="' + sev + '">' + esc(t('levels')[sev]) + '</span>' : '<span class="chip" data-t="' + sev + '">' + esc(t('levels')[sev]) + '</span>') + '</div></div>';
-    }).join('');
+      return '<div class="row" data-x="1"><span class="stripe" data-t="' + (lt || 0) + '"></span><div style="min-width:0"><div class="ttl">' + esc(t('kinds')[inc.kind] || inc.kind) + ' · ' + esc(L8(inc, 'place')) + '</div><div class="meta">' + esc(fmtTime(inc.time, inc.tprec)) + ' · ' + esc(ago(inc.time, now)) + ' · ' + esc(t('weapons')[inc.weapon] || '') + (inc.casualties_en && !/^(none|not reported|no casualt|unknown|لا |غير)/i.test(inc.casualties_en) ? ' · ' + esc(L8(inc, 'casualties')) : '') + '</div><div class="note">' + esc(L8(inc, 'note')) + '</div>' + (inc.source && inc.source.url ? '<a class="srcl" href="' + esc(inc.source.url) + '" target="_blank" rel="noopener">' + esc(inc.source.title || t('source')) + '</a>' : '') + '</div><div class="dist">' + (d != null ? '<b class="num">' + esc(fmtKm(d)) + '</b><span class="chip" data-t="' + sev + '">' + esc(t('levels')[sev]) + '</span>' : '<span class="chip" data-t="' + sev + '">' + esc(t('levels')[sev]) + '</span>') + '</div></div>';
+    }
+    $('incidents').innerHTML = moreList(list.slice(0, 40), 5, row);
   }
   function statusText(a) {
     if (!st.me) return t('noLoc');
@@ -821,6 +861,21 @@ select, input[type="text"] { width: 100%; background: var(--bg-2); color: var(--
   function renderShare(a) {
     var txt = statusText(a);
     $('wabtn').href = 'https://wa.me/?text=' + encodeURIComponent(txt);
+    var bw = $('barWa'); if (bw) bw.href = $('wabtn').href;
+  }
+  function moreList(items, n, fn) {
+    var top = items.slice(0, n), rest = items.slice(n);
+    return top.map(fn).join('') + (rest.length ? '<details class="more"><summary>' + esc(st.lang === 'ar' ? 'عرض المزيد (' + rest.length + ')' : 'Show ' + rest.length + ' more') + '</summary><div class="rows">' + rest.map(fn).join('') + '</div></details>' : '');
+  }
+  function renderSummary(now) {
+    $('summary').textContent = data.summary ? (st.lang === 'ar' ? data.summary.ar : data.summary.en) || '' : '';
+    var gen = data.generated_at ? ago(data.generated_at, now) : '';
+    $('sitUpdated').textContent = gen ? t('updated') + ' ' + gen : '';
+  }
+  function renderYou() {
+    var el = $('youline'); if (!el) return;
+    if (st.me) { el.innerHTML = '<b>' + esc(t('youAre')) + ':</b> ' + esc(st.meLabel || (st.me[0].toFixed(3) + ', ' + st.me[1].toFixed(3))) + (st.meSrc === 'gps' ? ' · GPS' + (gpsWatch != null ? ' live' : '') : '') + ' · <button type="button" class="linkbtn" id="youChange">' + esc(t('changeLoc')) + '</button>'; var b = $('youChange'); if (b) b.addEventListener('click', function () { var m = $('mecard'); if (m) { m.open = true; m.scrollIntoView({ behavior: 'smooth', block: 'start' }); } }); }
+    else el.textContent = gpsTried && !gpsFailed ? t('locating') : t('tapMapShort');
   }
   function renderMeta(now) {
     var gen = new Date(data.generated_at || 0).getTime(), ageMs = now - gen, stale = $('stale');
@@ -860,7 +915,7 @@ select, input[type="text"] { width: 100%; background: var(--bg-2); color: var(--
       beep(); buzz(); notify(t('alarmTitle') + ' · ' + t('appName'), txt); showAlarm(t('alarmTitle'), txt, t('liveGuide'));
     });
   }
-  function reflectArm() { $('armbtn').classList.toggle('on', armed); $('armlabel').textContent = armed ? t('disarm') : t('arm'); }
+  function reflectArm() { $('armbtn').classList.toggle('on', armed); $('armlabel').textContent = armed ? t('disarm') : t('arm'); var b = $('barAlarm'); if (b) { b.classList.toggle('on', armed); $('barAlarmLabel').textContent = armed ? t('barAlarmOn') : t('barAlarm'); } }
   function toggleArm() {
     armed = !armed; reflectArm();
     if (armed) {
@@ -917,6 +972,7 @@ select, input[type="text"] { width: 100%; background: var(--bg-2); color: var(--
     $('installTitle').textContent = t('installTitle');
     var key = (e.key === 'androidChrome' || e.key === 'desktop') && deferredInstall ? 'androidChromeBtn' : e.key;
     $('installSteps').textContent = t('inst')[key] || t('inst').desktop;
+    if (e.key === 'iosInApp' || e.key === 'androidInApp') $('installSteps').hidden = false;
     $('installBtn').hidden = !deferredInstall;
     box.hidden = false;
   }
@@ -966,6 +1022,11 @@ select, input[type="text"] { width: 100%; background: var(--bg-2); color: var(--
     $('gpsbtn').addEventListener('click', function () { tryGps({ quiet: false, timeout: 12000 }); });
     $('copylink').addEventListener('click', function () { copyText(pageUrl()); });
     renderInstall(); registerSw();
+    $('installHow').addEventListener('click', function () { var st2 = $('installSteps'); st2.hidden = !st2.hidden; });
+    $('barMe').addEventListener('click', function () { $('map').scrollIntoView({ behavior: 'smooth', block: 'start' }); if (st.me) map.setView(st.me, Math.max(map.getZoom(), 11)); else { enterMode(); toast(t('tapAgain')); } });
+    $('barAlarm').addEventListener('click', toggleArm);
+    $('sitcard').addEventListener('click', function (e) { if (e.target.closest && e.target.closest('a')) return; $('summary').classList.toggle('open'); });
+    $('incidents').addEventListener('click', function (e) { var r = e.target.closest ? e.target.closest('.row[data-x]') : null; if (r && !(e.target.closest && e.target.closest('a'))) r.classList.toggle('open'); });
     $('installX').addEventListener('click', function () { try { localStorage.setItem('riyadh-sky-watch:install-dismissed', '1'); } catch (x) {} $('install').hidden = true; });
     $('installBtn').addEventListener('click', function () { if (!deferredInstall) return; try { deferredInstall.prompt(); deferredInstall.userChoice.then(function () { deferredInstall = null; renderInstall(); }).catch(function () {}); } catch (e) {} });
     $('copystatus').addEventListener('click', function () { copyText(statusText(assess(st.me, Date.now()))); });
@@ -973,7 +1034,7 @@ select, input[type="text"] { width: 100%; background: var(--bg-2); color: var(--
     $('optVibrate').addEventListener('change', function () { st.vibrate = this.checked; save(); });
     $('optWake').addEventListener('change', function () { st.wake = this.checked; save(); wake(); });
     $('testalarm').addEventListener('click', function () { try { if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)(); audioCtx.resume(); } catch (e) {} beep(); buzz(); showAlarm(t('testTitle'), t('testText'), t('liveGuide')); });
-    $('clearloc').addEventListener('click', function () { st.me = null; st.meLabel = ''; st.meSrc = ''; save(); render(); enterMode(); });
+    $('clearloc').addEventListener('click', function () { st.me = null; st.meLabel = ''; st.meSrc = ''; stopGps(); save(); render(); enterMode(); var mc1 = $('mecard'); if (mc1) mc1.open = true; });
     setInterval(function () { renderMeta(Date.now()); }, 60000);
   }
   var hot = window.claude && window.claude.hot;

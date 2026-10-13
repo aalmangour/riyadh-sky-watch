@@ -9,6 +9,7 @@
 <link rel="icon" href="icon-192.png" sizes="192x192" type="image/png">
 <link rel="apple-touch-icon" href="icon-180.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Sky Watch">
 <style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;font:14px system-ui,sans-serif}img{max-width:100%}[hidden]{display:none!important}</style>
@@ -94,6 +95,14 @@ button { font: inherit; }
 .level[data-live="1"] { border-color: var(--sev4); box-shadow: 0 0 0 2px rgba(255,75,92,.35); box-shadow: 0 0 0 2px color-mix(in srgb, var(--sev4) 35%, transparent); }
 .official { margin-top: 8px; font-size: .78rem; color: var(--muted); display: flex; gap: 6px; align-items: flex-start; }
 .official svg { flex: 0 0 auto; margin-top: 2px; }
+.install { margin-top: 10px; padding: 10px 12px; border-radius: 10px; border: 1px solid var(--line); background: var(--panel); }
+.install[hidden] { display: none; }
+.install-row { display: flex; align-items: flex-start; gap: 10px; }
+.install-row > svg { flex: 0 0 auto; color: var(--accent); margin-top: 2px; }
+.install-text { flex: 1 1 auto; min-width: 0; font-size: .9rem; }
+.install-text b { font-weight: 600; }
+.install-text .small { margin-top: 2px; }
+.install .btn { flex: 0 0 auto; }
 
 /* layout */
 .cols { display: grid; grid-template-columns: 1fr; gap: 14px; margin-top: 14px; }
@@ -218,6 +227,14 @@ select, input[type="text"] { width: 100%; background: var(--bg-2); color: var(--
       <div class="sub" id="lvsub">—</div>
     </div>
     <div class="official"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 9v4M12 17h.01M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/></svg><span data-i="official">Real-time warnings come only from Civil Defense phone alerts. This page lags events by minutes to an hour.</span></div>
+  </div>
+  <div class="install" id="install" hidden>
+    <div class="install-row">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="5" y="2" width="14" height="20" rx="2.5"/><path d="M12 8v8M8.5 12.5 12 16l3.5-3.5"/></svg>
+      <div class="install-text"><b id="installTitle"></b><div class="small" id="installSteps"></div></div>
+      <button class="btn primary" id="installBtn" type="button" hidden data-i="installBtn">Install app</button>
+      <button class="hintx" id="installX" type="button" aria-label="Dismiss">×</button>
+    </div>
   </div>
 
   <div class="cols">
@@ -368,7 +385,17 @@ select, input[type="text"] { width: 100%; background: var(--bg-2); color: var(--
       srcTitle: 'Sources', disclaimer: 'Community awareness tool. Not an official warning system. Site positions marked ≈ are approximate. Predictions are estimates drawn from recent targeting patterns and public statements, refreshed by an automated monitor.',
       updated: 'Data updated', staleWarn: 'No monitor update for {h}. Treat the picture as stale.', staleBad: 'No monitor update for {h}. The monitor may be down; rely on official alerts.',
       alarmTitle: 'ALERT', testTitle: 'TEST ALARM', testText: 'This is what an alert looks like.', ok: 'OK', shareText: 'Riyadh Sky Watch: {level} at {place}. Nearest risk: {near}. Live map: {url} — Keep Emergency Alerts on; official warnings come only from Civil Defense.',
-      offline: 'Showing the last saved data (live file unreachable).', recent: 'Recent', predShort: 'Predicted', zoneHere: 'zone where you are', outsideRings: 'Outside its rings', locSet: 'Location set', tapAgain: 'Tap anywhere on the map to move your spot.', youAre: 'You are', inZone: 'inside the {t} zone of', wind: 'in a {t} zone'
+      offline: 'Showing the last saved data (live file unreachable).', recent: 'Recent', predShort: 'Predicted', zoneHere: 'zone where you are', outsideRings: 'Outside its rings', locSet: 'Location set', tapAgain: 'Tap anywhere on the map to move your spot.',
+      installBtn: 'Install app', installTitle: 'Keep this on your home screen',
+      inst: {
+        iosSafari: 'Tap Share (the square with an arrow at the bottom), then "Add to Home Screen", then Add.',
+        iosChrome: 'Tap Share (top right), then "Add to Home Screen".',
+        iosInApp: 'You are inside an app\'s browser. Tap the ⋯ or compass icon and choose "Open in Safari", then Share → "Add to Home Screen".',
+        androidChrome: 'Tap the ⋮ menu → "Add to Home screen" (or "Install app").', androidChromeBtn: 'Tap Install app, then Install.',
+        androidInApp: 'You are inside an app\'s browser. Tap ⋮ → "Open in Chrome", then ⋮ → "Add to Home screen".',
+        desktop: 'In Chrome or Edge, click the install icon at the right end of the address bar; or bookmark this page.',
+        installed: 'Installed. Opening from the home-screen icon gives you full screen and faster GPS.'
+      }, youAre: 'You are', inZone: 'inside the {t} zone of', wind: 'in a {t} zone'
     },
     ar: {
       appName: 'رصد سماء الرياض', tagline: 'خريطة مخاطر الصواريخ والمسيّرات للرياض والمملكة',
@@ -398,7 +425,17 @@ select, input[type="text"] { width: 100%; background: var(--bg-2); color: var(--
       srcTitle: 'المصادر', disclaimer: 'أداة توعية مجتمعية وليست نظام إنذار رسمي. المواقع المعلّمة بـ ≈ تقريبية. التوقعات تقديرات مبنية على أنماط الاستهداف الأخيرة والتصريحات العلنية ويحدّثها مرصد آلي.',
       updated: 'آخر تحديث للبيانات', staleWarn: 'لا تحديث من المرصد منذ {h}. اعتبر الصورة قديمة.', staleBad: 'لا تحديث من المرصد منذ {h}. قد يكون المرصد متوقفاً؛ اعتمد على الإنذارات الرسمية.',
       alarmTitle: 'إنذار', testTitle: 'تجربة المنبّه', testText: 'هكذا يبدو الإنذار.', ok: 'حسناً', shareText: 'رصد سماء الرياض: {level} في {place}. أقرب خطر: {near}. الخريطة الحية: {url} — أبقِ تنبيهات الطوارئ مفعّلة؛ الإنذار الرسمي يأتي فقط من الدفاع المدني.',
-      offline: 'تُعرض آخر بيانات محفوظة (تعذّر الوصول للملف الحي).', recent: 'حديث', predShort: 'التوقع', zoneHere: 'نطاقك هنا', outsideRings: 'خارج نطاقاته', locSet: 'تم تحديد الموقع', tapAgain: 'اضغط في أي مكان على الخريطة لنقل موقعك.', youAre: 'أنت', inZone: 'داخل نطاق {t} لـ', wind: 'في نطاق {t}'
+      offline: 'تُعرض آخر بيانات محفوظة (تعذّر الوصول للملف الحي).', recent: 'حديث', predShort: 'التوقع', zoneHere: 'نطاقك هنا', outsideRings: 'خارج نطاقاته', locSet: 'تم تحديد الموقع', tapAgain: 'اضغط في أي مكان على الخريطة لنقل موقعك.',
+      installBtn: 'تثبيت التطبيق', installTitle: 'أبقِ الصفحة على شاشتك الرئيسية',
+      inst: {
+        iosSafari: 'اضغط زر المشاركة (المربع ذو السهم في الأسفل)، ثم "إضافة إلى الشاشة الرئيسية"، ثم إضافة.',
+        iosChrome: 'اضغط زر المشاركة (أعلى اليمين)، ثم "إضافة إلى الشاشة الرئيسية".',
+        iosInApp: 'أنت داخل متصفح تطبيق. اضغط ⋯ أو أيقونة البوصلة واختر "فتح في Safari"، ثم المشاركة ← "إضافة إلى الشاشة الرئيسية".',
+        androidChrome: 'اضغط القائمة ⋮ ← "إضافة إلى الشاشة الرئيسية" (أو "تثبيت التطبيق").', androidChromeBtn: 'اضغط تثبيت التطبيق ثم تثبيت.',
+        androidInApp: 'أنت داخل متصفح تطبيق. اضغط ⋮ ← "فتح في Chrome"، ثم ⋮ ← "إضافة إلى الشاشة الرئيسية".',
+        desktop: 'في Chrome أو Edge اضغط أيقونة التثبيت في طرف شريط العنوان، أو أضف الصفحة للمفضلة.',
+        installed: 'تم التثبيت. فتح الصفحة من أيقونة الشاشة الرئيسية يمنحك وضع ملء الشاشة وتحديد موقع أسرع.'
+      }, youAre: 'أنت', inZone: 'داخل نطاق {t} لـ', wind: 'في نطاق {t}'
     }
   };
 
@@ -846,6 +883,41 @@ select, input[type="text"] { width: 100%; background: var(--bg-2); color: var(--
     } catch (e) {}
   }
 
+  /* ---------- install shortcuts ---------- */
+  var deferredInstall = null;
+  function env() {
+    var ua = navigator.userAgent || '';
+    var iOS = /iPhone|iPad|iPod/.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+    var android = /Android/.test(ua);
+    var standalone = false; try { standalone = (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) || navigator.standalone === true; } catch (e) {}
+    var inApp = /WhatsApp|FBAN|FBAV|Instagram|Line\/|Snapchat|; wv\)|\bwv\b/.test(ua);
+    var iosSafariLike = iOS && /Safari\//.test(ua);
+    var crios = iOS && /CriOS/.test(ua);
+    var chrome = /Chrome\//.test(ua) && !/Edg\//.test(ua);
+    var key = standalone ? 'installed' : iOS ? ((inApp || !iosSafariLike) ? 'iosInApp' : crios ? 'iosChrome' : 'iosSafari') : android ? ((inApp || !chrome) ? 'androidInApp' : 'androidChrome') : 'desktop';
+    return { key: key, standalone: standalone, iOS: iOS, android: android };
+  }
+  function renderInstall() {
+    var box = $('install'); if (!box) return;
+    var e = env();
+    var dismissed = false; try { dismissed = localStorage.getItem('riyadh-sky-watch:install-dismissed') === '1'; } catch (x) {}
+    if (e.standalone || dismissed) { box.hidden = true; return; }
+    $('installTitle').textContent = t('installTitle');
+    var key = (e.key === 'androidChrome' || e.key === 'desktop') && deferredInstall ? 'androidChromeBtn' : e.key;
+    $('installSteps').textContent = t('inst')[key] || t('inst').desktop;
+    $('installBtn').hidden = !deferredInstall;
+    box.hidden = false;
+  }
+  window.addEventListener('beforeinstallprompt', function (e) { e.preventDefault(); deferredInstall = e; renderInstall(); });
+  window.addEventListener('appinstalled', function () { deferredInstall = null; try { localStorage.setItem('riyadh-sky-watch:install-dismissed', '1'); } catch (x) {} renderInstall(); toast(t('inst').installed); });
+  function registerSw() {
+    try {
+      if (!('serviceWorker' in navigator)) return;
+      if (!/github\.io$/.test(location.hostname)) return; // only on the hosted site
+      navigator.serviceWorker.register('sw.js').catch(function () {});
+    } catch (e) {}
+  }
+
   /* ---------- wiring ---------- */
   function parseCoords(s) {
     s = String(s || '');
@@ -868,7 +940,7 @@ select, input[type="text"] { width: 100%; background: var(--bg-2); color: var(--
     render(); fetchData(); setInterval(fetchData, 60000);
     if (!st.me || st.meSrc === 'gps') tryGps({ quiet: true, timeout: 10000 });
     document.addEventListener('visibilitychange', function () { if (document.visibilityState === 'visible' && st.meSrc === 'gps' && gpsWatch == null) tryGps({ quiet: true, timeout: 10000 }); });
-    $('langbtn').addEventListener('click', function () { st.lang = st.lang === 'ar' ? 'en' : 'ar'; if (st.me && (st.meSrc === 'map' || st.meSrc === 'district' || st.meSrc === 'gps')) st.meLabel = districtAt(st.me[0], st.me[1]) || st.meLabel; save(); applyI18n(); drawCities(); reflectArm(); render(); });
+    $('langbtn').addEventListener('click', function () { st.lang = st.lang === 'ar' ? 'en' : 'ar'; if (st.me && (st.meSrc === 'map' || st.meSrc === 'district' || st.meSrc === 'gps')) st.meLabel = districtAt(st.me[0], st.me[1]) || st.meLabel; save(); applyI18n(); drawCities(); reflectArm(); render(); renderInstall(); });
     $('setloc').addEventListener('click', function () { enterMode(); $('map').scrollIntoView({ behavior: 'smooth', block: 'start' }); });
     $('hintx').addEventListener('click', exitMode);
     $('vRiyadh').addEventListener('click', function () { map.fitBounds(layers.riyadhBounds, { padding: [10, 10] }); });
@@ -881,6 +953,9 @@ select, input[type="text"] { width: 100%; background: var(--bg-2); color: var(--
     $('paste').addEventListener('keydown', function (e) { if (e.key === 'Enter') { e.preventDefault(); $('pastebtn').click(); } });
     $('gpsbtn').addEventListener('click', function () { tryGps({ quiet: false, timeout: 12000 }); });
     $('copylink').addEventListener('click', function () { copyText(pageUrl()); });
+    renderInstall(); registerSw();
+    $('installX').addEventListener('click', function () { try { localStorage.setItem('riyadh-sky-watch:install-dismissed', '1'); } catch (x) {} $('install').hidden = true; });
+    $('installBtn').addEventListener('click', function () { if (!deferredInstall) return; try { deferredInstall.prompt(); deferredInstall.userChoice.then(function () { deferredInstall = null; renderInstall(); }).catch(function () {}); } catch (e) {} });
     $('copystatus').addEventListener('click', function () { copyText(statusText(assess(st.me, Date.now()))); });
     $('optSound').addEventListener('change', function () { st.sound = this.checked; save(); });
     $('optVibrate').addEventListener('change', function () { st.vibrate = this.checked; save(); });

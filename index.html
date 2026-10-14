@@ -201,6 +201,20 @@ select, input[type="text"] { width: 100%; background: var(--bg-2); color: var(--
 .numbers span { background: var(--bg-2); border: 1px solid var(--line); border-radius: 8px; padding: 6px 10px; font-size: .85rem; }
 .numbers b { font-family: var(--mono); font-size: 1rem; }
 
+/* password gate */
+#app[hidden], .bar[hidden] { display: none !important; }
+#gate { position: fixed; inset: 0; z-index: 2500; background: var(--bg); color: var(--fg); display: grid; place-content: center; text-align: center; padding: 24px; gap: 10px; }
+#gate[hidden] { display: none; }
+#gate .logo { width: 44px; height: 44px; margin: 0 auto; }
+#gate h2 { font-size: 1.2rem; }
+#gate form { display: grid; gap: 10px; width: min(92vw, 320px); margin: 6px auto 0; }
+#gate input { text-align: center; font-size: 1.05rem; letter-spacing: .08em; }
+#gate .err { min-height: 1.2em; color: var(--sev4); font-size: .85rem; }
+#gate .langbtn { justify-self: center; margin-top: 4px; }
+/* debris layer */
+.debris-icon { display: flex; align-items: center; justify-content: center; filter: drop-shadow(0 0 3px var(--map-bg)); }
+.debris-icon svg { width: 100%; height: 100%; }
+.leaflet-tooltip.dblabel { color: var(--sev3); font-weight: 600; font-size: .72rem; }
 /* alarm overlay */
 #alarm { position: fixed; inset: 0; z-index: 2000; background: #e8404f; background: color-mix(in srgb, var(--sev4) 92%, #000); color: #fff; display: grid; place-content: center; text-align: center; padding: 24px; gap: 14px; }
 #alarm[hidden] { display: none; }
@@ -246,6 +260,17 @@ details.card[open] > summary { margin-bottom: 4px; }
 
 </head>
 <body>
+<div id="gate" hidden>
+  <svg class="logo" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="14" fill="none" stroke="var(--accent)" stroke-width="1.5"/><circle cx="16" cy="16" r="8" fill="none" stroke="var(--accent)" stroke-width="1.2" opacity=".6"/><circle cx="16" cy="16" r="2.5" fill="var(--sev4)"/><path d="M16 2v6M16 24v6M2 16h6M24 16h6" stroke="var(--accent)" stroke-width="1.5"/></svg>
+  <h2 data-i="appName">Riyadh Sky Watch</h2>
+  <p class="small" data-i="gateText">Enter the password to open the map.</p>
+  <form id="gateForm" autocomplete="off">
+    <input type="password" id="gatePw" autocomplete="current-password" aria-label="Password" required>
+    <button class="btn primary" type="submit" data-i="gateOpen">Open</button>
+    <div class="err" id="gateErr" aria-live="polite"></div>
+  </form>
+  <button class="langbtn" id="gateLang" type="button">العربية</button>
+</div>
 <div id="app" dir="ltr">
   <div class="status" id="status">
     <div class="status-top">
@@ -292,6 +317,7 @@ details.card[open] > summary { margin-bottom: 4px; }
         <span><i style="background:var(--sev1)"></i><span data-i="lg1">Low</span></span>
         <span><i style="background:var(--accent)"></i><span data-i="lgMe">You</span></span>
         <span><i style="background:var(--fg);border-radius:2px"></i><span data-i="lgInc">Incident (last 48 h)</span></span>
+        <span><svg width="12" height="12" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 2 21h20z" fill="var(--sev3)"/></svg><span data-i="lgDebris">Debris fell here</span></span>
       </div>
       <div class="stale" id="stale" hidden></div>
     </div>
@@ -416,7 +442,7 @@ details.card[open] > summary { margin-bottom: 4px; }
       near: 'nearest', agoMin: 'min ago', agoH: 'h ago', agoD: 'd ago', kmAway: 'away', km: 'km',
       setLocation: 'Use my location', tapMap: 'Or tap your spot on the map (re-tap any time), or pick a district under Your location.', viewRiyadh: 'Riyadh', viewKsa: 'Kingdom', viewMe: 'Me',
       arm: 'Arm alarm', disarm: 'Alarm armed', armedToast: 'Alarm armed. Keep this page open.', disarmedToast: 'Alarm off.',
-      lg4: 'Critical', lg3: 'High', lg2: 'Elevated', lg1: 'Low', lgMe: 'You', lgInc: 'Incident (last 48 h)',
+      lg4: 'Critical', lg3: 'High', lg2: 'Elevated', lg1: 'Low', lgMe: 'You', lgInc: 'Incident (last 48 h)', lgDebris: 'Debris fell here', debrisPossible: 'Debris possible for ~15 min: stay indoors', debrisIn: 'Debris reported in', gateText: 'Enter the password to open the map.', gateOpen: 'Open', gateWrong: 'Wrong password', gateBusy: 'Checking…',
       whereTitle: 'Your location', district: 'Pick a Riyadh district', paste: 'Or paste a Google Maps link or coordinates', use: 'Use', gps: 'Use my location (GPS)',
       gpsFail: 'GPS is not available here. Tap the map or pick a district.', gpsOk: 'Location set from GPS.', gpsInApp: 'This app\'s built-in browser blocks location.', gpsSandbox: 'Location does not work inside this viewer; use the web version.', openInBrowser: 'Open in Safari / Chrome', openWeb: 'Open the web version', retryGps: 'Retry GPS', gpsDeniedIos: 'Location is off for this site. Safari: tap "aA" in the address bar → Website Settings → Location → Allow. Also check iPhone Settings → Privacy & Security → Location Services → Safari Websites → While Using.', gpsDeniedAndroid: 'Location is blocked for this site. Chrome: tap the lock icon → Permissions → Location → Allow, then reload.', gpsDeniedDesktop: 'Location is blocked for this site. Allow it in the browser\'s site settings (the icon left of the address bar), then reload.', gpsTimeout: 'No GPS fix yet. Try near a window or outdoors.', gpsUnavailable: 'Location is unavailable on this device right now.', gpsUnsupported: 'This browser has no location support.', pasteFail: 'No coordinates found. Paste something like 24.7136, 46.6753 or a maps link that contains @lat,lng.',
       meSet: 'Your location', meUnset: 'No location set yet.', approx: '≈ approximate position', chooseDistrict: '— choose a district —',
@@ -456,7 +482,7 @@ details.card[open] > summary { margin-bottom: 4px; }
       near: 'الأقرب', agoMin: 'دقيقة مضت', agoH: 'ساعة مضت', agoD: 'يوم مضى', kmAway: 'من موقعك', km: 'كم',
       setLocation: 'استخدم موقعي', tapMap: 'أو اضغط على موقعك في الخريطة (ويمكنك تكرار ذلك)، أو اختر حياً من قسم موقعك.', viewRiyadh: 'الرياض', viewKsa: 'المملكة', viewMe: 'موقعي',
       arm: 'تفعيل المنبّه', disarm: 'المنبّه مفعّل', armedToast: 'تم تفعيل المنبّه. أبقِ الصفحة مفتوحة.', disarmedToast: 'تم إيقاف المنبّه.',
-      lg4: 'حرج', lg3: 'مرتفع', lg2: 'متوسط', lg1: 'منخفض', lgMe: 'أنت', lgInc: 'حادثة (آخر ٤٨ ساعة)',
+      lg4: 'حرج', lg3: 'مرتفع', lg2: 'متوسط', lg1: 'منخفض', lgMe: 'أنت', lgInc: 'حادثة (آخر ٤٨ ساعة)', lgDebris: 'سقطت شظايا هنا', debrisPossible: 'احتمال سقوط شظايا نحو ١٥ دقيقة: ابقَ في الداخل', debrisIn: 'بلاغات شظايا في', gateText: 'أدخل كلمة المرور لفتح الخريطة.', gateOpen: 'فتح', gateWrong: 'كلمة المرور غير صحيحة', gateBusy: 'جارٍ التحقق…',
       whereTitle: 'موقعك', district: 'اختر حياً في الرياض', paste: 'أو الصق رابط خرائط قوقل أو إحداثيات', use: 'استخدم', gps: 'استخدم موقعي (GPS)',
       gpsFail: 'تحديد الموقع غير متاح هنا. اضغط على الخريطة أو اختر حياً.', gpsOk: 'تم تحديد الموقع من GPS.', gpsInApp: 'متصفح التطبيق الداخلي يمنع تحديد الموقع.', gpsSandbox: 'تحديد الموقع لا يعمل داخل هذا العارض؛ استخدم نسخة الويب.', openInBrowser: 'افتح في Safari / Chrome', openWeb: 'افتح نسخة الويب', retryGps: 'أعد محاولة GPS', gpsDeniedIos: 'الموقع مغلق لهذا الموقع. في Safari: اضغط "aA" في شريط العنوان ← إعدادات الموقع ← الموقع ← السماح. وتحقق من إعدادات الآيفون ← الخصوصية والأمان ← خدمات الموقع ← مواقع Safari ← أثناء الاستخدام.', gpsDeniedAndroid: 'الموقع محظور لهذا الموقع. في Chrome: اضغط أيقونة القفل ← الأذونات ← الموقع ← السماح ثم أعد التحميل.', gpsDeniedDesktop: 'الموقع محظور لهذا الموقع. اسمح به من إعدادات الموقع في المتصفح ثم أعد التحميل.', gpsTimeout: 'لم يتم تحديد الموقع بعد. جرّب قرب نافذة أو في الخارج.', gpsUnavailable: 'تحديد الموقع غير متاح على هذا الجهاز الآن.', gpsUnsupported: 'هذا المتصفح لا يدعم تحديد الموقع.', pasteFail: 'لم أجد إحداثيات. الصق شيئاً مثل 24.7136, 46.6753 أو رابط خرائط يحتوي @lat,lng.',
       meSet: 'موقعك', meUnset: 'لم يُحدَّد موقع بعد.', approx: '≈ موقع تقريبي', chooseDistrict: '— اختر حياً —',
@@ -493,6 +519,7 @@ details.card[open] > summary { margin-bottom: 4px; }
   var BASE = JSON.parse(document.getElementById('basemap').textContent);
   var STORE = 'riyadh-sky-watch:v1';
   var SHARE_URL = 'https://aalmangour.github.io/riyadh-sky-watch/';
+  var GATE_ON = true, GATE_HASH = 'c4318372f98f4c46ed3a32c16ee4d7a76c832886d887631c0294b3314f34edf1', GATE_KEY = 'riyadh-sky-watch:gate';
   var WEB_URL = 'https://aalmangour.github.io/riyadh-sky-watch/';
   function inSandbox() { return !/github\.io$/.test(location.hostname) && location.hostname !== '127.0.0.1' && location.hostname !== 'localhost'; }
   function pageUrl() { return SHARE_URL && SHARE_URL.indexOf('http') === 0 ? SHARE_URL : location.href.split('#')[0]; }
@@ -703,11 +730,49 @@ details.card[open] > summary { margin-bottom: 4px; }
       var age = (now - new Date(inc.time).getTime()) / 36e5; if (isNaN(age) || age > 48 * 24) return;
       var lt = incidentLive(inc, now), col = lt ? sevColor(lt) : cssVar('--fg');
       if (lt) L.circle([inc.lat, inc.lng], { radius: (inc.radius_km || 5) * 1000, color: col, weight: 1.5, dashArray: '4 4', fillColor: col, fillOpacity: 0.12, interactive: false }).addTo(incLayer);
-      var recent = age <= 48;
-      var m = L.circleMarker([inc.lat, inc.lng], { radius: recent ? 6 : 4, color: col, fillColor: col, fillOpacity: recent ? 0.95 : 0.5, weight: recent ? 2 : 1, bubblingMouseEvents: false, className: lt ? 'inc-pulse' : '' });
-      m.bindPopup('<b>' + esc(t('kinds')[inc.kind] || inc.kind) + ' · ' + esc(t('weapons')[inc.weapon] || '') + '</b><br>' + esc(L8(inc, 'place')) + ' · ' + esc(fmtTime(inc.time, inc.tprec)) + '<br><span class="small">' + esc(L8(inc, 'note')) + '</span>' + (inc.source && inc.source.url ? '<br><a class="srcl" href="' + esc(inc.source.url) + '" target="_blank" rel="noopener">' + esc(inc.source.title || t('source')) + '</a>' : ''), { maxWidth: 280 });
+      // Interception debris keeps falling for several minutes: an explicit "debris possible" ring while that window is open.
+      if ((inc.kind === 'intercept' || inc.kind === 'attempt') && (inc.status === 'active' || age <= 0.25)) {
+        L.circle([inc.lat, inc.lng], { radius: (inc.radius_km || 12) * 1000, color: cssVar('--sev3'), weight: 2, dashArray: '2 6', fill: false, interactive: false })
+          .bindTooltip(t('debrisPossible'), { permanent: true, direction: 'top', className: 'dblabel', interactive: false, opacity: 1 }).addTo(incLayer);
+      }
+      var recent = age <= 48, isDebris = inc.kind === 'debris';
+      var m = isDebris
+        ? L.marker([inc.lat, inc.lng], { icon: debrisIcon(col, recent ? 20 : 14), opacity: recent ? 1 : 0.6, bubblingMouseEvents: false })
+        : L.circleMarker([inc.lat, inc.lng], { radius: recent ? 6 : 4, color: col, fillColor: col, fillOpacity: recent ? 0.95 : 0.5, weight: recent ? 2 : 1, bubblingMouseEvents: false, className: lt ? 'inc-pulse' : '' });
+      m.bindPopup(incPopup(inc), { maxWidth: 280 });
       m.addTo(incLayer);
+      // Named debris fall sites (district centroids or coordinates) recorded after the fact by Civil Defense reports.
+      if (isDebris) debrisPoints(inc).forEach(function (p) {
+        L.circle([p.lat, p.lng], { radius: 1500, color: col, weight: 1, dashArray: '3 4', fillColor: col, fillOpacity: 0.08, interactive: false }).addTo(incLayer);
+        L.marker([p.lat, p.lng], { icon: debrisIcon(col, 14), bubblingMouseEvents: false })
+          .bindTooltip(nm(p), { permanent: true, direction: 'bottom', className: 'dblabel', offset: [0, 6], interactive: false, opacity: 1 })
+          .bindPopup('<b>' + esc(t('kinds').debris) + ' · ' + esc(nm(p)) + '</b>' + (p.approx ? ' <span class="small">' + esc(t('approx')) + '</span>' : '') + '<br><span class="small">' + esc(L8(p, 'note') || L8(inc, 'note')) + '</span>', { maxWidth: 280 })
+          .addTo(incLayer);
+      });
     });
+  }
+  var DEBRIS_SVG = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 2 21h20z" fill="COL" stroke="var(--map-bg)" stroke-width="1.5"/></svg>';
+  function debrisIcon(col, size) { return L.divIcon({ className: 'debris-icon', html: DEBRIS_SVG.replace('COL', col), iconSize: [size, size], iconAnchor: [size / 2, size / 2], popupAnchor: [0, -size / 2] }); }
+  function districtByName(name) {
+    if (!name) return null; var n = String(name).trim().toLowerCase(), a = String(name).trim();
+    return (BASE.districts || []).filter(function (d) { return String(d.en).toLowerCase() === n || String(d.ar) === a; })[0] || null;
+  }
+  function debrisPoints(inc) {
+    var out = [];
+    (inc.points || []).forEach(function (p) {
+      var lat = +p.lat, lng = +p.lng, d = null;
+      if (!(isFinite(lat) && isFinite(lng) && lat)) { d = districtByName(p.district || p.en || p.label_en || p.ar || p.label_ar); if (!d) return; lat = d.c[0]; lng = d.c[1]; }
+      var en = p.label_en || p.en || p.district || (d ? d.en : ''), ar = p.label_ar || p.ar || (d ? d.ar : '') || en;
+      out.push({ lat: lat, lng: lng, en: en || ar, ar: ar, note_en: p.note_en || '', note_ar: p.note_ar || '', approx: p.approx !== false });
+    });
+    return out;
+  }
+  function debrisLine(inc) { var pts = debrisPoints(inc); return pts.length ? t('debrisIn') + ': ' + pts.map(nm).join(st.lang === 'ar' ? '، ' : ', ') : ''; }
+  function incPopup(inc) {
+    var h = '<b>' + esc(t('kinds')[inc.kind] || inc.kind) + ' · ' + esc(t('weapons')[inc.weapon] || '') + '</b><br>' + esc(L8(inc, 'place')) + ' · ' + esc(fmtTime(inc.time, inc.tprec)) + '<br><span class="small">' + esc(L8(inc, 'note')) + '</span>';
+    var dl = debrisLine(inc); if (dl) h += '<br><span class="small">' + esc(dl) + '</span>';
+    if (inc.source && inc.source.url) h += '<br><a class="srcl" href="' + esc(inc.source.url) + '" target="_blank" rel="noopener">' + esc(inc.source.title || t('source')) + '</a>';
+    return h;
   }
   function drawMe() {
     if (meMarker) { map.removeLayer(meMarker); meMarker = null; }
@@ -891,7 +956,7 @@ details.card[open] > summary { margin-bottom: 4px; }
     $('incCount').textContent = list.length ? list.length + (st.lang === 'ar' ? ' حادثة' : ' listed') : '';
     function row(inc) {
       var lt = incidentLive(inc, now), sev = inc.severity || 3, d = st.me ? hav(st.me, [inc.lat, inc.lng]) : null;
-      return '<div class="row" data-x="1"><span class="stripe" data-t="' + (lt || 0) + '"></span><div style="min-width:0"><div class="ttl">' + esc(t('kinds')[inc.kind] || inc.kind) + ' · ' + esc(L8(inc, 'place')) + '</div><div class="meta">' + esc(fmtTime(inc.time, inc.tprec)) + ' · ' + esc(ago(inc.time, now)) + ' · ' + esc(t('weapons')[inc.weapon] || '') + (inc.casualties_en && !/^(none|not reported|no casualt|unknown|لا |غير)/i.test(inc.casualties_en) ? ' · ' + esc(L8(inc, 'casualties')) : '') + '</div><div class="note">' + esc(L8(inc, 'note')) + '</div>' + (inc.source && inc.source.url ? '<a class="srcl" href="' + esc(inc.source.url) + '" target="_blank" rel="noopener">' + esc(inc.source.title || t('source')) + '</a>' : '') + '</div><div class="dist">' + (d != null ? '<b class="num">' + esc(fmtKm(d)) + '</b><span class="chip" data-t="' + sev + '">' + esc(t('levels')[sev]) + '</span>' : '<span class="chip" data-t="' + sev + '">' + esc(t('levels')[sev]) + '</span>') + '</div></div>';
+      return '<div class="row" data-x="1"><span class="stripe" data-t="' + (lt || 0) + '"></span><div style="min-width:0"><div class="ttl">' + esc(t('kinds')[inc.kind] || inc.kind) + ' · ' + esc(L8(inc, 'place')) + '</div><div class="meta">' + esc(fmtTime(inc.time, inc.tprec)) + ' · ' + esc(ago(inc.time, now)) + ' · ' + esc(t('weapons')[inc.weapon] || '') + (inc.casualties_en && !/^(none|not reported|no casualt|unknown|لا |غير)/i.test(inc.casualties_en) ? ' · ' + esc(L8(inc, 'casualties')) : '') + '</div><div class="note">' + esc(L8(inc, 'note')) + '</div>' + (debrisLine(inc) ? '<div class="meta">' + esc(debrisLine(inc)) + '</div>' : '') + (inc.source && inc.source.url ? '<a class="srcl" href="' + esc(inc.source.url) + '" target="_blank" rel="noopener">' + esc(inc.source.title || t('source')) + '</a>' : '') + '</div><div class="dist">' + (d != null ? '<b class="num">' + esc(fmtKm(d)) + '</b><span class="chip" data-t="' + sev + '">' + esc(t('levels')[sev]) + '</span>' : '<span class="chip" data-t="' + sev + '">' + esc(t('levels')[sev]) + '</span>') + '</div></div>';
     }
     $('incidents').innerHTML = moreList(list.slice(0, 40), 5, row);
   }
@@ -1048,7 +1113,52 @@ details.card[open] > summary { margin-bottom: 4px; }
   }
   function fallbackCopy(txt) { try { var ta = document.createElement('textarea'); ta.value = txt; document.body.appendChild(ta); ta.select(); var ok = document.execCommand('copy'); document.body.removeChild(ta); toast(ok ? t('copied') : t('copyFail')); } catch (e) { toast(t('copyFail')); } }
 
+  function sha256Hex(str) {
+    var bytes = new TextEncoder().encode(str);
+    if (window.crypto && crypto.subtle && crypto.subtle.digest) {
+      return crypto.subtle.digest('SHA-256', bytes).then(function (buf) { return Array.prototype.map.call(new Uint8Array(buf), function (b) { return ('0' + b.toString(16)).slice(-2); }).join(''); });
+    }
+    return Promise.resolve(sha256Js(bytes));
+  }
+  function sha256Js(m) { // compact SHA-256 for contexts without crypto.subtle (plain http)
+    var K = [], H = [0x6a09e667, 0xbb67ae85, 0x3c6ef372, 0xa54ff53a, 0x510e527f, 0x9b05688c, 0x1f83d9ab, 0x5be0cd19], i, j;
+    for (i = 0, j = 2; i < 64; j++) { for (var p = 2, ok = true; p * p <= j; p++) if (j % p === 0) { ok = false; break; } if (ok) K[i++] = (Math.pow(j, 1 / 3) % 1 * 4294967296) | 0; }
+    var l = m.length, w = new Uint8Array(((l + 9 + 63) >> 6) << 6); w.set(m); w[l] = 0x80; var bl = l * 8; w[w.length - 4] = (bl >>> 24) & 255; w[w.length - 3] = (bl >>> 16) & 255; w[w.length - 2] = (bl >>> 8) & 255; w[w.length - 1] = bl & 255;
+    var W = new Array(64), rr = function (x, n) { return (x >>> n) | (x << (32 - n)); };
+    for (var o = 0; o < w.length; o += 64) {
+      for (i = 0; i < 16; i++) W[i] = (w[o + i * 4] << 24) | (w[o + i * 4 + 1] << 16) | (w[o + i * 4 + 2] << 8) | w[o + i * 4 + 3];
+      for (i = 16; i < 64; i++) { var s0 = rr(W[i - 15], 7) ^ rr(W[i - 15], 18) ^ (W[i - 15] >>> 3), s1 = rr(W[i - 2], 17) ^ rr(W[i - 2], 19) ^ (W[i - 2] >>> 10); W[i] = (W[i - 16] + s0 + W[i - 7] + s1) | 0; }
+      var a = H[0], b = H[1], c = H[2], d = H[3], e = H[4], f = H[5], g = H[6], h = H[7];
+      for (i = 0; i < 64; i++) { var S1 = rr(e, 6) ^ rr(e, 11) ^ rr(e, 25), ch = (e & f) ^ (~e & g), t1 = (h + S1 + ch + K[i] + W[i]) | 0, S0 = rr(a, 2) ^ rr(a, 13) ^ rr(a, 22), mj = (a & b) ^ (a & c) ^ (b & c), t2 = (S0 + mj) | 0; h = g; g = f; f = e; e = (d + t1) | 0; d = c; c = b; b = a; a = (t1 + t2) | 0; }
+      H[0] = (H[0] + a) | 0; H[1] = (H[1] + b) | 0; H[2] = (H[2] + c) | 0; H[3] = (H[3] + d) | 0; H[4] = (H[4] + e) | 0; H[5] = (H[5] + f) | 0; H[6] = (H[6] + g) | 0; H[7] = (H[7] + h) | 0;
+    }
+    return H.map(function (x) { return ('00000000' + (x >>> 0).toString(16)).slice(-8); }).join('');
+  }
+  function gateUnlocked() { try { return localStorage.getItem(GATE_KEY) === GATE_HASH; } catch (e) { return false; } }
+  function showGate(onOk) {
+    var g = $('gate'); g.hidden = false; $('app').hidden = true; $('bar').hidden = true;
+    function paint() {
+      g.setAttribute('dir', st.lang === 'ar' ? 'rtl' : 'ltr'); g.setAttribute('lang', st.lang); document.documentElement.lang = st.lang;
+      var nodes = g.querySelectorAll('[data-i]');
+      for (var i = 0; i < nodes.length; i++) { var k = nodes[i].getAttribute('data-i'); var v = T[st.lang][k]; if (typeof v === 'string') nodes[i].textContent = v; }
+      $('gateLang').textContent = st.lang === 'ar' ? 'English' : 'العربية';
+    }
+    paint();
+    $('gateLang').addEventListener('click', function () { st.lang = st.lang === 'ar' ? 'en' : 'ar'; save(); paint(); });
+    $('gateForm').addEventListener('submit', function (e) {
+      e.preventDefault(); var pw = $('gatePw').value; $('gateErr').textContent = t('gateBusy');
+      sha256Hex(pw).then(function (h) {
+        if (h === GATE_HASH) { try { localStorage.setItem(GATE_KEY, h); } catch (x) {} $('gateErr').textContent = ''; g.hidden = true; $('app').hidden = false; $('bar').hidden = false; onOk(); }
+        else { $('gateErr').textContent = t('gateWrong'); $('gatePw').value = ''; $('gatePw').focus(); }
+      }).catch(function () { $('gateErr').textContent = t('gateWrong'); });
+    });
+    setTimeout(function () { try { $('gatePw').focus(); } catch (e) {} }, 50);
+  }
   function start(hotData) {
+    if (GATE_ON && !gateUnlocked()) { showGate(function () { startApp(hotData); }); return; }
+    startApp(hotData);
+  }
+  function startApp(hotData) {
     HOT = hotData || (window.claude && window.claude.hot && window.claude.hot.data) || {};
     $('optSound').checked = !!st.sound; $('optVibrate').checked = !!st.vibrate; $('optWake').checked = !!st.wake;
     applyI18n(); initMap();

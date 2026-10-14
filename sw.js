@@ -1,5 +1,5 @@
 // Riyadh Sky Watch service worker: network first, cached shell as a fallback when offline.
-var CACHE = 'skywatch-v1';
+var CACHE = 'skywatch-v2';
 self.addEventListener('install', function (e) { self.skipWaiting(); e.waitUntil(caches.open(CACHE).then(function (c) { return c.addAll(['./', './index.html', './manifest.webmanifest', './icon-192.png']).catch(function () {}); })); });
 self.addEventListener('activate', function (e) { e.waitUntil(self.clients.claim()); });
 self.addEventListener('fetch', function (e) {

@@ -114,6 +114,9 @@ button { font: inherit; }
 
 /* map */
 .mapwrap { min-width: 0; }
+.mapbox { position: relative; }
+.mapToggle { position: absolute; top: 10px; right: 10px; z-index: 1000; background: var(--bg-2); color: var(--fg); border: 1px solid var(--line); border-radius: 8px; padding: 6px 10px; font-size: .8rem; font-weight: 600; cursor: pointer; box-shadow: 0 2px 8px rgba(0,0,0,.25); }
+
 #map { height: min(50vh, 520px); min-height: 300px; width: 100%; border-radius: 12px; border: 1px solid var(--line); background: var(--map-bg); background-image: linear-gradient(var(--map-grid) 1px, transparent 1px), linear-gradient(90deg, var(--map-grid) 1px, transparent 1px); background-size: 28px 28px; overflow: hidden; font-family: var(--font); }
 .mapbar { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; align-items: center; }
 .mapbar .spacer { flex: 1; }
@@ -227,6 +230,7 @@ details.card[open] > summary { margin-bottom: 4px; }
 @media (max-width: 959px) { #vMe, #armbtn { display: none; } }
 @media (max-width: 959px) { #app { padding-bottom: calc(76px + env(safe-area-inset-bottom, 0px)); } }
 .leaflet-bottom.leaflet-left { margin-bottom: 0; }
+@media (max-width: 959px) { .mapbar { display: none; } }
 .stale { margin-top: 8px; padding: 8px 10px; border-radius: 8px; font-size: .85rem; border: 1px solid var(--sev2); color: var(--fg); background: rgba(242,193,78,.16); background: color-mix(in srgb, var(--sev2) 16%, transparent); }
 .stale[data-bad="1"] { border-color: var(--sev4); background: rgba(255,75,92,.16); background: color-mix(in srgb, var(--sev4) 16%, transparent); }
 .stale[hidden] { display: none; }
@@ -267,7 +271,7 @@ details.card[open] > summary { margin-bottom: 4px; }
 
   <div class="cols">
     <div class="mapwrap">
-      <div id="map" dir="ltr" role="application" aria-label="Risk map"></div>
+      <div class="mapbox"><div id="map" dir="ltr" role="application" aria-label="Risk map"></div><button type="button" class="mapToggle" id="mapToggle"></button></div>
       <div class="hint" id="hint" hidden><span data-i="tapMap">Tap your location on the map</span> <button type="button" class="hintx" id="hintx" aria-label="Close">×</button></div>
       <div class="mapbar">
         <button class="btn primary" id="setloc" type="button"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/><circle cx="12" cy="12" r="8"/></svg><span data-i="setLocation">Set my location</span></button>
@@ -338,7 +342,6 @@ details.card[open] > summary { margin-bottom: 4px; }
         <div class="inline" style="margin-top:10px">
           <a class="btn wa" id="wabtn" href="#" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5.1-1.3A10 10 0 1 0 12 2zm0 18a8 8 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 20zm4.4-6c-.2-.1-1.4-.7-1.6-.8s-.4-.1-.6.1-.6.8-.8 1-.3.2-.5.1a6.5 6.5 0 0 1-3.2-2.8c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.5l-.7-1.7c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 11.9 11.9 0 0 0 4.6 4 5.3 5.3 0 0 0 3.2.6 2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.3-.2-.5-.3z"/></svg><span data-i="whatsapp">Share on WhatsApp</span></a>
           <button class="btn" id="copylink" type="button" data-i="copyLink">Copy link</button>
-          <button class="btn" id="copystatus" type="button" data-i="copyStatus">Copy status</button>
         </div>
       </section>
 
@@ -401,7 +404,7 @@ details.card[open] > summary { margin-bottom: 4px; }
   var T = {
     en: {
       appName: 'Riyadh Sky Watch', tagline: 'Missile and drone risk map for Riyadh and the Kingdom',
-      official: 'Real-time warnings come only from Civil Defense phone alerts. This page lags events by minutes to an hour.',
+      official: 'Only Civil Defense phone alerts are real-time. This page can lag by up to an hour.',
       levels: ['No known threat', 'Low', 'Elevated', 'High', 'Critical'],
       exposure: 'Your zone', liveAlert: 'ALERT', noLoc: 'Set your location to see your risk level',
       guide: ['No active threat reported near you.', 'Low exposure. Know your safe room.', 'Elevated exposure. Keep emergency alerts on and know where you would shelter.', 'High exposure. Stay close to an interior room; avoid windows and rooftops if sirens or explosions are heard.', 'Critical. Move to an interior room on a low floor, away from windows, until the all-clear.'],
@@ -418,7 +421,7 @@ details.card[open] > summary { margin-bottom: 4px; }
       incTitle: 'Recent incidents', kinds: { impact: 'Strike', intercept: 'Interception', alert: 'Civil Defense alert', all_clear: 'All clear', attempt: 'Attack reported', debris: 'Debris / fire' },
       weapons: { ballistic: 'ballistic missile', cruise: 'cruise missile', drone: 'drone', unknown: 'unidentified weapon' },
       struckRecent: 'struck', interceptRecent: 'interception', lastHit: 'last hit', daysAgo: 'd ago', today: 'today', yesterday: 'yesterday', threatNamed: 'named as a target', source: 'source',
-      shareTitle: 'Share', shareSub: 'Send the live map and your current status to family and friends.', whatsapp: 'Share on WhatsApp', copyLink: 'Copy link', copyStatus: 'Copy status', copied: 'Copied', copyFail: 'Could not copy. Select the text and copy it.',
+      shareTitle: 'Share', shareSub: 'Send the live map and your status to family and friends.', whatsapp: 'Share on WhatsApp', copyLink: 'Copy link', copyStatus: 'Copy status', copied: 'Copied', copyFail: 'Could not copy. Select the text and copy it.',
       safetyTitle: 'What to do', enableTitle: 'Make sure official alerts reach your phone',
       enIos: 'iPhone: Settings → Notifications → scroll to the bottom → turn on Government / Emergency Alerts.', enAndroid: 'Android: Settings → Safety & emergency → Wireless emergency alerts → on.', enNote: 'The National Early Warning Platform (Civil Defense) sends a loud alert to every phone in the threatened area, and an all-clear afterwards.',
       duringTitle: 'During an alert or after an explosion', d1: 'Move away from windows, balconies and rooftops into an interior room, ideally on a low floor.', d2: 'If you are outside, get into the nearest building or behind a solid barrier.', d3: 'Stay there until the Civil Defense all-clear. Interception debris can fall for several minutes.', d4: 'Do not approach debris or impact sites, do not gather, and do not film: the Ministry of Interior has warned that filming interceptions or debris sites is an offence.',
@@ -428,7 +431,7 @@ details.card[open] > summary { margin-bottom: 4px; }
       updated: 'Data updated', staleWarn: 'No monitor update for {h}. Treat the picture as stale.', staleBad: 'No monitor update for {h}. The monitor may be down; rely on official alerts.',
       alarmTitle: 'ALERT', testTitle: 'TEST ALARM', testText: 'This is what an alert looks like.', ok: 'OK', shareText: 'Riyadh Sky Watch: {level} at {place}. Nearest risk: {near}. Live map: {url} — Keep Emergency Alerts on; official warnings come only from Civil Defense.',
       offline: 'Showing the last saved data (live file unreachable).', recent: 'Recent', predShort: 'Predicted', zoneHere: 'zone where you are', outsideRings: 'Outside its rings', locSet: 'Location set', tapAgain: 'Tap anywhere on the map to move your spot.', sitTitle: 'Situation now', tapToRead: 'Tap to read all', showLess: 'Tap to shorten', changeLoc: 'change', locating: 'Finding your location…', tapMapShort: 'Tap the map to set your location', barMe: 'My spot', barAlarm: 'Alarm', barAlarmOn: 'Alarm on', installHow: 'How?', siteThreat: 'Site threat', youInside: 'You are inside its {level} zone (within {r} km)', youOutside: 'You are outside its danger zone (beyond {r} km)',
-      installBtn: 'Install app', installTitle: 'Add to your home screen for one-tap access.',
+      installBtn: 'Install app', installTitle: 'Add to Home Screen.',
       inst: {
         iosSafari: 'Tap Share (the square with an arrow at the bottom), then "Add to Home Screen", then Add.',
         iosChrome: 'Tap Share (top right), then "Add to Home Screen".',
@@ -441,7 +444,7 @@ details.card[open] > summary { margin-bottom: 4px; }
     },
     ar: {
       appName: 'رصد سماء الرياض', tagline: 'خريطة مخاطر الصواريخ والمسيّرات للرياض والمملكة',
-      official: 'الإنذار الفوري يأتي فقط من رسائل الدفاع المدني على الجوال. هذه الصفحة تتأخر عن الأحداث بدقائق إلى ساعة.',
+      official: 'الإنذار الفوري يأتي فقط من رسائل الدفاع المدني. قد تتأخر هذه الصفحة حتى ساعة.',
       levels: ['لا تهديد معروف', 'منخفض', 'متوسط', 'مرتفع', 'حرج'],
       exposure: 'منطقتك', liveAlert: 'إنذار', noLoc: 'حدّد موقعك لمعرفة مستوى الخطر',
       guide: ['لا تهديد نشط مُبلّغ عنه قربك.', 'تعرّض منخفض. اعرف غرفتك الآمنة.', 'تعرّض متوسط. أبقِ إنذارات الطوارئ مفعّلة واعرف أين تحتمي.', 'تعرّض مرتفع. ابقَ قريباً من غرفة داخلية وابتعد عن النوافذ والأسطح عند سماع صفارات أو انفجارات.', 'حرج. انتقل إلى غرفة داخلية في طابق منخفض بعيداً عن النوافذ حتى إعلان زوال الخطر.'],
@@ -468,7 +471,7 @@ details.card[open] > summary { margin-bottom: 4px; }
       updated: 'آخر تحديث للبيانات', staleWarn: 'لا تحديث من المرصد منذ {h}. اعتبر الصورة قديمة.', staleBad: 'لا تحديث من المرصد منذ {h}. قد يكون المرصد متوقفاً؛ اعتمد على الإنذارات الرسمية.',
       alarmTitle: 'إنذار', testTitle: 'تجربة المنبّه', testText: 'هكذا يبدو الإنذار.', ok: 'حسناً', shareText: 'رصد سماء الرياض: {level} في {place}. أقرب خطر: {near}. الخريطة الحية: {url} — أبقِ تنبيهات الطوارئ مفعّلة؛ الإنذار الرسمي يأتي فقط من الدفاع المدني.',
       offline: 'تُعرض آخر بيانات محفوظة (تعذّر الوصول للملف الحي).', recent: 'حديث', predShort: 'التوقع', zoneHere: 'نطاقك هنا', outsideRings: 'خارج نطاقاته', locSet: 'تم تحديد الموقع', tapAgain: 'اضغط في أي مكان على الخريطة لنقل موقعك.', sitTitle: 'الوضع الآن', tapToRead: 'اضغط لقراءة الكل', showLess: 'اضغط للاختصار', changeLoc: 'تغيير', locating: 'جارٍ تحديد موقعك…', tapMapShort: 'اضغط على الخريطة لتحديد موقعك', barMe: 'موقعي', barAlarm: 'المنبّه', barAlarmOn: 'المنبّه مفعّل', installHow: 'كيف؟', siteThreat: 'تهديد الموقع', youInside: 'أنت داخل نطاقه ({level}) ضمن {r} كم', youOutside: 'أنت خارج نطاق خطره (أبعد من {r} كم)',
-      installBtn: 'تثبيت التطبيق', installTitle: 'أضف الصفحة لشاشتك الرئيسية للوصول بضغطة واحدة.',
+      installBtn: 'تثبيت التطبيق', installTitle: 'أضف إلى الشاشة الرئيسية.',
       inst: {
         iosSafari: 'اضغط زر المشاركة (المربع ذو السهم في الأسفل)، ثم "إضافة إلى الشاشة الرئيسية"، ثم إضافة.',
         iosChrome: 'اضغط زر المشاركة (أعلى اليمين)، ثم "إضافة إلى الشاشة الرئيسية".',
@@ -853,7 +856,7 @@ details.card[open] > summary { margin-bottom: 4px; }
   function renderNearest(a, now) {
     var el = $('nearest');
     if (!st.me) { el.innerHTML = '<div class="small">' + esc(t('noLoc')) + '</div>'; return; }
-    el.innerHTML = moreList(a.sites.slice(0, 10), 4, function (x) {
+    el.innerHTML = moreList(a.sites.slice(0, 10), 3, function (x) {
       var s = x.site, meta = [], zones = siteZones(s, now), outer = zones.length ? zones[zones.length - 1].r : 0;
       var ctx = siteContext(s, x.info, now); if (ctx) meta.push(ctx);
       if (s.prediction) meta.push(t('predShort') + ': ' + (t('predL')[s.prediction.level] || s.prediction.level));
@@ -869,7 +872,7 @@ details.card[open] > summary { margin-bottom: 4px; }
     });
     var when = ''; list.forEach(function (s) { if (s.prediction && s.prediction.assessed_at && (!when || s.prediction.assessed_at > when)) when = s.prediction.assessed_at; });
     $('predWhen').textContent = when ? t('assessed') + ' ' + ago(when, now) : '';
-    var top = list.slice(0, 5), rest = list.slice(5);
+    var top = list.slice(0, 3), rest = list.slice(3);
     function row(s) {
       var p = s.prediction || {}, why = (st.lang === 'ar' ? p.why_ar : p.why_en) || [], tr = PRED_TIER[p.level] || 1;
       var d = st.me ? fmtKm(hav(st.me, [s.lat, s.lng])) : '';
@@ -1049,10 +1052,13 @@ details.card[open] > summary { margin-bottom: 4px; }
     render(); fetchData(); setInterval(fetchData, 60000);
     if (!st.me || st.meSrc === 'gps') tryGps({ quiet: true, timeout: 10000 });
     document.addEventListener('visibilitychange', function () { if (document.visibilityState === 'visible' && st.meSrc === 'gps' && gpsWatch == null) tryGps({ quiet: true, timeout: 10000 }); });
-    $('langbtn').addEventListener('click', function () { st.lang = st.lang === 'ar' ? 'en' : 'ar'; if (st.me && (st.meSrc === 'map' || st.meSrc === 'district' || st.meSrc === 'gps')) st.meLabel = districtAt(st.me[0], st.me[1]) || st.meLabel; save(); applyI18n(); drawCities(); relabelDistricts(); reflectArm(); render(); renderInstall(); });
+    $('langbtn').addEventListener('click', function () { st.lang = st.lang === 'ar' ? 'en' : 'ar'; if (st.me && (st.meSrc === 'map' || st.meSrc === 'district' || st.meSrc === 'gps')) st.meLabel = districtAt(st.me[0], st.me[1]) || st.meLabel; save(); applyI18n(); drawCities(); relabelDistricts(); reflectArm(); render(); renderInstall(); $('mapToggle').textContent = map.getZoom() >= 8 ? t('viewKsa') : (st.me ? t('viewMe') : t('viewRiyadh')); });
     $('setloc').addEventListener('click', function () { locateMe(); });
     $('hintx').addEventListener('click', exitMode);
     $('vRiyadh').addEventListener('click', function () { map.fitBounds(layers.riyadhBounds, { padding: [10, 10] }); });
+    $('mapToggle').addEventListener('click', function () { var z = map.getZoom(); if (z >= 8) { map.fitBounds(layers.ksaBounds); } else { if (st.me) map.setView(st.me, 11); else map.fitBounds(layers.riyadhBounds, { padding: [10, 10] }); } });
+    map.on('zoomend', function () { $('mapToggle').textContent = map.getZoom() >= 8 ? t('viewKsa') : (st.me ? t('viewMe') : t('viewRiyadh')); });
+    $('mapToggle').textContent = map.getZoom() >= 8 ? t('viewKsa') : t('viewRiyadh');
     $('vKsa').addEventListener('click', function () { map.fitBounds(layers.ksaBounds); });
     $('vMe').addEventListener('click', function () { if (st.me) map.setView(st.me, Math.max(map.getZoom(), 11)); else { enterMode(); toast(t('tapAgain')); } });
     $('armbtn').addEventListener('click', toggleArm);
@@ -1070,7 +1076,6 @@ details.card[open] > summary { margin-bottom: 4px; }
     $('incidents').addEventListener('click', function (e) { var r = e.target.closest ? e.target.closest('.row[data-x]') : null; if (r && !(e.target.closest && e.target.closest('a'))) r.classList.toggle('open'); });
     $('installX').addEventListener('click', function () { try { localStorage.setItem('riyadh-sky-watch:install-dismissed', '1'); } catch (x) {} $('install').hidden = true; });
     $('installBtn').addEventListener('click', function () { if (!deferredInstall) return; try { deferredInstall.prompt(); deferredInstall.userChoice.then(function () { deferredInstall = null; renderInstall(); }).catch(function () {}); } catch (e) {} });
-    $('copystatus').addEventListener('click', function () { copyText(statusText(assess(st.me, Date.now()))); });
     $('optSound').addEventListener('change', function () { st.sound = this.checked; save(); });
     $('optVibrate').addEventListener('change', function () { st.vibrate = this.checked; save(); });
     $('optWake').addEventListener('change', function () { st.wake = this.checked; save(); wake(); });

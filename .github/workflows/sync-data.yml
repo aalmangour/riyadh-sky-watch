@@ -1,0 +1,42 @@
+name: Sync data from the Claude artifact
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "12 * * * *"
+permissions:
+  contents: write
+concurrency:
+  group: sync-data
+  cancel-in-progress: false
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Probe the artifact for a public data URL
+        shell: bash
+        run: |
+          set -e
+          mkdir -p .diag
+          A="https://claude.ai/artifact/KFcauLvu7nHzb5kxbk5HeW"
+          UA="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0 Safari/537.36"
+          {
+            echo "probe at $(date -u +%FT%TZ)"
+            for u in "$A" "$A/" "$A/data.json" "$A/index.html"; do
+              code=$(curl -sL -A "$UA" -o /tmp/out -w "%{http_code} %{url_effective} %{content_type}" "$u" || true)
+              echo "GET $u -> $code"
+              head -c 300 /tmp/out | tr '\n' ' '; echo
+              echo "--- urls in body:"
+              grep -oE 'https?://[^"'"'"'<> ]+' /tmp/out | grep -iE 'artifact|claude|data\.json' | sort -u | head -40 || true
+              echo "=========="
+            done
+          } > .diag/probe.txt 2>&1 || true
+          cat .diag/probe.txt | head -120
+      - name: Commit probe
+        shell: bash
+        run: |
+          git config user.name "sky-watch-bot"
+          git config user.email "noreply@github.com"
+          git add .diag/probe.txt
+          git commit -m "probe: artifact URLs" || echo "nothing to commit"
+          git push

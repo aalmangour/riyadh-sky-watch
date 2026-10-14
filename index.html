@@ -292,6 +292,7 @@ details.card[open] > summary { margin-bottom: 4px; }
       <section class="card" id="sitcard">
         <h2><span data-i="sitTitle">Situation now</span><span class="small" id="sitUpdated"></span></h2>
         <p class="sumtxt" id="summary"></p>
+        <div class="small" id="sumMore" style="margin-top:4px"></div>
         <div class="stale" id="stale" hidden></div>
       </section>
 
@@ -406,10 +407,10 @@ details.card[open] > summary { margin-bottom: 4px; }
       guide: ['No active threat reported near you.', 'Low exposure. Know your safe room.', 'Elevated exposure. Keep emergency alerts on and know where you would shelter.', 'High exposure. Stay close to an interior room; avoid windows and rooftops if sirens or explosions are heard.', 'Critical. Move to an interior room on a low floor, away from windows, until the all-clear.'],
       liveGuide: 'Move away from windows into an interior room now. Wait for the Civil Defense all-clear.',
       near: 'nearest', agoMin: 'min ago', agoH: 'h ago', agoD: 'd ago', kmAway: 'away', km: 'km',
-      setLocation: 'Set my location', tapMap: 'Tap your location on the map, as often as you like (or pick a district below)', viewRiyadh: 'Riyadh', viewKsa: 'Kingdom', viewMe: 'Me',
+      setLocation: 'Use my location', tapMap: 'Or tap your spot on the map (re-tap any time), or pick a district under Your location.', viewRiyadh: 'Riyadh', viewKsa: 'Kingdom', viewMe: 'Me',
       arm: 'Arm alarm', disarm: 'Alarm armed', armedToast: 'Alarm armed. Keep this page open.', disarmedToast: 'Alarm off.',
       lg4: 'Critical', lg3: 'High', lg2: 'Elevated', lg1: 'Low', lgMe: 'You', lgInc: 'Incident (last 48 h)',
-      whereTitle: 'Your location', district: 'Pick a Riyadh district', paste: 'Or paste a Google Maps link or coordinates', use: 'Use', gps: 'Use GPS',
+      whereTitle: 'Your location', district: 'Pick a Riyadh district', paste: 'Or paste a Google Maps link or coordinates', use: 'Use', gps: 'Use my location (GPS)',
       gpsFail: 'GPS is not available here. Tap the map or pick a district.', gpsOk: 'Location set from GPS.', gpsInApp: 'This app\'s built-in browser blocks location.', gpsSandbox: 'Location does not work inside this viewer; use the web version.', openInBrowser: 'Open in Safari / Chrome', openWeb: 'Open the web version', retryGps: 'Retry GPS', gpsDeniedIos: 'Location is off for this site. Safari: tap "aA" in the address bar → Website Settings → Location → Allow. Also check iPhone Settings → Privacy & Security → Location Services → Safari Websites → While Using.', gpsDeniedAndroid: 'Location is blocked for this site. Chrome: tap the lock icon → Permissions → Location → Allow, then reload.', gpsDeniedDesktop: 'Location is blocked for this site. Allow it in the browser\'s site settings (the icon left of the address bar), then reload.', gpsTimeout: 'No GPS fix yet. Try near a window or outdoors.', gpsUnavailable: 'Location is unavailable on this device right now.', gpsUnsupported: 'This browser has no location support.', pasteFail: 'No coordinates found. Paste something like 24.7136, 46.6753 or a maps link that contains @lat,lng.',
       meSet: 'Your location', meUnset: 'No location set yet.', approx: '≈ approximate position', chooseDistrict: '— choose a district —',
       nearTitle: 'Nearest risk sites', nearSub: 'distance from you', predTitle: 'Predicted next targets', predSub: 'Ranked from recent strikes, named threats and strategic value. An estimate that the monitor re-rates on every run.',
@@ -426,7 +427,7 @@ details.card[open] > summary { margin-bottom: 4px; }
       srcTitle: 'Sources', disclaimer: 'Community awareness tool. Not an official warning system. Site positions marked ≈ are approximate. Predictions are estimates drawn from recent targeting patterns and public statements, refreshed by an automated monitor.',
       updated: 'Data updated', staleWarn: 'No monitor update for {h}. Treat the picture as stale.', staleBad: 'No monitor update for {h}. The monitor may be down; rely on official alerts.',
       alarmTitle: 'ALERT', testTitle: 'TEST ALARM', testText: 'This is what an alert looks like.', ok: 'OK', shareText: 'Riyadh Sky Watch: {level} at {place}. Nearest risk: {near}. Live map: {url} — Keep Emergency Alerts on; official warnings come only from Civil Defense.',
-      offline: 'Showing the last saved data (live file unreachable).', recent: 'Recent', predShort: 'Predicted', zoneHere: 'zone where you are', outsideRings: 'Outside its rings', locSet: 'Location set', tapAgain: 'Tap anywhere on the map to move your spot.', sitTitle: 'Situation now', changeLoc: 'change', locating: 'Finding your location…', tapMapShort: 'Tap the map to set your location', barMe: 'Me', barAlarm: 'Alarm', barAlarmOn: 'Alarm on', installHow: 'How?', siteThreat: 'Site threat', youInside: 'You are inside its {level} zone (within {r} km)', youOutside: 'You are outside its danger zone (beyond {r} km)',
+      offline: 'Showing the last saved data (live file unreachable).', recent: 'Recent', predShort: 'Predicted', zoneHere: 'zone where you are', outsideRings: 'Outside its rings', locSet: 'Location set', tapAgain: 'Tap anywhere on the map to move your spot.', sitTitle: 'Situation now', tapToRead: 'Tap to read all', showLess: 'Tap to shorten', changeLoc: 'change', locating: 'Finding your location…', tapMapShort: 'Tap the map to set your location', barMe: 'My spot', barAlarm: 'Alarm', barAlarmOn: 'Alarm on', installHow: 'How?', siteThreat: 'Site threat', youInside: 'You are inside its {level} zone (within {r} km)', youOutside: 'You are outside its danger zone (beyond {r} km)',
       installBtn: 'Install app', installTitle: 'Add to your home screen for one-tap access.',
       inst: {
         iosSafari: 'Tap Share (the square with an arrow at the bottom), then "Add to Home Screen", then Add.',
@@ -446,10 +447,10 @@ details.card[open] > summary { margin-bottom: 4px; }
       guide: ['لا تهديد نشط مُبلّغ عنه قربك.', 'تعرّض منخفض. اعرف غرفتك الآمنة.', 'تعرّض متوسط. أبقِ إنذارات الطوارئ مفعّلة واعرف أين تحتمي.', 'تعرّض مرتفع. ابقَ قريباً من غرفة داخلية وابتعد عن النوافذ والأسطح عند سماع صفارات أو انفجارات.', 'حرج. انتقل إلى غرفة داخلية في طابق منخفض بعيداً عن النوافذ حتى إعلان زوال الخطر.'],
       liveGuide: 'ابتعد عن النوافذ إلى غرفة داخلية الآن، وانتظر إعلان الدفاع المدني زوال الخطر.',
       near: 'الأقرب', agoMin: 'دقيقة مضت', agoH: 'ساعة مضت', agoD: 'يوم مضى', kmAway: 'من موقعك', km: 'كم',
-      setLocation: 'حدّد موقعي', tapMap: 'اضغط على موقعك في الخريطة، وكرر ذلك متى شئت (أو اختر حياً أدناه)', viewRiyadh: 'الرياض', viewKsa: 'المملكة', viewMe: 'موقعي',
+      setLocation: 'استخدم موقعي', tapMap: 'أو اضغط على موقعك في الخريطة (ويمكنك تكرار ذلك)، أو اختر حياً من قسم موقعك.', viewRiyadh: 'الرياض', viewKsa: 'المملكة', viewMe: 'موقعي',
       arm: 'تفعيل المنبّه', disarm: 'المنبّه مفعّل', armedToast: 'تم تفعيل المنبّه. أبقِ الصفحة مفتوحة.', disarmedToast: 'تم إيقاف المنبّه.',
       lg4: 'حرج', lg3: 'مرتفع', lg2: 'متوسط', lg1: 'منخفض', lgMe: 'أنت', lgInc: 'حادثة (آخر ٤٨ ساعة)',
-      whereTitle: 'موقعك', district: 'اختر حياً في الرياض', paste: 'أو الصق رابط خرائط قوقل أو إحداثيات', use: 'استخدم', gps: 'استخدم GPS',
+      whereTitle: 'موقعك', district: 'اختر حياً في الرياض', paste: 'أو الصق رابط خرائط قوقل أو إحداثيات', use: 'استخدم', gps: 'استخدم موقعي (GPS)',
       gpsFail: 'تحديد الموقع غير متاح هنا. اضغط على الخريطة أو اختر حياً.', gpsOk: 'تم تحديد الموقع من GPS.', gpsInApp: 'متصفح التطبيق الداخلي يمنع تحديد الموقع.', gpsSandbox: 'تحديد الموقع لا يعمل داخل هذا العارض؛ استخدم نسخة الويب.', openInBrowser: 'افتح في Safari / Chrome', openWeb: 'افتح نسخة الويب', retryGps: 'أعد محاولة GPS', gpsDeniedIos: 'الموقع مغلق لهذا الموقع. في Safari: اضغط "aA" في شريط العنوان ← إعدادات الموقع ← الموقع ← السماح. وتحقق من إعدادات الآيفون ← الخصوصية والأمان ← خدمات الموقع ← مواقع Safari ← أثناء الاستخدام.', gpsDeniedAndroid: 'الموقع محظور لهذا الموقع. في Chrome: اضغط أيقونة القفل ← الأذونات ← الموقع ← السماح ثم أعد التحميل.', gpsDeniedDesktop: 'الموقع محظور لهذا الموقع. اسمح به من إعدادات الموقع في المتصفح ثم أعد التحميل.', gpsTimeout: 'لم يتم تحديد الموقع بعد. جرّب قرب نافذة أو في الخارج.', gpsUnavailable: 'تحديد الموقع غير متاح على هذا الجهاز الآن.', gpsUnsupported: 'هذا المتصفح لا يدعم تحديد الموقع.', pasteFail: 'لم أجد إحداثيات. الصق شيئاً مثل 24.7136, 46.6753 أو رابط خرائط يحتوي @lat,lng.',
       meSet: 'موقعك', meUnset: 'لم يُحدَّد موقع بعد.', approx: '≈ موقع تقريبي', chooseDistrict: '— اختر حياً —',
       nearTitle: 'أقرب مواقع الخطر', nearSub: 'المسافة من موقعك', predTitle: 'الأهداف المتوقعة التالية', predSub: 'ترتيب مبني على الضربات الأخيرة والتهديدات المعلنة والقيمة الاستراتيجية. تقدير يعيد المرصد تقييمه في كل دورة.',
@@ -466,7 +467,7 @@ details.card[open] > summary { margin-bottom: 4px; }
       srcTitle: 'المصادر', disclaimer: 'أداة توعية مجتمعية وليست نظام إنذار رسمي. المواقع المعلّمة بـ ≈ تقريبية. التوقعات تقديرات مبنية على أنماط الاستهداف الأخيرة والتصريحات العلنية ويحدّثها مرصد آلي.',
       updated: 'آخر تحديث للبيانات', staleWarn: 'لا تحديث من المرصد منذ {h}. اعتبر الصورة قديمة.', staleBad: 'لا تحديث من المرصد منذ {h}. قد يكون المرصد متوقفاً؛ اعتمد على الإنذارات الرسمية.',
       alarmTitle: 'إنذار', testTitle: 'تجربة المنبّه', testText: 'هكذا يبدو الإنذار.', ok: 'حسناً', shareText: 'رصد سماء الرياض: {level} في {place}. أقرب خطر: {near}. الخريطة الحية: {url} — أبقِ تنبيهات الطوارئ مفعّلة؛ الإنذار الرسمي يأتي فقط من الدفاع المدني.',
-      offline: 'تُعرض آخر بيانات محفوظة (تعذّر الوصول للملف الحي).', recent: 'حديث', predShort: 'التوقع', zoneHere: 'نطاقك هنا', outsideRings: 'خارج نطاقاته', locSet: 'تم تحديد الموقع', tapAgain: 'اضغط في أي مكان على الخريطة لنقل موقعك.', sitTitle: 'الوضع الآن', changeLoc: 'تغيير', locating: 'جارٍ تحديد موقعك…', tapMapShort: 'اضغط على الخريطة لتحديد موقعك', barMe: 'موقعي', barAlarm: 'المنبّه', barAlarmOn: 'المنبّه مفعّل', installHow: 'كيف؟', siteThreat: 'تهديد الموقع', youInside: 'أنت داخل نطاقه ({level}) ضمن {r} كم', youOutside: 'أنت خارج نطاق خطره (أبعد من {r} كم)',
+      offline: 'تُعرض آخر بيانات محفوظة (تعذّر الوصول للملف الحي).', recent: 'حديث', predShort: 'التوقع', zoneHere: 'نطاقك هنا', outsideRings: 'خارج نطاقاته', locSet: 'تم تحديد الموقع', tapAgain: 'اضغط في أي مكان على الخريطة لنقل موقعك.', sitTitle: 'الوضع الآن', tapToRead: 'اضغط لقراءة الكل', showLess: 'اضغط للاختصار', changeLoc: 'تغيير', locating: 'جارٍ تحديد موقعك…', tapMapShort: 'اضغط على الخريطة لتحديد موقعك', barMe: 'موقعي', barAlarm: 'المنبّه', barAlarmOn: 'المنبّه مفعّل', installHow: 'كيف؟', siteThreat: 'تهديد الموقع', youInside: 'أنت داخل نطاقه ({level}) ضمن {r} كم', youOutside: 'أنت خارج نطاق خطره (أبعد من {r} كم)',
       installBtn: 'تثبيت التطبيق', installTitle: 'أضف الصفحة لشاشتك الرئيسية للوصول بضغطة واحدة.',
       inst: {
         iosSafari: 'اضغط زر المشاركة (المربع ذو السهم في الأسفل)، ثم "إضافة إلى الشاشة الرئيسية"، ثم إضافة.',
@@ -656,6 +657,7 @@ details.card[open] > summary { margin-bottom: 4px; }
     var z = map.getZoom(), el = map.getContainer();
     el.classList.toggle('z-lt10', z < 10); el.classList.toggle('z-10-11', z >= 10 && z < 12); el.classList.toggle('z-ge10', z >= 10);
   }
+  function relabelDistricts() { try { layers.districts.eachLayer(function (p) { if (p._sw) p.setTooltipContent(nm({ en: p._sw.en, ar: p._sw.ar })); }); } catch (e) {} }
   function drawCities() {
     layers.cities.clearLayers();
     CITIES.forEach(function (c) {
@@ -716,7 +718,7 @@ details.card[open] > summary { margin-bottom: 4px; }
     var first = !(st.me && st.meSrc === 'gps');
     setMe(lat, lng, null, 'gps', quiet || !first);
     exitMode();
-    if (first) map.setView(st.me, Math.max(map.getZoom(), 11));
+    if (first || !quiet) map.setView(st.me, Math.max(map.getZoom(), 12));
   }
   var gpsErr = null; // {code: 0 unsupported, 1 denied, 2 unavailable, 3 timeout}
   function gpsProblem() {
@@ -751,6 +753,13 @@ details.card[open] > summary { margin-bottom: 4px; }
       }, fail, { enableHighAccuracy: stage === 1, timeout: opts.timeout || 10000, maximumAge: stage === 1 ? 60000 : 300000 });
       setTimeout(function () { fail('timeout'); }, (opts.timeout || 10000) + 2000);
     } catch (e) { fail({ code: 2 }); }
+  }
+  function locateMe() {
+    $('map').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    enterMode();
+    if (!navigator.geolocation || inSandbox()) { gpsTried = true; gpsFailed = true; gpsErr = { code: inSandbox() ? 1 : 0 }; renderYou(); toast(gpsProblem()); return; }
+    toast(t('locating'));
+    tryGps({ quiet: false, timeout: 12000 });
   }
   function externalUrl() {
     var e = env(), u = WEB_URL;
@@ -898,6 +907,7 @@ details.card[open] > summary { margin-bottom: 4px; }
   }
   function renderSummary(now) {
     $('summary').textContent = data.summary ? (st.lang === 'ar' ? data.summary.ar : data.summary.en) || '' : '';
+    var sm = $('sumMore'); if (sm) { var el = $('summary'); sm.textContent = (el.scrollHeight > el.clientHeight + 2 || el.classList.contains('open')) ? (el.classList.contains('open') ? t('showLess') : t('tapToRead')) : ''; }
     var gen = data.generated_at ? ago(data.generated_at, now) : '';
     $('sitUpdated').textContent = gen ? t('updated') + ' ' + gen : '';
   }
@@ -1039,8 +1049,8 @@ details.card[open] > summary { margin-bottom: 4px; }
     render(); fetchData(); setInterval(fetchData, 60000);
     if (!st.me || st.meSrc === 'gps') tryGps({ quiet: true, timeout: 10000 });
     document.addEventListener('visibilitychange', function () { if (document.visibilityState === 'visible' && st.meSrc === 'gps' && gpsWatch == null) tryGps({ quiet: true, timeout: 10000 }); });
-    $('langbtn').addEventListener('click', function () { st.lang = st.lang === 'ar' ? 'en' : 'ar'; if (st.me && (st.meSrc === 'map' || st.meSrc === 'district' || st.meSrc === 'gps')) st.meLabel = districtAt(st.me[0], st.me[1]) || st.meLabel; save(); applyI18n(); drawCities(); reflectArm(); render(); renderInstall(); });
-    $('setloc').addEventListener('click', function () { enterMode(); $('map').scrollIntoView({ behavior: 'smooth', block: 'start' }); });
+    $('langbtn').addEventListener('click', function () { st.lang = st.lang === 'ar' ? 'en' : 'ar'; if (st.me && (st.meSrc === 'map' || st.meSrc === 'district' || st.meSrc === 'gps')) st.meLabel = districtAt(st.me[0], st.me[1]) || st.meLabel; save(); applyI18n(); drawCities(); relabelDistricts(); reflectArm(); render(); renderInstall(); });
+    $('setloc').addEventListener('click', function () { locateMe(); });
     $('hintx').addEventListener('click', exitMode);
     $('vRiyadh').addEventListener('click', function () { map.fitBounds(layers.riyadhBounds, { padding: [10, 10] }); });
     $('vKsa').addEventListener('click', function () { map.fitBounds(layers.ksaBounds); });
@@ -1050,13 +1060,13 @@ details.card[open] > summary { margin-bottom: 4px; }
     $('district').addEventListener('change', function () { var id = this.value; if (!id) return; var d = (BASE.districts || []).filter(function (x) { return String(x.id) === String(id); })[0]; if (d) { setMe(d.c[0], d.c[1], nm(d), 'district'); exitMode(); map.setView(d.c, 12); } });
     $('pastebtn').addEventListener('click', function () { var c = parseCoords($('paste').value); if (!c) { toast(t('pasteFail')); return; } setMe(c[0], c[1], null, 'paste'); exitMode(); map.setView(c, 12); $('paste').value = ''; });
     $('paste').addEventListener('keydown', function (e) { if (e.key === 'Enter') { e.preventDefault(); $('pastebtn').click(); } });
-    $('gpsbtn').addEventListener('click', function () { tryGps({ quiet: false, timeout: 12000 }); });
+    $('gpsbtn').addEventListener('click', function () { locateMe(); });
     $('copylink').addEventListener('click', function () { copyText(pageUrl()); });
     renderInstall(); registerSw();
     $('installHow').addEventListener('click', function () { var st2 = $('installSteps'); st2.hidden = !st2.hidden; });
-    $('barMe').addEventListener('click', function () { $('map').scrollIntoView({ behavior: 'smooth', block: 'start' }); if (st.me) map.setView(st.me, Math.max(map.getZoom(), 11)); else { enterMode(); toast(t('tapAgain')); } });
+    $('barMe').addEventListener('click', function () { if (st.me) { $('map').scrollIntoView({ behavior: 'smooth', block: 'start' }); map.setView(st.me, Math.max(map.getZoom(), 12)); } else locateMe(); });
     $('barAlarm').addEventListener('click', toggleArm);
-    $('sitcard').addEventListener('click', function (e) { if (e.target.closest && e.target.closest('a')) return; $('summary').classList.toggle('open'); });
+    $('sitcard').addEventListener('click', function (e) { if (e.target.closest && e.target.closest('a')) return; $('summary').classList.toggle('open'); renderSummary(Date.now()); });
     $('incidents').addEventListener('click', function (e) { var r = e.target.closest ? e.target.closest('.row[data-x]') : null; if (r && !(e.target.closest && e.target.closest('a'))) r.classList.toggle('open'); });
     $('installX').addEventListener('click', function () { try { localStorage.setItem('riyadh-sky-watch:install-dismissed', '1'); } catch (x) {} $('install').hidden = true; });
     $('installBtn').addEventListener('click', function () { if (!deferredInstall) return; try { deferredInstall.prompt(); deferredInstall.userChoice.then(function () { deferredInstall = null; renderInstall(); }).catch(function () {}); } catch (e) {} });

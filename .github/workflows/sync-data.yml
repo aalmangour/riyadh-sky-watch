@@ -31,6 +31,12 @@ jobs:
               code=$(curl -sL -A "$UA" -o /tmp/out -w "%{http_code} %{url_effective} %{content_type}" "$u")
               echo "GET $u -> $code"; head -c 200 /tmp/out | tr '\n' ' '; echo; echo "=========="
             done
+            echo "--- frame shell url patterns:"
+            for js in frame-shell-BV-fjGj_.js frame-shell-broker-D8XjipfN.js shared-frame-B1JORnF0.js shared-frame-boot-JhcLzNt_.js; do
+              curl -sL -A "$UA" -o /tmp/js "https://assets-proxy.anthropic.com/claude-ai/v2/assets/v1/$js"
+              echo "## $js ($(wc -c < /tmp/js) bytes)"
+              grep -oE '.{0,120}(claudeusercontent|/files/|/artifact/|index\.html|data\.json|frame\.).{0,120}' /tmp/js | head -40
+            done
           } > .diag/probe.txt 2>&1
           cat .diag/probe.txt
           code=$(curl -sL -A "$UA" -o /tmp/data.json -w "%{http_code}" "$H/data.json")

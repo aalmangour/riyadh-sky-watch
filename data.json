@@ -3,8 +3,8 @@
  "generated_at": "2026-10-14T10:31:00+03:00",
  "monitor": {
   "last_run": "2026-10-14T10:31:00+03:00",
-  "cadence_en": "automated monitor checks sources every hour (at :04)",
-  "cadence_ar": "مرصد آلي يفحص المصادر كل ساعة (عند الدقيقة ٠٤)",
+  "cadence_en": "automated monitor checks sources every hour",
+  "cadence_ar": "مرصد آلي يفحص المصادر كل ساعة",
   "status": "ok",
   "note_en": "Run at 10:31 on 14 Oct: no new attacks, interceptions, Civil Defense alerts, debris reports or named threats anywhere in Saudi Arabia since the 10:10 run (re-checked wire services, live blogs and coalition statements). Riyadh level and site ratings unchanged.",
   "note_ar": "تشغيل عند 10:31 في ١٤ أكتوبر: لا هجمات أو اعتراضات أو إنذارات من الدفاع المدني أو بلاغات شظايا أو تهديدات جديدة في أي مكان بالمملكة منذ تشغيل ١٠:١٠ (أُعيد فحص الوكالات والمدونات المباشرة وبيانات التحالف). مستوى الرياض وتقييمات المواقع دون تغيير.",

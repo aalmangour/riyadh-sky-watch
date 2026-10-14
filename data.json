@@ -1,17 +1,18 @@
 {
  "schema": 1,
- "generated_at": "2026-10-14T02:12:00+03:00",
+ "generated_at": "2026-10-14T10:31:00+03:00",
  "monitor": {
-  "last_run": "2026-10-14T02:12:00+03:00",
+  "last_run": "2026-10-14T10:31:00+03:00",
   "cadence_en": "automated monitor checks sources every hour (at :04)",
   "cadence_ar": "مرصد آلي يفحص المصادر كل ساعة (عند الدقيقة ٠٤)",
   "status": "ok",
-  "note_en": "No new events since 02:08. Last additions: cruise-missile debris injured 4 in Riyadh, interceptions over Al Kharj and toward Haradh (13 Oct).",
-  "note_ar": "لا أحداث جديدة منذ ٢:٠٨. آخر الإضافات: شظايا صاروخ كروز أصابت ٤ أشخاص في الرياض، واعتراضات فوق الخرج وباتجاه حرض (١٣ أكتوبر)."
+  "note_en": "Run at 10:31 on 14 Oct: no new attacks, interceptions, Civil Defense alerts, debris reports or named threats anywhere in Saudi Arabia since the 10:10 run (re-checked wire services, live blogs and coalition statements). Riyadh level and site ratings unchanged.",
+  "note_ar": "تشغيل عند 10:31 في ١٤ أكتوبر: لا هجمات أو اعتراضات أو إنذارات من الدفاع المدني أو بلاغات شظايا أو تهديدات جديدة في أي مكان بالمملكة منذ تشغيل ١٠:١٠ (أُعيد فحص الوكالات والمدونات المباشرة وبيانات التحالف). مستوى الرياض وتقييمات المواقع دون تغيير.",
+  "github_en": "push FAILED 10:10: add_repo tool unavailable in this run; git push returned 403 'access denied by the git proxy: aalmangour/riyadh-sky-watch is not in this session's authorized repository set'. GitHub Pages copy is stale (last pushed data 02:12)."
  },
  "summary": {
-  "en": "Riyadh: Civil Defense confirmed overnight that debris from two Houthi cruise missiles intercepted over the city on 13 Oct injured four people and damaged 15 homes; a cruise missile was also downed over Al Kharj. In the east, a missile struck the Aramco HQ area in Dhahran on the evening of 13 Oct (small fire, no casualties per the Energy Ministry) and missiles toward Dhahran and Haradh were intercepted. King Khalid Airport was struck on 8, 10 and 11 Oct (17 killed) and the Houthis have named Riyadh's airport and refinery as targets.",
-  "ar": "الرياض: أكد الدفاع المدني ليلاً أن شظايا صاروخي كروز حوثيين اعتُرضا فوق المدينة في ١٣ أكتوبر أصابت أربعة أشخاص وألحقت أضراراً بـ١٥ منزلاً؛ كما أُسقط صاروخ كروز فوق الخرج. في الشرق، أصاب صاروخ محيط مقر أرامكو في الظهران مساء ١٣ أكتوبر (حريق محدود دون إصابات بحسب وزارة الطاقة) واعتُرضت صواريخ باتجاه الظهران وحرض. أُصيب مطار الملك خالد في ٨ و١٠ و١١ أكتوبر (١٧ قتيلاً) وسمّى الحوثيون مطار الرياض ومصفاتها كأهداف."
+  "en": "Riyadh: no new attacks reported overnight or this morning (as of 10:00 on 14 Oct). The coalition's tally for Tuesday was eight interceptions: 2 ballistic missiles (Haradh, Dhahran), 4 cruise missiles and 2 drones over the Riyadh and southern regions. Civil Defense confirmed that debris from two Houthi cruise missiles intercepted over the city on 13 Oct injured four people and damaged 15 homes; a cruise missile was also downed over Al Kharj. In the east, a missile struck the Aramco HQ area in Dhahran on the evening of 13 Oct (small fire, no casualties per the Energy Ministry) and missiles toward Dhahran and Haradh were intercepted. King Khalid Airport was struck on 8, 10 and 11 Oct (17 killed) and stays closed through 17 Oct; the Houthis have named Riyadh's airport, its refinery and all Aramco sites as targets and say strikes on Sanaa will be answered in Riyadh.",
+  "ar": "الرياض: لم تُسجَّل هجمات جديدة خلال الليل أو هذا الصباح (حتى الساعة ١٠:٠٠ من ١٤ أكتوبر). بلغت حصيلة التحالف ليوم الثلاثاء ثمانية اعتراضات: صاروخان باليستيان (حرض والظهران) وأربعة صواريخ كروز ومسيّرتان فوق منطقتي الرياض والجنوب. أكد الدفاع المدني أن شظايا صاروخي كروز حوثيين اعتُرضا فوق المدينة في ١٣ أكتوبر أصابت أربعة أشخاص وألحقت أضراراً بـ١٥ منزلاً، كما أُسقط صاروخ كروز فوق الخرج. وفي الشرقية أصاب صاروخ منطقة مقر أرامكو بالظهران مساء ١٣ أكتوبر (حريق محدود دون إصابات بحسب وزارة الطاقة)، واعتُرضت صواريخ باتجاه الظهران وحرض. أُصيب مطار الملك خالد في ٨ و١٠ و١١ أكتوبر (١٧ قتيلاً) ويبقى مغلقاً حتى ١٧ أكتوبر، وسمّى الحوثيون مطار الرياض ومصفاتها وجميع منشآت أرامكو أهدافاً ويقولون إن ضرب صنعاء سيُردّ عليه في الرياض."
  },
  "riyadh_level": 3,
  "sites": [
@@ -84,7 +85,7 @@
    "prediction": {
     "level": "high",
     "confidence": "high",
-    "assessed_at": "2026-10-14T02:12:00+03:00",
+    "assessed_at": "2026-10-14T10:31:00+03:00",
     "why_en": [
      "Struck 3 times in 4 days; interceptions daily since 11 Oct, debris injured 4 in Riyadh on 13 Oct",
      "Explicitly named as a target on 13 Oct",
@@ -114,6 +115,12 @@
      "kind": "impact",
      "note_en": "Drone attack caused a fire (2021)",
      "note_ar": "هجوم بمسيّرات تسبب بحريق (٢٠٢١)"
+    },
+    {
+     "date": "2026-10-03",
+     "kind": "impact",
+     "note_en": "Houthis claimed a missile and drone strike; smoke and fire seen near the facility, coalition called the claim misleading",
+     "note_ar": "زعم الحوثيون ضربة بصواريخ ومسيّرات؛ شوهد دخان وحريق قرب المنشأة ووصف التحالف الادعاء بالمضلل"
     }
    ],
    "threat": {
@@ -124,16 +131,16 @@
    "prediction": {
     "level": "high",
     "confidence": "medium",
-    "assessed_at": "2026-10-14T02:12:00+03:00",
+    "assessed_at": "2026-10-14T10:31:00+03:00",
     "why_en": [
      "Explicitly named on 13 Oct, the same day Aramco HQ was hit",
-     "Only major refinery serving central Saudi Arabia",
-     "No strike since 2021; interception coverage around Riyadh is dense"
+     "Houthis claimed a strike here on 3 Oct with fire seen nearby; the only major refinery serving central Saudi Arabia",
+     "Interception coverage around Riyadh is dense, but debris fell on homes on 13 Oct"
     ],
     "why_ar": [
      "سُمّيت صراحة في ١٣ أكتوبر، وهو اليوم نفسه الذي أُصيب فيه مقر أرامكو",
-     "المصفاة الرئيسية الوحيدة لوسط المملكة",
-     "لم تُضرب منذ ٢٠٢١ والتغطية الدفاعية حول الرياض كثيفة"
+     "زعم الحوثيون ضربها في ٣ أكتوبر وشوهد حريق قربها؛ وهي المصفاة الرئيسية الوحيدة لوسط المملكة",
+     "التغطية الدفاعية حول الرياض كثيفة، لكن شظايا سقطت على منازل في ١٣ أكتوبر"
     ]
    }
   },
@@ -160,7 +167,7 @@
    "prediction": {
     "level": "medium",
     "confidence": "medium",
-    "assessed_at": "2026-10-14T02:12:00+03:00",
+    "assessed_at": "2026-10-14T10:31:00+03:00",
     "why_en": [
      "Military air base inside the city",
      "Cruise-missile debris injured 4 in Riyadh residential areas on 13 Oct",
@@ -214,7 +221,7 @@
    "prediction": {
     "level": "high",
     "confidence": "medium",
-    "assessed_at": "2026-10-14T02:12:00+03:00",
+    "assessed_at": "2026-10-14T10:31:00+03:00",
     "why_en": [
      "Cruise missile intercepted over Al Kharj on 13 Oct",
      "Hosts US forces; targeted by Iran in March",
@@ -243,7 +250,7 @@
    "prediction": {
     "level": "low",
     "confidence": "medium",
-    "assessed_at": "2026-10-14T02:12:00+03:00",
+    "assessed_at": "2026-10-14T10:31:00+03:00",
     "why_en": [
      "High symbolic value but not named in any recent threat",
      "No history of strikes on central government sites in this campaign"
@@ -270,7 +277,7 @@
    "prediction": {
     "level": "low",
     "confidence": "medium",
-    "assessed_at": "2026-10-14T02:12:00+03:00",
+    "assessed_at": "2026-10-14T10:31:00+03:00",
     "why_en": [
      "Not named in any threat; no strikes on diplomatic sites so far"
     ],
@@ -312,7 +319,7 @@
    "prediction": {
     "level": "high",
     "confidence": "high",
-    "assessed_at": "2026-10-14T02:12:00+03:00",
+    "assessed_at": "2026-10-14T10:31:00+03:00",
     "why_en": [
      "Hit on 13 Oct hours after being named; Energy Ministry confirmed a small fire, no casualties",
      "Houthis treat Aramco sites as 'legitimate targets'",
@@ -352,7 +359,7 @@
    "prediction": {
     "level": "high",
     "confidence": "medium",
-    "assessed_at": "2026-10-14T02:12:00+03:00",
+    "assessed_at": "2026-10-14T10:31:00+03:00",
     "why_en": [
      "Attacked on 11 Oct; airports are the campaign's focus",
      "Far from residential areas, so lower debris risk for the city"
@@ -379,7 +386,7 @@
    "prediction": {
     "level": "medium",
     "confidence": "low",
-    "assessed_at": "2026-10-14T02:12:00+03:00",
+    "assessed_at": "2026-10-14T10:31:00+03:00",
     "why_en": [
      "Adjacent to Aramco HQ, which was hit on 13 Oct",
      "Not named in threats"
@@ -417,7 +424,7 @@
    "prediction": {
     "level": "medium",
     "confidence": "medium",
-    "assessed_at": "2026-10-14T02:12:00+03:00",
+    "assessed_at": "2026-10-14T10:31:00+03:00",
     "why_en": [
      "Largest export terminal; targeted in 2019 and 2021",
      "Houthis warned oil workers to leave Aramco sites"
@@ -455,7 +462,7 @@
    "prediction": {
     "level": "medium",
     "confidence": "medium",
-    "assessed_at": "2026-10-14T02:12:00+03:00",
+    "assessed_at": "2026-10-14T10:31:00+03:00",
     "why_en": [
      "World's largest crude processing plant; proven target in 2019",
      "Not named specifically in the 13 Oct threat"
@@ -482,7 +489,7 @@
    "prediction": {
     "level": "low",
     "confidence": "low",
-    "assessed_at": "2026-10-14T02:12:00+03:00",
+    "assessed_at": "2026-10-14T10:31:00+03:00",
     "why_en": [
      "Petrochemical hub, but no strikes or named threats"
     ],
@@ -514,7 +521,7 @@
    "prediction": {
     "level": "low",
     "confidence": "low",
-    "assessed_at": "2026-10-14T02:12:00+03:00",
+    "assessed_at": "2026-10-14T10:31:00+03:00",
     "why_en": [
      "Remote field; last struck in 2019"
     ],
@@ -546,7 +553,7 @@
    "prediction": {
     "level": "low",
     "confidence": "low",
-    "assessed_at": "2026-10-14T02:12:00+03:00",
+    "assessed_at": "2026-10-14T10:31:00+03:00",
     "why_en": [
      "Remote desert field; drone attempt in March"
     ],
@@ -588,7 +595,7 @@
    "prediction": {
     "level": "high",
     "confidence": "high",
-    "assessed_at": "2026-10-14T02:12:00+03:00",
+    "assessed_at": "2026-10-14T10:31:00+03:00",
     "why_en": [
      "Closest major airport to Yemen; struck 6–7 Oct",
      "Alerts continuing in Asir"
@@ -628,7 +635,7 @@
    "prediction": {
     "level": "high",
     "confidence": "high",
-    "assessed_at": "2026-10-14T02:12:00+03:00",
+    "assessed_at": "2026-10-14T10:31:00+03:00",
     "why_en": [
      "Main base for coalition air strikes on Yemen; attacked on 12 and 13 Oct",
      "Houthis claim strikes on it almost daily"
@@ -662,7 +669,7 @@
    "prediction": {
     "level": "medium",
     "confidence": "medium",
-    "assessed_at": "2026-10-14T02:12:00+03:00",
+    "assessed_at": "2026-10-14T10:31:00+03:00",
     "why_en": [
      "Border region hit frequently by drones",
      "Lower value than Abha or Khamis Mushait"
@@ -689,7 +696,7 @@
    "prediction": {
     "level": "medium",
     "confidence": "low",
-    "assessed_at": "2026-10-14T02:12:00+03:00",
+    "assessed_at": "2026-10-14T10:31:00+03:00",
     "why_en": [
      "Border airport within easy drone range; no recent strikes reported"
     ],
@@ -725,7 +732,7 @@
    "prediction": {
     "level": "medium",
     "confidence": "medium",
-    "assessed_at": "2026-10-14T02:12:00+03:00",
+    "assessed_at": "2026-10-14T10:31:00+03:00",
     "why_en": [
      "Busiest airport in the west; airports are the campaign's focus",
      "No strike here yet in this campaign"
@@ -759,7 +766,7 @@
    "prediction": {
     "level": "medium",
     "confidence": "low",
-    "assessed_at": "2026-10-14T02:12:00+03:00",
+    "assessed_at": "2026-10-14T10:31:00+03:00",
     "why_en": [
      "Struck in 2022; covered by the warning to oil facilities"
     ],
@@ -791,7 +798,7 @@
    "prediction": {
     "level": "medium",
     "confidence": "medium",
-    "assessed_at": "2026-10-14T02:12:00+03:00",
+    "assessed_at": "2026-10-14T10:31:00+03:00",
     "why_en": [
      "Drone attempts on Taif in September",
      "Major air base within Houthi drone range"
@@ -829,7 +836,7 @@
    "prediction": {
     "level": "medium",
     "confidence": "medium",
-    "assessed_at": "2026-10-14T02:12:00+03:00",
+    "assessed_at": "2026-10-14T10:31:00+03:00",
     "why_en": [
      "Red Sea export terminal for the East-West pipeline",
      "Attempt thwarted on 19 Sep"
@@ -869,7 +876,7 @@
    "prediction": {
     "level": "low",
     "confidence": "low",
-    "assessed_at": "2026-10-14T02:12:00+03:00",
+    "assessed_at": "2026-10-14T10:31:00+03:00",
     "why_en": [
      "Region hit by Iraqi-militia drones in September; airport itself not targeted"
     ],
@@ -894,7 +901,7 @@
    "prediction": {
     "level": "low",
     "confidence": "low",
-    "assessed_at": "2026-10-14T02:12:00+03:00",
+    "assessed_at": "2026-10-14T10:31:00+03:00",
     "why_en": [
      "Northern base; exposed to Iraqi-militia drones rather than Houthi missiles"
     ],
@@ -906,47 +913,267 @@
  ],
  "incidents": [
   {
-   "id": "2026-10-13-dhahran-aramco-impact",
-   "time": "2026-10-13T21:00:00+03:00",
+   "id": "2026-09-19-riyadh-alert-intercept",
+   "time": "2026-09-19T02:58:00+03:00",
+   "tprec": "exact",
+   "kind": "intercept",
+   "weapon": "ballistic",
+   "severity": 3,
+   "radius_km": 15,
+   "status": "past",
+   "lat": 24.85,
+   "lng": 46.7,
+   "place_en": "Riyadh & Al Kharj",
+   "place_ar": "الرياض والخرج",
+   "note_en": "First air-raid alert in the capital of this conflict (02:58, and again 05:19). Two explosions heard; coalition intercepted a ballistic missile toward Riyadh. Attempts on Baish, Taif, Farasan and Yanbu thwarted the same night.",
+   "note_ar": "أول إنذار جوي في العاصمة في هذا النزاع (٢:٥٨ ثم ٥:١٩). سُمع انفجاران؛ واعترض التحالف صاروخاً باليستياً باتجاه الرياض. وأُحبطت محاولات على بيش والطائف وفرسان وينبع في الليلة نفسها.",
+   "casualties_en": "None reported",
+   "casualties_ar": "لا إصابات",
+   "source": {
+    "title": "Saudi Press Agency",
+    "url": "https://www.spa.gov.sa/en/N2680576"
+   }
+  },
+  {
+   "id": "2026-09-19-kkia-fuel-fire",
+   "time": "2026-09-19T12:00:00+03:00",
+   "tprec": "day",
+   "kind": "debris",
+   "weapon": "unknown",
+   "severity": 3,
+   "radius_km": 6,
+   "status": "past",
+   "lat": 24.9578,
+   "lng": 46.6989,
+   "place_en": "King Khalid Int'l Airport area",
+   "place_ar": "محيط مطار الملك خالد الدولي",
+   "note_en": "Explosion heard near the airport and a plume of black smoke from a fuel storage area, a day after a missile toward the airport was intercepted.",
+   "note_ar": "سُمع انفجار قرب المطار وتصاعد دخان أسود من منطقة تخزين وقود، بعد يوم من اعتراض صاروخ باتجاه المطار.",
+   "casualties_en": "None reported",
+   "casualties_ar": "لا إصابات",
+   "source": {
+    "title": "Al Jazeera",
+    "url": "https://www.aljazeera.com/news/2026/10/9/saudi-arabia-reopens-riyadh-airport-after-houthi-attack-kills-three"
+   }
+  },
+  {
+   "id": "2026-10-03-riyadh-refinery-impact",
+   "time": "2026-10-03T12:00:00+03:00",
+   "tprec": "day",
+   "kind": "impact",
+   "weapon": "unknown",
+   "severity": 4,
+   "radius_km": 5,
+   "status": "past",
+   "lat": 24.5257,
+   "lng": 46.8726,
+   "place_en": "Aramco facility south of Riyadh (refinery area)",
+   "place_ar": "منشأة أرامكو جنوب الرياض (منطقة المصفاة)",
+   "note_en": "Houthi spokesman Yahya Saree claimed a ballistic-missile and drone attack on an Aramco facility in Riyadh on 3 Oct, saying it started fires. Al Jazeera and Reuters witnesses saw a large plume of smoke and fire near the facility south of the city. Coalition spokesman Turki Al-Malki called the Houthi claims misleading; no casualties were reported. Added retrospectively to the record on 14 Oct.",
+   "note_ar": "زعم المتحدث الحوثي يحيى سريع في ٣ أكتوبر تنفيذ هجوم بصواريخ باليستية ومسيّرات على منشأة لأرامكو في الرياض وقال إنه تسبب في حرائق. شاهد مراسلو الجزيرة ورويترز عمود دخان كبير وحريقاً قرب المنشأة جنوب المدينة. وصف متحدث التحالف تركي المالكي الادعاءات الحوثية بالمضللة، ولم تُسجَّل إصابات. أُضيف هذا الحدث إلى السجل بأثر رجعي في ١٤ أكتوبر.",
+   "casualties_en": "None reported",
+   "casualties_ar": "لم تُسجَّل إصابات",
+   "source": {
+    "title": "Al Jazeera – Houthis claim strike on Aramco site in Riyadh (4 Oct)",
+    "url": "https://www.aljazeera.com/news/2026/10/4/houthis-claim-strike-on-saudi-energy-facility-as-yemen-fighting-intensifies"
+   }
+  },
+  {
+   "id": "2026-10-07-abha-impact",
+   "time": "2026-10-07T12:00:00+03:00",
+   "tprec": "day",
+   "kind": "impact",
+   "weapon": "ballistic",
+   "severity": 4,
+   "radius_km": 5,
+   "status": "past",
+   "lat": 18.2404,
+   "lng": 42.6566,
+   "place_en": "Abha International Airport",
+   "place_ar": "مطار أبها الدولي",
+   "note_en": "Missile and drone attacks on 6–7 Oct: 2 killed, 28 injured.",
+   "note_ar": "هجمات بالصواريخ والمسيّرات في ٦–٧ أكتوبر: قتيلان و٢٨ مصاباً.",
+   "casualties_en": "2 killed, 28 injured",
+   "casualties_ar": "قتيلان و٢٨ مصاباً",
+   "source": {
+    "title": "Wikipedia summary of wire reports",
+    "url": "https://en.wikipedia.org/wiki/October_2026_attacks_on_Saudi_airports"
+   }
+  },
+  {
+   "id": "2026-10-08-kkia-impact",
+   "time": "2026-10-08T12:00:00+03:00",
+   "tprec": "day",
+   "kind": "impact",
+   "weapon": "ballistic",
+   "severity": 4,
+   "radius_km": 5,
+   "status": "past",
+   "lat": 24.9578,
+   "lng": 46.6989,
+   "place_en": "King Khalid Int'l Airport",
+   "place_ar": "مطار الملك خالد الدولي",
+   "note_en": "Two attacks: airport facilities hit, then a Saudia Airbus A320 destroyed. 3 Saudi citizens killed including a pilot; dozens wounded. Hundreds of flights cancelled.",
+   "note_ar": "هجومان: إصابة منشآت المطار ثم تدمير طائرة إيرباص A320 للسعودية. ٣ مواطنين قُتلوا بينهم طيار؛ وعشرات الجرحى. أُلغيت مئات الرحلات.",
+   "casualties_en": "3 killed, dozens injured",
+   "casualties_ar": "٣ قتلى وعشرات المصابين",
+   "source": {
+    "title": "Al Jazeera",
+    "url": "https://www.aljazeera.com/news/2026/10/9/saudi-arabia-reopens-riyadh-airport-after-houthi-attack-kills-three"
+   }
+  },
+  {
+   "id": "2026-10-08-riyadh-debris",
+   "time": "2026-10-08T16:30:00+03:00",
+   "tprec": "approx",
+   "kind": "debris",
+   "weapon": "ballistic",
+   "severity": 3,
+   "radius_km": 12,
+   "status": "past",
+   "lat": 24.7136,
+   "lng": 46.6753,
+   "place_en": "Riyadh city",
+   "place_ar": "مدينة الرياض",
+   "note_en": "Civil Defense said debris from the interception of a ballistic missile over Riyadh city caused material damage to a kindergarten and a medical clinics complex. No injuries were reported in the statement. Same afternoon as the second strike on King Khalid Airport.",
+   "note_ar": "قال الدفاع المدني إن سقوط شظايا نتيجة اعتراض صاروخ باليستي في مدينة الرياض نتج عنه أضرار مادية بروضة أطفال ومجمع عيادات طبية. لم يذكر البيان أي إصابات. وقع ذلك عصر اليوم نفسه الذي شهد الضربة الثانية على مطار الملك خالد.",
+   "casualties_en": "None reported",
+   "casualties_ar": "لم تُذكر إصابات",
+   "source": {
+    "title": "Saudi Civil Defense on X (8 Oct, 16:38)",
+    "url": "https://x.com/SaudiDCD/status/2108190312963383691"
+   }
+  },
+  {
+   "id": "2026-10-10-kkia-impact",
+   "time": "2026-10-10T13:00:00+03:00",
    "tprec": "approx",
    "kind": "impact",
    "weapon": "ballistic",
    "severity": 4,
    "radius_km": 5,
    "status": "past",
-   "lat": 26.2886,
-   "lng": 50.1142,
-   "place_en": "Aramco HQ, Dhahran",
-   "place_ar": "مقر أرامكو، الظهران",
-   "note_en": "Ballistic missile hit an office tower in the Aramco HQ complex; top three floors damaged and on fire (company sources). Coalition said it intercepted a missile over Dhahran and fragments fell on a residential area. Update: the Energy Ministry said an administrative building was targeted, causing a small fire, with no injuries or deaths.",
-   "note_ar": "صاروخ باليستي أصاب برج مكاتب في مجمع مقر أرامكو؛ تضرر الطوابق الثلاثة العليا واشتعلت (مصادر في الشركة). قال التحالف إنه اعترض صاروخاً فوق الظهران وسقطت شظايا على منطقة سكنية. تحديث: قالت وزارة الطاقة إن مبنى إدارياً استُهدف وتسبب ذلك بحريق محدود دون إصابات أو وفيات.",
-   "casualties_en": "None (Energy Ministry)",
-   "casualties_ar": "لا إصابات (وزارة الطاقة)",
+   "lat": 24.9578,
+   "lng": 46.6989,
+   "place_en": "King Khalid Int'l Airport",
+   "place_ar": "مطار الملك خالد الدولي",
+   "note_en": "Ballistic missile hit the terminal complex: 13 killed (Saudi, Bangladeshi, Palestinian, US and Indian nationals) and more than 300 injured. Deadliest attack in the kingdom in a decade; airport closed until 17 Oct.",
+   "note_ar": "صاروخ باليستي أصاب مجمع الصالات: ١٣ قتيلاً (سعوديون وبنغلاديشيون وفلسطيني وأمريكي وهندي) وأكثر من ٣٠٠ مصاب. أعنف هجوم في المملكة منذ عقد؛ أُغلق المطار حتى ١٧ أكتوبر.",
+   "casualties_en": "13 killed, 300+ injured",
+   "casualties_ar": "١٣ قتيلاً وأكثر من ٣٠٠ مصاب",
    "source": {
-    "title": "Reuters via GV Wire",
-    "url": "https://gvwire.com/2026/10/13/missile-hits-headquarters-of-saudi-aramco-source-says-as-houthi-conflict-escalates/"
+    "title": "AP via PBS",
+    "url": "https://www.pbs.org/newshour/amp/world/riyadh-airport-hit-by-projectile-a-day-after-deadly-missile-strike"
    }
   },
   {
-   "id": "2026-10-13-haradh-intercept",
-   "time": "2026-10-13T20:00:00+03:00",
+   "id": "2026-10-11-kfia-attack",
+   "time": "2026-10-11T12:00:00+03:00",
+   "tprec": "day",
+   "kind": "attempt",
+   "weapon": "unknown",
+   "severity": 3,
+   "radius_km": 8,
+   "status": "past",
+   "lat": 26.4712,
+   "lng": 49.7979,
+   "place_en": "King Fahd Int'l Airport, Dammam",
+   "place_ar": "مطار الملك فهد الدولي، الدمام",
+   "note_en": "Saudi civil aviation reported an attack on Dammam airport; details not published.",
+   "note_ar": "أبلغ الطيران المدني السعودي عن هجوم على مطار الدمام؛ لم تُنشر التفاصيل.",
+   "casualties_en": "Not reported",
+   "casualties_ar": "لم يُبلغ عنها",
+   "source": {
+    "title": "RFE/RL live blog",
+    "url": "https://www.rferl.org/a/iran-live-blog-trump-middle-east/33803414.html"
+   }
+  },
+  {
+   "id": "2026-10-11-kkia-t4-impact",
+   "time": "2026-10-11T18:00:00+03:00",
+   "tprec": "approx",
+   "kind": "impact",
+   "weapon": "unknown",
+   "severity": 4,
+   "radius_km": 5,
+   "status": "past",
+   "lat": 24.9578,
+   "lng": 46.6989,
+   "place_en": "King Khalid Int'l Airport, Terminal 4",
+   "place_ar": "مطار الملك خالد الدولي، الصالة ٤",
+   "note_en": "Projectile struck Terminal 4 (domestic terminals 3–4) and started a blaze; 1 killed, 11 injured. A missile was intercepted near the airport and two blasts were heard in the city.",
+   "note_ar": "مقذوف أصاب الصالة ٤ (الصالتان المحليتان ٣–٤) وأشعل حريقاً؛ قتيل و١١ مصاباً. واعتُرض صاروخ قرب المطار وسُمع انفجاران في المدينة.",
+   "casualties_en": "1 killed, 11 injured",
+   "casualties_ar": "قتيل و١١ مصاباً",
+   "source": {
+    "title": "AP via PBS",
+    "url": "https://www.pbs.org/newshour/amp/world/riyadh-airport-hit-by-projectile-a-day-after-deadly-missile-strike"
+   }
+  },
+  {
+   "id": "2026-10-12-kkia-cruise-intercept",
+   "time": "2026-10-12T04:00:00+03:00",
+   "tprec": "approx",
+   "kind": "intercept",
+   "weapon": "cruise",
+   "severity": 3,
+   "radius_km": 12,
+   "status": "past",
+   "lat": 24.9578,
+   "lng": 46.6989,
+   "place_en": "Near King Khalid Int'l Airport",
+   "place_ar": "قرب مطار الملك خالد الدولي",
+   "note_en": "Saudi air defenses intercepted a cruise missile near the airport (coalition). A drone was intercepted in the Eastern Province and a ballistic missile toward Khamis Mushait the same day.",
+   "note_ar": "اعترضت الدفاعات الجوية صاروخ كروز قرب المطار (التحالف). واعتُرضت مسيّرة في المنطقة الشرقية وصاروخ باليستي باتجاه خميس مشيط في اليوم نفسه.",
+   "casualties_en": "None reported",
+   "casualties_ar": "لا إصابات",
+   "source": {
+    "title": "RFE/RL live blog",
+    "url": "https://www.rferl.org/a/iran-live-blog-trump-middle-east/33803414.html"
+   }
+  },
+  {
+   "id": "2026-10-12-riyadh-bm-intercept",
+   "time": "2026-10-12T20:30:00+03:00",
    "tprec": "approx",
    "kind": "intercept",
    "weapon": "ballistic",
    "severity": 3,
-   "radius_km": 12,
+   "radius_km": 15,
    "status": "past",
-   "lat": 24.14,
-   "lng": 49.07,
-   "place_en": "Haradh (Eastern Province)",
-   "place_ar": "حرض (المنطقة الشرقية)",
-   "note_en": "The coalition said it intercepted missiles heading toward Haradh and Dhahran on Tuesday evening, alongside the strike on the Aramco HQ area. Position of Haradh is approximate.",
-   "note_ar": "قال التحالف إنه اعترض صواريخ متجهة إلى حرض والظهران مساء الثلاثاء بالتزامن مع استهداف محيط مقر أرامكو. موقع حرض تقريبي.",
+   "lat": 24.9,
+   "lng": 46.7,
+   "place_en": "Riyadh (early warning issued)",
+   "place_ar": "الرياض (صدر إنذار مبكر)",
+   "note_en": "Early-warning message sent to residents; coalition intercepted and destroyed a ballistic missile toward Riyadh. Three explosions heard in the city.",
+   "note_ar": "أُرسلت رسالة إنذار مبكر للسكان؛ اعترض التحالف ودمّر صاروخاً باليستياً باتجاه الرياض. سُمعت ثلاثة انفجارات في المدينة.",
    "casualties_en": "None reported",
    "casualties_ar": "لا إصابات",
    "source": {
-    "title": "Anadolu Agency – 4 injured, 15 homes damaged by missile debris in Riyadh (14 Oct)",
-    "url": "https://www.aa.com.tr/en/middle-east/4-injured-15-homes-damaged-by-debris-from-intercepted-missiles-in-saudi-capital/4087932"
+    "title": "SBS News / ABC",
+    "url": "https://www.abc.net.au/news/2026-10-13/saudis-probe-houthi-attack-on-riyadh-airport-amid-ongoing-attack/107258142"
+   }
+  },
+  {
+   "id": "2026-10-13-eastern-alert",
+   "time": "2026-10-13T11:00:00+03:00",
+   "tprec": "day",
+   "kind": "alert",
+   "weapon": "unknown",
+   "severity": 3,
+   "radius_km": 40,
+   "status": "past",
+   "lat": 26.42,
+   "lng": 50.09,
+   "place_en": "Eastern Province (Dammam area)",
+   "place_ar": "المنطقة الشرقية (الدمام)",
+   "note_en": "Civil Defense alert for the Eastern Province, lifted shortly after; residents warned against gathering or filming.",
+   "note_ar": "إنذار الدفاع المدني للمنطقة الشرقية ورُفع بعد قليل؛ وحُذّر السكان من التجمع أو التصوير.",
+   "casualties_en": "None reported",
+   "casualties_ar": "لا إصابات",
+   "source": {
+    "title": "Gulf News",
+    "url": "https://gulfnews.com/world/gulf/saudi/saudi-arabia-issues-emergency-alerts-in-riyadh-and-eastern-province-1.500709529"
    }
   },
   {
@@ -1060,230 +1287,80 @@
    }
   },
   {
-   "id": "2026-10-13-eastern-alert",
-   "time": "2026-10-13T11:00:00+03:00",
+   "id": "2026-10-13-wadi-al-dawasir-alert",
+   "time": "2026-10-13T12:00:00+03:00",
    "tprec": "day",
    "kind": "alert",
    "weapon": "unknown",
    "severity": 3,
    "radius_km": 40,
    "status": "past",
-   "lat": 26.42,
-   "lng": 50.09,
-   "place_en": "Eastern Province (Dammam area)",
-   "place_ar": "المنطقة الشرقية (الدمام)",
-   "note_en": "Civil Defense alert for the Eastern Province, lifted shortly after; residents warned against gathering or filming.",
-   "note_ar": "إنذار الدفاع المدني للمنطقة الشرقية ورُفع بعد قليل؛ وحُذّر السكان من التجمع أو التصوير.",
+   "lat": 20.4917,
+   "lng": 44.7917,
+   "place_en": "Wadi al-Dawasir & Al-Sulayyil",
+   "place_ar": "وادي الدواسر والسليل",
+   "note_en": "Civil Defense activated early warnings for the governorates of Wadi al-Dawasir and Al-Sulayyil (southern Riyadh Province) after missiles and drones were detected coming from Yemen, then announced the danger had passed. Part of the wave of alerts and interceptions across Riyadh and the southern regions on 13 Oct.",
+   "note_ar": "فعّل الدفاع المدني الإنذار المبكر في محافظتي وادي الدواسر والسليل (جنوب منطقة الرياض) بعد رصد صواريخ ومسيّرات قادمة من اليمن، ثم أعلن زوال الخطر. جاء ذلك ضمن موجة الإنذارات والاعتراضات في الرياض والمناطق الجنوبية يوم ١٣ أكتوبر.",
    "casualties_en": "None reported",
-   "casualties_ar": "لا إصابات",
+   "casualties_ar": "لم تُذكر إصابات",
    "source": {
-    "title": "Gulf News",
-    "url": "https://gulfnews.com/world/gulf/saudi/saudi-arabia-issues-emergency-alerts-in-riyadh-and-eastern-province-1.500709529"
+    "title": "Akhbar Press – Civil Defense all-clears for several cities (14 Oct 00:41)",
+    "url": "https://www.akhbarperss.com/%D8%A8%D8%B9%D8%AF-%D8%B3%D9%84%D8%B3%D9%84%D8%A9-%D8%A7%D8%B9%D8%AA%D8%B1%D8%A7%D8%B6%D8%A7%D8%AA-%D8%AC%D9%88%D9%8A%D8%A9-%D8%A7%D9%84%D8%AF%D9%81%D8%A7%D8%B9-%D8%A7%D9%84%D9%85%D8%AF%D9%86%D9%8A/"
    }
   },
   {
-   "id": "2026-10-12-riyadh-bm-intercept",
-   "time": "2026-10-12T20:30:00+03:00",
+   "id": "2026-10-13-haradh-intercept",
+   "time": "2026-10-13T20:00:00+03:00",
    "tprec": "approx",
    "kind": "intercept",
    "weapon": "ballistic",
-   "severity": 3,
-   "radius_km": 15,
-   "status": "past",
-   "lat": 24.9,
-   "lng": 46.7,
-   "place_en": "Riyadh (early warning issued)",
-   "place_ar": "الرياض (صدر إنذار مبكر)",
-   "note_en": "Early-warning message sent to residents; coalition intercepted and destroyed a ballistic missile toward Riyadh. Three explosions heard in the city.",
-   "note_ar": "أُرسلت رسالة إنذار مبكر للسكان؛ اعترض التحالف ودمّر صاروخاً باليستياً باتجاه الرياض. سُمعت ثلاثة انفجارات في المدينة.",
-   "casualties_en": "None reported",
-   "casualties_ar": "لا إصابات",
-   "source": {
-    "title": "SBS News / ABC",
-    "url": "https://www.abc.net.au/news/2026-10-13/saudis-probe-houthi-attack-on-riyadh-airport-amid-ongoing-attack/107258142"
-   }
-  },
-  {
-   "id": "2026-10-12-kkia-cruise-intercept",
-   "time": "2026-10-12T04:00:00+03:00",
-   "tprec": "approx",
-   "kind": "intercept",
-   "weapon": "cruise",
    "severity": 3,
    "radius_km": 12,
    "status": "past",
-   "lat": 24.9578,
-   "lng": 46.6989,
-   "place_en": "Near King Khalid Int'l Airport",
-   "place_ar": "قرب مطار الملك خالد الدولي",
-   "note_en": "Saudi air defenses intercepted a cruise missile near the airport (coalition). A drone was intercepted in the Eastern Province and a ballistic missile toward Khamis Mushait the same day.",
-   "note_ar": "اعترضت الدفاعات الجوية صاروخ كروز قرب المطار (التحالف). واعتُرضت مسيّرة في المنطقة الشرقية وصاروخ باليستي باتجاه خميس مشيط في اليوم نفسه.",
+   "lat": 24.14,
+   "lng": 49.07,
+   "place_en": "Haradh (Eastern Province)",
+   "place_ar": "حرض (المنطقة الشرقية)",
+   "note_en": "The coalition said it intercepted missiles heading toward Haradh and Dhahran on Tuesday evening, alongside the strike on the Aramco HQ area. Position of Haradh is approximate.",
+   "note_ar": "قال التحالف إنه اعترض صواريخ متجهة إلى حرض والظهران مساء الثلاثاء بالتزامن مع استهداف محيط مقر أرامكو. موقع حرض تقريبي.",
    "casualties_en": "None reported",
    "casualties_ar": "لا إصابات",
    "source": {
-    "title": "RFE/RL live blog",
-    "url": "https://www.rferl.org/a/iran-live-blog-trump-middle-east/33803414.html"
+    "title": "Anadolu Agency – 4 injured, 15 homes damaged by missile debris in Riyadh (14 Oct)",
+    "url": "https://www.aa.com.tr/en/middle-east/4-injured-15-homes-damaged-by-debris-from-intercepted-missiles-in-saudi-capital/4087932"
    }
   },
   {
-   "id": "2026-10-11-kkia-t4-impact",
-   "time": "2026-10-11T18:00:00+03:00",
-   "tprec": "approx",
-   "kind": "impact",
-   "weapon": "unknown",
-   "severity": 4,
-   "radius_km": 5,
-   "status": "past",
-   "lat": 24.9578,
-   "lng": 46.6989,
-   "place_en": "King Khalid Int'l Airport, Terminal 4",
-   "place_ar": "مطار الملك خالد الدولي، الصالة ٤",
-   "note_en": "Projectile struck Terminal 4 (domestic terminals 3–4) and started a blaze; 1 killed, 11 injured. A missile was intercepted near the airport and two blasts were heard in the city.",
-   "note_ar": "مقذوف أصاب الصالة ٤ (الصالتان المحليتان ٣–٤) وأشعل حريقاً؛ قتيل و١١ مصاباً. واعتُرض صاروخ قرب المطار وسُمع انفجاران في المدينة.",
-   "casualties_en": "1 killed, 11 injured",
-   "casualties_ar": "قتيل و١١ مصاباً",
-   "source": {
-    "title": "AP via PBS",
-    "url": "https://www.pbs.org/newshour/amp/world/riyadh-airport-hit-by-projectile-a-day-after-deadly-missile-strike"
-   }
-  },
-  {
-   "id": "2026-10-11-kfia-attack",
-   "time": "2026-10-11T12:00:00+03:00",
-   "tprec": "day",
-   "kind": "attempt",
-   "weapon": "unknown",
-   "severity": 3,
-   "radius_km": 8,
-   "status": "past",
-   "lat": 26.4712,
-   "lng": 49.7979,
-   "place_en": "King Fahd Int'l Airport, Dammam",
-   "place_ar": "مطار الملك فهد الدولي، الدمام",
-   "note_en": "Saudi civil aviation reported an attack on Dammam airport; details not published.",
-   "note_ar": "أبلغ الطيران المدني السعودي عن هجوم على مطار الدمام؛ لم تُنشر التفاصيل.",
-   "casualties_en": "Not reported",
-   "casualties_ar": "لم يُبلغ عنها",
-   "source": {
-    "title": "RFE/RL live blog",
-    "url": "https://www.rferl.org/a/iran-live-blog-trump-middle-east/33803414.html"
-   }
-  },
-  {
-   "id": "2026-10-10-kkia-impact",
-   "time": "2026-10-10T13:00:00+03:00",
+   "id": "2026-10-13-dhahran-aramco-impact",
+   "time": "2026-10-13T21:00:00+03:00",
    "tprec": "approx",
    "kind": "impact",
    "weapon": "ballistic",
    "severity": 4,
    "radius_km": 5,
    "status": "past",
-   "lat": 24.9578,
-   "lng": 46.6989,
-   "place_en": "King Khalid Int'l Airport",
-   "place_ar": "مطار الملك خالد الدولي",
-   "note_en": "Ballistic missile hit the terminal complex: 13 killed (Saudi, Bangladeshi, Palestinian, US and Indian nationals) and more than 300 injured. Deadliest attack in the kingdom in a decade; airport closed until 17 Oct.",
-   "note_ar": "صاروخ باليستي أصاب مجمع الصالات: ١٣ قتيلاً (سعوديون وبنغلاديشيون وفلسطيني وأمريكي وهندي) وأكثر من ٣٠٠ مصاب. أعنف هجوم في المملكة منذ عقد؛ أُغلق المطار حتى ١٧ أكتوبر.",
-   "casualties_en": "13 killed, 300+ injured",
-   "casualties_ar": "١٣ قتيلاً وأكثر من ٣٠٠ مصاب",
+   "lat": 26.2886,
+   "lng": 50.1142,
+   "place_en": "Aramco HQ, Dhahran",
+   "place_ar": "مقر أرامكو، الظهران",
+   "note_en": "Ballistic missile hit an office tower in the Aramco HQ complex; top three floors damaged and on fire (company sources). Coalition said it intercepted a missile over Dhahran and fragments fell on a residential area. Update: the Energy Ministry said an administrative building was targeted, causing a small fire, with no injuries or deaths.",
+   "note_ar": "صاروخ باليستي أصاب برج مكاتب في مجمع مقر أرامكو؛ تضرر الطوابق الثلاثة العليا واشتعلت (مصادر في الشركة). قال التحالف إنه اعترض صاروخاً فوق الظهران وسقطت شظايا على منطقة سكنية. تحديث: قالت وزارة الطاقة إن مبنى إدارياً استُهدف وتسبب ذلك بحريق محدود دون إصابات أو وفيات.",
+   "casualties_en": "None (Energy Ministry)",
+   "casualties_ar": "لا إصابات (وزارة الطاقة)",
    "source": {
-    "title": "AP via PBS",
-    "url": "https://www.pbs.org/newshour/amp/world/riyadh-airport-hit-by-projectile-a-day-after-deadly-missile-strike"
-   }
-  },
-  {
-   "id": "2026-10-08-kkia-impact",
-   "time": "2026-10-08T12:00:00+03:00",
-   "tprec": "day",
-   "kind": "impact",
-   "weapon": "ballistic",
-   "severity": 4,
-   "radius_km": 5,
-   "status": "past",
-   "lat": 24.9578,
-   "lng": 46.6989,
-   "place_en": "King Khalid Int'l Airport",
-   "place_ar": "مطار الملك خالد الدولي",
-   "note_en": "Two attacks: airport facilities hit, then a Saudia Airbus A320 destroyed. 3 Saudi citizens killed including a pilot; dozens wounded. Hundreds of flights cancelled.",
-   "note_ar": "هجومان: إصابة منشآت المطار ثم تدمير طائرة إيرباص A320 للسعودية. ٣ مواطنين قُتلوا بينهم طيار؛ وعشرات الجرحى. أُلغيت مئات الرحلات.",
-   "casualties_en": "3 killed, dozens injured",
-   "casualties_ar": "٣ قتلى وعشرات المصابين",
-   "source": {
-    "title": "Al Jazeera",
-    "url": "https://www.aljazeera.com/news/2026/10/9/saudi-arabia-reopens-riyadh-airport-after-houthi-attack-kills-three"
-   }
-  },
-  {
-   "id": "2026-10-07-abha-impact",
-   "time": "2026-10-07T12:00:00+03:00",
-   "tprec": "day",
-   "kind": "impact",
-   "weapon": "ballistic",
-   "severity": 4,
-   "radius_km": 5,
-   "status": "past",
-   "lat": 18.2404,
-   "lng": 42.6566,
-   "place_en": "Abha International Airport",
-   "place_ar": "مطار أبها الدولي",
-   "note_en": "Missile and drone attacks on 6–7 Oct: 2 killed, 28 injured.",
-   "note_ar": "هجمات بالصواريخ والمسيّرات في ٦–٧ أكتوبر: قتيلان و٢٨ مصاباً.",
-   "casualties_en": "2 killed, 28 injured",
-   "casualties_ar": "قتيلان و٢٨ مصاباً",
-   "source": {
-    "title": "Wikipedia summary of wire reports",
-    "url": "https://en.wikipedia.org/wiki/October_2026_attacks_on_Saudi_airports"
-   }
-  },
-  {
-   "id": "2026-09-19-kkia-fuel-fire",
-   "time": "2026-09-19T12:00:00+03:00",
-   "tprec": "day",
-   "kind": "debris",
-   "weapon": "unknown",
-   "severity": 3,
-   "radius_km": 6,
-   "status": "past",
-   "lat": 24.9578,
-   "lng": 46.6989,
-   "place_en": "King Khalid Int'l Airport area",
-   "place_ar": "محيط مطار الملك خالد الدولي",
-   "note_en": "Explosion heard near the airport and a plume of black smoke from a fuel storage area, a day after a missile toward the airport was intercepted.",
-   "note_ar": "سُمع انفجار قرب المطار وتصاعد دخان أسود من منطقة تخزين وقود، بعد يوم من اعتراض صاروخ باتجاه المطار.",
-   "casualties_en": "None reported",
-   "casualties_ar": "لا إصابات",
-   "source": {
-    "title": "Al Jazeera",
-    "url": "https://www.aljazeera.com/news/2026/10/9/saudi-arabia-reopens-riyadh-airport-after-houthi-attack-kills-three"
-   }
-  },
-  {
-   "id": "2026-09-19-riyadh-alert-intercept",
-   "time": "2026-09-19T02:58:00+03:00",
-   "tprec": "exact",
-   "kind": "intercept",
-   "weapon": "ballistic",
-   "severity": 3,
-   "radius_km": 15,
-   "status": "past",
-   "lat": 24.85,
-   "lng": 46.7,
-   "place_en": "Riyadh & Al Kharj",
-   "place_ar": "الرياض والخرج",
-   "note_en": "First air-raid alert in the capital of this conflict (02:58, and again 05:19). Two explosions heard; coalition intercepted a ballistic missile toward Riyadh. Attempts on Baish, Taif, Farasan and Yanbu thwarted the same night.",
-   "note_ar": "أول إنذار جوي في العاصمة في هذا النزاع (٢:٥٨ ثم ٥:١٩). سُمع انفجاران؛ واعترض التحالف صاروخاً باليستياً باتجاه الرياض. وأُحبطت محاولات على بيش والطائف وفرسان وينبع في الليلة نفسها.",
-   "casualties_en": "None reported",
-   "casualties_ar": "لا إصابات",
-   "source": {
-    "title": "Saudi Press Agency",
-    "url": "https://www.spa.gov.sa/en/N2680576"
+    "title": "Reuters via GV Wire",
+    "url": "https://gvwire.com/2026/10/13/missile-hits-headquarters-of-saudi-aramco-source-says-as-houthi-conflict-escalates/"
    }
   }
  ],
  "sources": [
   {
-   "title": "Saudi Press Agency – coalition and Civil Defense statements",
-   "url": "https://www.spa.gov.sa/en"
+   "title": "Arab News – Coalition says it intercepted 5 drones and 6 missiles targeting Saudi Arabia (13 Oct)",
+   "url": "https://www.arabnews.com/saudi-arabia/coalition-says-it-intercepted-destroyed-5-drones-and-6-missiles-targeting-saudi-arabia"
+  },
+  {
+   "title": "Al Arabiya: Saudi-led coalition intercepts eight Houthi missiles, drones over Saudi Arabia (13–14 Oct)",
+   "url": "https://english.alarabiya.net/News/saudi-arabia/2026/10/14/saudiled-coalition-intercepts-eight-houthi-missiles-drones-over-saudi-arabia"
   },
   {
    "title": "Anadolu Agency – 4 injured, 15 homes damaged by missile debris in Riyadh (14 Oct)",
@@ -1306,12 +1383,8 @@
    "url": "https://gvwire.com/2026/10/13/missile-hits-headquarters-of-saudi-aramco-source-says-as-houthi-conflict-escalates/"
   },
   {
-   "title": "ABC News – Coalition destroys Houthi missile amid air-defence probe (13 Oct)",
-   "url": "https://www.abc.net.au/news/2026-10-13/saudis-probe-houthi-attack-on-riyadh-airport-amid-ongoing-attack/107258142"
-  },
-  {
-   "title": "Anadolu – All-clear in Riyadh minutes after warning (13 Oct)",
-   "url": "https://www.aa.com.tr/en/middle-east/saudi-arabia-issues-all-clear-in-riyadh-minutes-after-emergency-warning/4087807"
+   "title": "Saudi Civil Defense on X – official alerts and debris reports",
+   "url": "https://x.com/SaudiDCD"
   }
  ]
 }

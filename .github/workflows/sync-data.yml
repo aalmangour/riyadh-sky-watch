@@ -1,6 +1,10 @@
 name: Sync data from the Claude artifact
 on:
   workflow_dispatch:
+  push:
+    paths:
+      - ".github/workflows/sync-data.yml"
+      - ".diag/trigger.txt"
   schedule:
     - cron: "12 * * * *"
 permissions:

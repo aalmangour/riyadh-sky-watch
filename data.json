@@ -3,8 +3,8 @@
  "generated_at": "2026-10-14T10:55:00+03:00",
  "monitor": {
   "last_run": "2026-10-14T10:55:00+03:00",
-  "cadence_en": "automated monitor checks sources every hour",
-  "cadence_ar": "مرصد آلي يفحص المصادر كل ساعة",
+  "cadence_en": "automated monitor checks Saudi sources twice an hour (:30 and :56)",
+  "cadence_ar": "مرصد آلي يفحص المصادر السعودية مرتين في الساعة (الدقيقة ٣٠ و٥٦)",
   "status": "ok",
   "note_en": "Added: this morning's early-warning alert and all-clear for Riyadh city and Al Kharj (~09:55–10:08, explosions heard), and the 01:12 Al Kharj cruise-missile interception. Coalition details for the morning event pending.",
   "note_ar": "أُضيف: إنذار الصباح وزوال الخطر عن مدينة الرياض والخرج (نحو ٩:٥٥–١٠:٠٨ مع سماع انفجارات)، واعتراض صاروخ كروز فوق الخرج عند ١:١٢. تفاصيل التحالف عن حدث الصباح لاحقاً.",

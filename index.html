@@ -206,6 +206,8 @@ select, input[type="text"] { width: 100%; background: var(--bg-2); color: var(--
 .disc { font-size: .78rem; color: var(--muted); margin-top: 14px; }
 .you-line { grid-column: 1 / -1; font-size: .8rem; color: var(--muted); }
 .you-line b { color: var(--fg); font-weight: 600; }
+.gps-problem { color: var(--sev2); }
+.small-btn { padding: 3px 8px; font-size: .78rem; vertical-align: middle; }
 .linkbtn { background: none; border: 0; color: var(--accent); font: inherit; font-size: .85rem; cursor: pointer; padding: 0; text-decoration: underline; }
 details.card > summary { list-style: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 8px; }
 details.card > summary::-webkit-details-marker { display: none; }
@@ -408,7 +410,7 @@ details.card[open] > summary { margin-bottom: 4px; }
       arm: 'Arm alarm', disarm: 'Alarm armed', armedToast: 'Alarm armed. Keep this page open.', disarmedToast: 'Alarm off.',
       lg4: 'Critical', lg3: 'High', lg2: 'Elevated', lg1: 'Low', lgMe: 'You', lgInc: 'Incident (last 48 h)',
       whereTitle: 'Your location', district: 'Pick a Riyadh district', paste: 'Or paste a Google Maps link or coordinates', use: 'Use', gps: 'Use GPS',
-      gpsFail: 'GPS is not available in this viewer. Tap the map or pick a district.', gpsOk: 'Location set from GPS.', pasteFail: 'No coordinates found. Paste something like 24.7136, 46.6753 or a maps link that contains @lat,lng.',
+      gpsFail: 'GPS is not available here. Tap the map or pick a district.', gpsOk: 'Location set from GPS.', gpsInApp: 'This app\'s built-in browser blocks location.', gpsSandbox: 'Location does not work inside this viewer; use the web version.', openInBrowser: 'Open in Safari / Chrome', openWeb: 'Open the web version', retryGps: 'Retry GPS', gpsDeniedIos: 'Location is off for this site. Safari: tap "aA" in the address bar → Website Settings → Location → Allow. Also check iPhone Settings → Privacy & Security → Location Services → Safari Websites → While Using.', gpsDeniedAndroid: 'Location is blocked for this site. Chrome: tap the lock icon → Permissions → Location → Allow, then reload.', gpsDeniedDesktop: 'Location is blocked for this site. Allow it in the browser\'s site settings (the icon left of the address bar), then reload.', gpsTimeout: 'No GPS fix yet. Try near a window or outdoors.', gpsUnavailable: 'Location is unavailable on this device right now.', gpsUnsupported: 'This browser has no location support.', pasteFail: 'No coordinates found. Paste something like 24.7136, 46.6753 or a maps link that contains @lat,lng.',
       meSet: 'Your location', meUnset: 'No location set yet.', approx: '≈ approximate position', chooseDistrict: '— choose a district —',
       nearTitle: 'Nearest risk sites', nearSub: 'distance from you', predTitle: 'Predicted next targets', predSub: 'Ranked from recent strikes, named threats and strategic value. An estimate that the monitor re-rates on every run.',
       predL: { high: 'High', medium: 'Medium', low: 'Low' }, conf: 'confidence', confL: { high: 'high', medium: 'medium', low: 'low' }, assessed: 'assessed',
@@ -448,7 +450,7 @@ details.card[open] > summary { margin-bottom: 4px; }
       arm: 'تفعيل المنبّه', disarm: 'المنبّه مفعّل', armedToast: 'تم تفعيل المنبّه. أبقِ الصفحة مفتوحة.', disarmedToast: 'تم إيقاف المنبّه.',
       lg4: 'حرج', lg3: 'مرتفع', lg2: 'متوسط', lg1: 'منخفض', lgMe: 'أنت', lgInc: 'حادثة (آخر ٤٨ ساعة)',
       whereTitle: 'موقعك', district: 'اختر حياً في الرياض', paste: 'أو الصق رابط خرائط قوقل أو إحداثيات', use: 'استخدم', gps: 'استخدم GPS',
-      gpsFail: 'تحديد الموقع غير متاح في هذا العارض. اضغط على الخريطة أو اختر حياً.', gpsOk: 'تم تحديد الموقع من GPS.', pasteFail: 'لم أجد إحداثيات. الصق شيئاً مثل 24.7136, 46.6753 أو رابط خرائط يحتوي @lat,lng.',
+      gpsFail: 'تحديد الموقع غير متاح هنا. اضغط على الخريطة أو اختر حياً.', gpsOk: 'تم تحديد الموقع من GPS.', gpsInApp: 'متصفح التطبيق الداخلي يمنع تحديد الموقع.', gpsSandbox: 'تحديد الموقع لا يعمل داخل هذا العارض؛ استخدم نسخة الويب.', openInBrowser: 'افتح في Safari / Chrome', openWeb: 'افتح نسخة الويب', retryGps: 'أعد محاولة GPS', gpsDeniedIos: 'الموقع مغلق لهذا الموقع. في Safari: اضغط "aA" في شريط العنوان ← إعدادات الموقع ← الموقع ← السماح. وتحقق من إعدادات الآيفون ← الخصوصية والأمان ← خدمات الموقع ← مواقع Safari ← أثناء الاستخدام.', gpsDeniedAndroid: 'الموقع محظور لهذا الموقع. في Chrome: اضغط أيقونة القفل ← الأذونات ← الموقع ← السماح ثم أعد التحميل.', gpsDeniedDesktop: 'الموقع محظور لهذا الموقع. اسمح به من إعدادات الموقع في المتصفح ثم أعد التحميل.', gpsTimeout: 'لم يتم تحديد الموقع بعد. جرّب قرب نافذة أو في الخارج.', gpsUnavailable: 'تحديد الموقع غير متاح على هذا الجهاز الآن.', gpsUnsupported: 'هذا المتصفح لا يدعم تحديد الموقع.', pasteFail: 'لم أجد إحداثيات. الصق شيئاً مثل 24.7136, 46.6753 أو رابط خرائط يحتوي @lat,lng.',
       meSet: 'موقعك', meUnset: 'لم يُحدَّد موقع بعد.', approx: '≈ موقع تقريبي', chooseDistrict: '— اختر حياً —',
       nearTitle: 'أقرب مواقع الخطر', nearSub: 'المسافة من موقعك', predTitle: 'الأهداف المتوقعة التالية', predSub: 'ترتيب مبني على الضربات الأخيرة والتهديدات المعلنة والقيمة الاستراتيجية. تقدير يعيد المرصد تقييمه في كل دورة.',
       predL: { high: 'مرتفع', medium: 'متوسط', low: 'منخفض' }, conf: 'الثقة', confL: { high: 'عالية', medium: 'متوسطة', low: 'منخفضة' }, assessed: 'آخر تقييم',
@@ -483,6 +485,8 @@ details.card[open] > summary { margin-bottom: 4px; }
   var BASE = JSON.parse(document.getElementById('basemap').textContent);
   var STORE = 'riyadh-sky-watch:v1';
   var SHARE_URL = 'https://aalmangour.github.io/riyadh-sky-watch/';
+  var WEB_URL = 'https://aalmangour.github.io/riyadh-sky-watch/';
+  function inSandbox() { return !/github\.io$/.test(location.hostname); }
   function pageUrl() { return SHARE_URL && SHARE_URL.indexOf('http') === 0 ? SHARE_URL : location.href.split('#')[0]; }
   var data = SEED, dataFromFile = false;
   var st = { lang: 'en', me: null, sound: true, vibrate: true, wake: false, announced: [] };
@@ -714,21 +718,46 @@ details.card[open] > summary { margin-bottom: 4px; }
     exitMode();
     if (first) map.setView(st.me, Math.max(map.getZoom(), 11));
   }
+  var gpsErr = null; // {code: 0 unsupported, 1 denied, 2 unavailable, 3 timeout}
+  function gpsProblem() {
+    if (!gpsErr) return '';
+    var e = env();
+    if (inSandbox()) return t('gpsSandbox');
+    if (e.key === 'iosInApp' || e.key === 'androidInApp') return t('gpsInApp');
+    if (gpsErr.code === 1) return e.iOS ? t('gpsDeniedIos') : e.android ? t('gpsDeniedAndroid') : t('gpsDeniedDesktop');
+    if (gpsErr.code === 3) return t('gpsTimeout');
+    if (gpsErr.code === 0) return t('gpsUnsupported');
+    return t('gpsUnavailable');
+  }
   function tryGps(opts) {
     opts = opts || {};
-    var done = false;
-    function fail() { if (done) return; done = true; gpsFailed = true; if (!opts.quiet) { toast(t('gpsFail')); enterMode(); } else if (!st.me) { enterMode(); var mc2 = $('mecard'); if (mc2) mc2.open = true; } renderYou(); }
+    var done = false, stage = opts.stage || 1;
+    function fail(err) {
+      if (done) return; done = true;
+      var code = err && typeof err.code === 'number' ? err.code : (err === 'timeout' ? 3 : 2);
+      if (stage === 1 && (code === 3 || code === 2)) { tryGps({ quiet: opts.quiet, timeout: 25000, stage: 2 }); return; } // retry once, coarse and patient
+      gpsFailed = true; gpsErr = { code: code };
+      if (!opts.quiet) { toast(gpsProblem()); enterMode(); } else if (!st.me) { enterMode(); var mc2 = $('mecard'); if (mc2) mc2.open = true; }
+      renderYou();
+    }
     try {
-      if (!navigator.geolocation) return fail();
-      gpsTried = true;
+      if (!navigator.geolocation) return fail({ code: 0 });
+      gpsTried = true; if (stage === 1) { gpsErr = null; renderYou(); }
       navigator.geolocation.getCurrentPosition(function (p) {
         if (done) return; done = true;
-        gpsFailed = false; gpsPosition(p, opts.quiet); if (!opts.quiet) toast(t('gpsOk'));
+        gpsFailed = false; gpsErr = null; gpsPosition(p, opts.quiet); if (!opts.quiet) toast(t('gpsOk'));
         stopGps();
         try { gpsWatch = navigator.geolocation.watchPosition(function (q) { gpsPosition(q, true); }, function () {}, { enableHighAccuracy: true, maximumAge: 30000, timeout: 60000 }); } catch (e) {}
-      }, fail, { enableHighAccuracy: true, timeout: opts.timeout || 10000, maximumAge: 60000 });
-      setTimeout(fail, (opts.timeout || 10000) + 1500);
-    } catch (e) { fail(); }
+      }, fail, { enableHighAccuracy: stage === 1, timeout: opts.timeout || 10000, maximumAge: stage === 1 ? 60000 : 300000 });
+      setTimeout(function () { fail('timeout'); }, (opts.timeout || 10000) + 2000);
+    } catch (e) { fail({ code: 2 }); }
+  }
+  function externalUrl() {
+    var e = env(), u = WEB_URL;
+    if (inSandbox()) return u;
+    if (e.android) { var m = u.match(/^https:\/\/([^/]+)(.*)$/); if (m) return 'intent://' + m[1] + m[2] + '#Intent;scheme=https;package=com.android.chrome;S.browser_fallback_url=' + encodeURIComponent(u) + ';end'; }
+    if (e.iOS) return 'x-safari-' + u;
+    return u;
   }
   function enterMode() { mode = true; $('hint').hidden = false; map.getContainer().style.cursor = 'crosshair'; }
   function exitMode() { mode = false; $('hint').hidden = true; map.getContainer().style.cursor = ''; }
@@ -875,7 +904,9 @@ details.card[open] > summary { margin-bottom: 4px; }
   function renderYou() {
     var el = $('youline'); if (!el) return;
     if (st.me) { el.innerHTML = '<b>' + esc(t('youAre')) + ':</b> ' + esc(st.meLabel || (st.me[0].toFixed(3) + ', ' + st.me[1].toFixed(3))) + (st.meSrc === 'gps' ? ' · GPS' + (gpsWatch != null ? ' live' : '') : '') + ' · <button type="button" class="linkbtn" id="youChange">' + esc(t('changeLoc')) + '</button>'; var b = $('youChange'); if (b) b.addEventListener('click', function () { var m = $('mecard'); if (m) { m.open = true; m.scrollIntoView({ behavior: 'smooth', block: 'start' }); } }); }
-    else el.textContent = gpsTried && !gpsFailed ? t('locating') : t('tapMapShort');
+    else if (gpsTried && !gpsFailed) el.textContent = t('locating');
+    else if (gpsErr) { var e2 = env(), inApp = inSandbox() || e2.key === 'iosInApp' || e2.key === 'androidInApp'; el.innerHTML = '<span class="gps-problem">' + esc(gpsProblem()) + '</span>' + (inApp ? ' <a class="btn small-btn" href="' + esc(externalUrl()) + '" target="_blank" rel="noopener">' + esc(inSandbox() ? t('openWeb') : t('openInBrowser')) + '</a>' : ' <button type="button" class="linkbtn" id="youRetry">' + esc(t('retryGps')) + '</button>') + ' · <span class="small">' + esc(t('tapMapShort')) + '</span>'; var rb = $('youRetry'); if (rb) rb.addEventListener('click', function () { tryGps({ quiet: false, timeout: 12000 }); }); }
+    else el.textContent = t('tapMapShort');
   }
   function renderMeta(now) {
     var gen = new Date(data.generated_at || 0).getTime(), ageMs = now - gen, stale = $('stale');
@@ -972,7 +1003,7 @@ details.card[open] > summary { margin-bottom: 4px; }
     $('installTitle').textContent = t('installTitle');
     var key = (e.key === 'androidChrome' || e.key === 'desktop') && deferredInstall ? 'androidChromeBtn' : e.key;
     $('installSteps').textContent = t('inst')[key] || t('inst').desktop;
-    if (e.key === 'iosInApp' || e.key === 'androidInApp') $('installSteps').hidden = false;
+    if (e.key === 'iosInApp' || e.key === 'androidInApp') { $('installSteps').hidden = false; $('installSteps').innerHTML = esc(t('inst')[e.key]) + ' <a class="btn small-btn" href="' + esc(externalUrl()) + '" target="_blank" rel="noopener">' + esc(t('openInBrowser')) + '</a>'; }
     $('installBtn').hidden = !deferredInstall;
     box.hidden = false;
   }

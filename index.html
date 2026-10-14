@@ -115,6 +115,9 @@ button { font: inherit; }
 /* map */
 .mapwrap { min-width: 0; }
 .mapbox { position: relative; }
+.mapLocate { position: absolute; right: 10px; bottom: 14px; z-index: 1000; width: 46px; height: 46px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: var(--bg-2); color: var(--fg); border: 1px solid var(--line); cursor: pointer; box-shadow: 0 2px 10px rgba(0,0,0,.3); }
+.mapLocate.on { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+.mapLocate.busy { animation: throb 1s ease-in-out infinite; }
 .mapToggle { position: absolute; top: 10px; right: 10px; z-index: 1000; background: var(--bg-2); color: var(--fg); border: 1px solid var(--line); border-radius: 8px; padding: 6px 10px; font-size: .8rem; font-weight: 600; cursor: pointer; box-shadow: 0 2px 8px rgba(0,0,0,.25); }
 
 #map { height: min(50vh, 520px); min-height: 300px; width: 100%; border-radius: 12px; border: 1px solid var(--line); background: var(--map-bg); background-image: linear-gradient(var(--map-grid) 1px, transparent 1px), linear-gradient(90deg, var(--map-grid) 1px, transparent 1px); background-size: 28px 28px; overflow: hidden; font-family: var(--font); }
@@ -272,7 +275,7 @@ details.card[open] > summary { margin-bottom: 4px; }
 
   <div class="cols">
     <div class="mapwrap">
-      <div class="mapbox"><div id="map" dir="ltr" role="application" aria-label="Risk map"></div><button type="button" class="mapToggle" id="mapToggle"></button></div>
+      <div class="mapbox"><div id="map" dir="ltr" role="application" aria-label="Risk map"></div><button type="button" class="mapToggle" id="mapToggle"></button><button type="button" class="mapLocate" id="mapLocate" aria-label="Use my location"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/><circle cx="12" cy="12" r="8"/></svg></button></div>
       <div class="hint" id="hint" hidden><span data-i="tapMap">Tap your location on the map</span> <button type="button" class="hintx" id="hintx" aria-label="Close">×</button></div>
       <div class="mapbar">
         <button class="btn primary" id="setloc" type="button"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/><circle cx="12" cy="12" r="8"/></svg><span data-i="setLocation">Set my location</span></button>
@@ -491,7 +494,7 @@ details.card[open] > summary { margin-bottom: 4px; }
   var STORE = 'riyadh-sky-watch:v1';
   var SHARE_URL = 'https://aalmangour.github.io/riyadh-sky-watch/';
   var WEB_URL = 'https://aalmangour.github.io/riyadh-sky-watch/';
-  function inSandbox() { return !/github\.io$/.test(location.hostname); }
+  function inSandbox() { return !/github\.io$/.test(location.hostname) && location.hostname !== '127.0.0.1' && location.hostname !== 'localhost'; }
   function pageUrl() { return SHARE_URL && SHARE_URL.indexOf('http') === 0 ? SHARE_URL : location.href.split('#')[0]; }
   var data = SEED, dataFromFile = false;
   var st = { lang: 'en', me: null, sound: true, vibrate: true, wake: false, announced: [] };
@@ -714,7 +717,7 @@ details.card[open] > summary { margin-bottom: 4px; }
     L.circleMarker(st.me, { radius: 8, color: '#fff', weight: 2, fillColor: cssVar('--accent'), fillOpacity: 1, interactive: false }).bindTooltip(t('lgMe'), { permanent: true, direction: 'top', className: 'melabel', offset: [0, -8], interactive: false, opacity: 1 }).addTo(meMarker);
     meMarker.addTo(map);
   }
-  var gpsWatch = null, gpsTried = false, gpsFailed = false;
+  var gpsWatch = null, gpsTried = false, gpsFailed = false, gpsBusy = false;
   function stopGps() { try { if (gpsWatch != null && navigator.geolocation) navigator.geolocation.clearWatch(gpsWatch); } catch (e) {} gpsWatch = null; }
   function gpsPosition(p, quiet) {
     var lat = p.coords.latitude, lng = p.coords.longitude;
@@ -742,16 +745,16 @@ details.card[open] > summary { margin-bottom: 4px; }
       if (done) return; done = true;
       var code = err && typeof err.code === 'number' ? err.code : (err === 'timeout' ? 3 : 2);
       if (stage === 1 && (code === 3 || code === 2)) { tryGps({ quiet: opts.quiet, timeout: 25000, stage: 2 }); return; } // retry once, coarse and patient
-      gpsFailed = true; gpsErr = { code: code };
+      gpsFailed = true; gpsBusy = false; gpsErr = { code: code };
       if (!opts.quiet) { toast(gpsProblem()); enterMode(); } else if (!st.me) { enterMode(); var mc2 = $('mecard'); if (mc2) mc2.open = true; }
       renderYou();
     }
     try {
       if (!navigator.geolocation) return fail({ code: 0 });
-      gpsTried = true; if (stage === 1) { gpsErr = null; renderYou(); }
+      gpsTried = true; gpsBusy = true; if (stage === 1) { gpsErr = null; renderYou(); }
       navigator.geolocation.getCurrentPosition(function (p) {
         if (done) return; done = true;
-        gpsFailed = false; gpsErr = null; gpsPosition(p, opts.quiet); if (!opts.quiet) toast(t('gpsOk'));
+        gpsFailed = false; gpsBusy = false; gpsErr = null; gpsPosition(p, opts.quiet); if (!opts.quiet) toast(t('gpsOk'));
         stopGps();
         try { gpsWatch = navigator.geolocation.watchPosition(function (q) { gpsPosition(q, true); }, function () {}, { enableHighAccuracy: true, maximumAge: 30000, timeout: 60000 }); } catch (e) {}
       }, fail, { enableHighAccuracy: stage === 1, timeout: opts.timeout || 10000, maximumAge: stage === 1 ? 60000 : 300000 });
@@ -761,7 +764,7 @@ details.card[open] > summary { margin-bottom: 4px; }
   function locateMe() {
     $('map').scrollIntoView({ behavior: 'smooth', block: 'start' });
     enterMode();
-    if (!navigator.geolocation || inSandbox()) { gpsTried = true; gpsFailed = true; gpsErr = { code: inSandbox() ? 1 : 0 }; renderYou(); toast(gpsProblem()); return; }
+    if (!navigator.geolocation || inSandbox()) { gpsTried = true; gpsFailed = true; gpsBusy = false; gpsErr = { code: inSandbox() ? 1 : 0 }; renderYou(); toast(gpsProblem()); return; }
     toast(t('locating'));
     tryGps({ quiet: false, timeout: 12000 });
   }
@@ -915,7 +918,9 @@ details.card[open] > summary { margin-bottom: 4px; }
     var gen = data.generated_at ? ago(data.generated_at, now) : '';
     $('sitUpdated').textContent = gen ? t('updated') + ' ' + gen : '';
   }
+  function reflectLocate() { var b = $('mapLocate'); if (!b) return; b.classList.toggle('on', !!(st.me && st.meSrc === 'gps')); b.classList.toggle('busy', !!gpsBusy); b.setAttribute('aria-label', t('setLocation')); }
   function renderYou() {
+    reflectLocate();
     var el = $('youline'); if (!el) return;
     if (st.me) { el.innerHTML = '<b>' + esc(t('youAre')) + ':</b> ' + esc(st.meLabel || (st.me[0].toFixed(3) + ', ' + st.me[1].toFixed(3))) + (st.meSrc === 'gps' ? ' · GPS' + (gpsWatch != null ? ' live' : '') : '') + ' · <button type="button" class="linkbtn" id="youChange">' + esc(t('changeLoc')) + '</button>'; var b = $('youChange'); if (b) b.addEventListener('click', function () { var m = $('mecard'); if (m) { m.open = true; m.scrollIntoView({ behavior: 'smooth', block: 'start' }); } }); }
     else if (gpsTried && !gpsFailed) el.textContent = t('locating');
@@ -1057,6 +1062,7 @@ details.card[open] > summary { margin-bottom: 4px; }
     $('setloc').addEventListener('click', function () { locateMe(); });
     $('hintx').addEventListener('click', exitMode);
     $('vRiyadh').addEventListener('click', function () { map.fitBounds(layers.riyadhBounds, { padding: [10, 10] }); });
+    $('mapLocate').addEventListener('click', function () { locateMe(); });
     $('mapToggle').addEventListener('click', function () { var z = map.getZoom(); if (z >= 8) { map.fitBounds(layers.ksaBounds); } else { if (st.me) map.setView(st.me, 11); else map.fitBounds(layers.riyadhBounds, { padding: [10, 10] }); } });
     map.on('zoomend', function () { $('mapToggle').textContent = map.getZoom() >= 8 ? t('viewKsa') : (st.me ? t('viewMe') : t('viewRiyadh')); });
     $('mapToggle').textContent = map.getZoom() >= 8 ? t('viewKsa') : t('viewRiyadh');

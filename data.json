@@ -1,13 +1,13 @@
 {
   "schema": 1,
-  "generated_at": "2026-10-15T02:12:20+03:00",
+  "generated_at": "2026-10-15T03:15:00+03:00",
   "monitor": {
-    "last_run": "2026-10-15T02:12:20+03:00",
+    "last_run": "2026-10-15T03:15:00+03:00",
     "cadence_en": "automated monitor checks Saudi sources twice an hour (:30 and :56)",
     "cadence_ar": "مرصد آلي يفحص المصادر السعودية مرتين في الساعة (الدقيقة ٣٠ و٥٦)",
     "status": "ok",
-    "note_en": "Run at 02:12 on 15 Oct: no new attacks, interceptions, Civil Defense alerts or named threats since the 01:14 run (Arabic Civil Defense and coalition searches; newest items remain the 14 Oct interceptions and the 09:55 Riyadh/Al Kharj alert with 10:08 all-clear). Riyadh level and site ratings unchanged.",
-    "note_ar": "تشغيل عند 02:12 في ١٥ أكتوبر: لا هجمات أو اعتراضات أو إنذارات جديدة من الدفاع المدني أو تهديدات منذ تشغيل 01:14 (بحث بالعربية؛ أحدث الأخبار اعتراضات ١٤ أكتوبر وإنذار الرياض والخرج ٠٩:٥٥ وزوال الخطر ١٠:٠٨). مستوى الرياض وتقييمات المواقع دون تغيير.",
+    "note_en": "Run at 03:15 on 15 Oct: no new attacks, interceptions, Civil Defense alerts or named threats since the 02:12 run (Arabic and English searches; newest items remain the 14 Oct events). Riyadh level and site ratings unchanged.",
+    "note_ar": "تشغيل عند 03:15 في ١٥ أكتوبر: لا هجمات أو اعتراضات أو إنذارات جديدة من الدفاع المدني أو تهديدات منذ تشغيل 02:12 (بحث بالعربية والإنجليزية؛ أحدث الأخبار أحداث ١٤ أكتوبر). مستوى الرياض وتقييمات المواقع دون تغيير.",
     "github_en": "push ok 24722d0 at 01:15"
   },
   "summary": {

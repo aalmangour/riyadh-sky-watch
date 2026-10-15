@@ -8,7 +8,7 @@
   "status": "degraded",
   "note_en": "Run at 16:27 on 15 Oct: four searches (Arabic and English) found nothing newer than the 15:30 data; no new Riyadh or Eastern Province alerts. Article fetches failed (DNS), so exact times for the Madinah interception and Najran/Jazan alert remain unconfirmed. Ratings unchanged; assessments re-stamped.",
   "note_ar": "تشغيل عند 16:27 في ١٥ أكتوبر: لم تُظهر أربع عمليات بحث (عربية وإنجليزية) أي جديد بعد بيانات 15:30؛ لا إنذارات جديدة في الرياض أو الشرقية. فشل جلب المقالات (DNS) فبقيت توقيتات اعتراض المدينة المنورة وإنذار نجران وجازان غير مؤكدة. التقييمات دون تغيير وتم تحديث وقت التقييم.",
-  "github_en": "push ok 4b3a12d at 15:32"
+  "github_en": "push ok 7faa89b at 16:29"
  },
  "summary": {
   "en": "Thursday 15 Oct: the coalition reported a cruise missile downed over the Madinah region and a drone over the Eastern Province at dawn; Civil Defense issued and cleared an early warning for Najran and Jazan (exact times not retrieved, as of 16:27). No new Riyadh alerts since the morning of 14 Oct (09:55 alert, all-clear 10:08; debris injured one resident). The Houthis deny targeting Saudi Arabia while vowing strikes on airports and oil sites; King Khalid Airport stays closed through 17 Oct.",

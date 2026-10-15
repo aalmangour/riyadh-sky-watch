@@ -1,18 +1,18 @@
 {
  "schema": 1,
- "generated_at": "2026-10-15T13:16:00+03:00",
+ "generated_at": "2026-10-15T14:20:00+03:00",
  "monitor": {
-  "last_run": "2026-10-15T13:16:00+03:00",
+  "last_run": "2026-10-15T14:20:00+03:00",
   "cadence_en": "automated monitor checks Saudi sources twice an hour (:30 and :56)",
   "cadence_ar": "مرصد آلي يفحص المصادر السعودية مرتين في الساعة (الدقيقة ٣٠ و٥٦)",
-  "status": "ok",
-  "note_en": "Run at 13:16 on 15 Oct: four Arabic/English searches found no new alerts, interceptions or all-clears after the dawn Eastern Province drone interception; latest coverage is still 13-14 Oct. Ratings unchanged. Data stamped.",
-  "note_ar": "تشغيل عند 13:16 في ١٥ أكتوبر: لم تُظهر أربع عمليات بحث عربية وإنجليزية أي إنذارات أو اعتراضات أو زوال خطر جديد بعد اعتراض المسيّرة فجراً في المنطقة الشرقية؛ وآخر التغطية ما زال ١٣-١٤ أكتوبر. التقييمات دون تغيير. تم ختم البيانات.",
+  "status": "degraded",
+  "note_en": "Run at 14:20 on 15 Oct: four Arabic/English searches found nothing newer than the dawn Eastern Province drone interception; a snippet mentions a Jazan/Najran all-clear dated 15 Oct but the date could not be confirmed (article fetches failed: DNS), so it was not added. Ratings unchanged. Data stamped.",
+  "note_ar": "تشغيل عند 14:20 في ١٥ أكتوبر: لم تُظهر عمليات البحث الأربع أي جديد بعد اعتراض المسيّرة فجراً في المنطقة الشرقية؛ ورد في مقتطف خبر زوال خطر عن جازان ونجران بتاريخ ١٥ أكتوبر لكن تعذّر تأكيد التاريخ (فشل جلب المقالات) فلم يُضف. التقييمات دون تغيير. تم ختم البيانات.",
   "github_en": "push ok 393923f at 13:17"
  },
  "summary": {
-  "en": "Eastern Province: the coalition announced at dawn on 15 Oct the interception of a drone, no injuries. No new Riyadh alerts since the 14 Oct morning events. Riyadh: Civil Defense said at about 17:55 on 14 Oct that debris from the Houthi ballistic missile intercepted over the city on Wednesday morning injured one resident and damaged a house and a vehicle; that interception (announced by the coalition at about 11:00) was behind the early-warning alert for Riyadh city and Al Kharj from about 09:55 (loud explosions heard) to the all-clear at 10:08, after a cruise missile was downed over Al Kharj at 01:12. No new attacks or alerts since the morning (as of 13:16). At 11:47 the Houthi spokesman claimed the operation targeted King Khalid Airport, the Riyadh refinery and Aramco in Dhahran and vowed more strikes on airports and oil facilities; Saudi sources report interceptions only. On 13 Oct debris from two intercepted cruise missiles injured four people in Riyadh and a missile hit the Aramco HQ area in Dhahran (small fire, no casualties); King Khalid Airport (struck 8, 10 and 11 Oct, 17 killed) stays closed through 17 Oct.",
-  "ar": "المنطقة الشرقية: أعلن التحالف فجر ١٥ أكتوبر اعتراض مسيّرة دون إصابات. لا إنذارات جديدة في الرياض منذ أحداث صباح ١٤ أكتوبر. الرياض: أعلن الدفاع المدني نحو ١٧:٥٥ يوم ١٤ أكتوبر أن شظايا الصاروخ الباليستي الحوثي الذي اعتُرض فوق المدينة صباح الأربعاء أصابت مقيماً وألحقت أضراراً بمنزل ومركبة؛ وهذا الاعتراض (الذي أعلنه التحالف نحو ١١:٠٠) كان سبب الإنذار المبكر لمدينة الرياض والخرج من نحو ٠٩:٥٥ (سُمعت انفجارات قوية) حتى زوال الخطر عند ١٠:٠٨، بعد إسقاط صاروخ كروز فوق الخرج عند ٠١:١٢. لا هجمات أو إنذارات جديدة منذ الصباح (حتى الساعة ٢٢:٥٥). وعند ١١:٤٧ زعم المتحدث الحوثي أن العملية استهدفت مطار الملك خالد ومصفاة الرياض وأرامكو في الظهران وتوعّد بمزيد من الضربات على المطارات والمنشآت النفطية؛ المصادر السعودية تفيد بالاعتراض فقط. وفي ١٣ أكتوبر أصابت شظايا صاروخي كروز معترضين أربعة أشخاص في الرياض وأصاب صاروخ منطقة مقر أرامكو بالظهران (حريق محدود دون إصابات)؛ ويبقى مطار الملك خالد (أُصيب في ٨ و١٠ و١١ أكتوبر، ١٧ قتيلاً) مغلقاً حتى ١٧ أكتوبر."
+  "en": "Eastern Province: the coalition announced at dawn on 15 Oct the interception of a drone, no injuries. No new Riyadh alerts since the 14 Oct morning events. Riyadh: Civil Defense said at about 17:55 on 14 Oct that debris from the Houthi ballistic missile intercepted over the city on Wednesday morning injured one resident and damaged a house and a vehicle; that interception (announced by the coalition at about 11:00) was behind the early-warning alert for Riyadh city and Al Kharj from about 09:55 (loud explosions heard) to the all-clear at 10:08, after a cruise missile was downed over Al Kharj at 01:12. No new attacks or alerts since the morning (as of 14:20). At 11:47 the Houthi spokesman claimed the operation targeted King Khalid Airport, the Riyadh refinery and Aramco in Dhahran and vowed more strikes on airports and oil facilities; Saudi sources report interceptions only. On 13 Oct debris from two intercepted cruise missiles injured four people in Riyadh and a missile hit the Aramco HQ area in Dhahran (small fire, no casualties); King Khalid Airport (struck 8, 10 and 11 Oct, 17 killed) stays closed through 17 Oct.",
+  "ar": "المنطقة الشرقية: أعلن التحالف فجر ١٥ أكتوبر اعتراض مسيّرة دون إصابات. لا إنذارات جديدة في الرياض منذ أحداث صباح ١٤ أكتوبر. الرياض: أعلن الدفاع المدني نحو ١٧:٥٥ يوم ١٤ أكتوبر أن شظايا الصاروخ الباليستي الحوثي الذي اعتُرض فوق المدينة صباح الأربعاء أصابت مقيماً وألحقت أضراراً بمنزل ومركبة؛ وهذا الاعتراض (الذي أعلنه التحالف نحو ١١:٠٠) كان سبب الإنذار المبكر لمدينة الرياض والخرج من نحو ٠٩:٥٥ (سُمعت انفجارات قوية) حتى زوال الخطر عند ١٠:٠٨، بعد إسقاط صاروخ كروز فوق الخرج عند ٠١:١٢. لا هجمات أو إنذارات جديدة منذ الصباح (حتى الساعة ١٤:٢٠). وعند ١١:٤٧ زعم المتحدث الحوثي أن العملية استهدفت مطار الملك خالد ومصفاة الرياض وأرامكو في الظهران وتوعّد بمزيد من الضربات على المطارات والمنشآت النفطية؛ المصادر السعودية تفيد بالاعتراض فقط. وفي ١٣ أكتوبر أصابت شظايا صاروخي كروز معترضين أربعة أشخاص في الرياض وأصاب صاروخ منطقة مقر أرامكو بالظهران (حريق محدود دون إصابات)؛ ويبقى مطار الملك خالد (أُصيب في ٨ و١٠ و١١ أكتوبر، ١٧ قتيلاً) مغلقاً حتى ١٧ أكتوبر."
  },
  "riyadh_level": 3,
  "sites": [
@@ -97,7 +97,7 @@
    "prediction": {
     "level": "high",
     "confidence": "high",
-    "assessed_at": "2026-10-15T13:16:00+03:00",
+    "assessed_at": "2026-10-15T14:20:00+03:00",
     "why_en": [
      "Struck 3 times in 4 days; a ballistic missile toward Riyadh intercepted on the morning of 14 Oct (debris injured 1 in the city), interceptions daily since 11 Oct, debris injured 4 on 13 Oct",
      "Explicitly named as a target on 13 Oct and again on 14 Oct (11:47 Houthi claim)",
@@ -143,7 +143,7 @@
    "prediction": {
     "level": "high",
     "confidence": "medium",
-    "assessed_at": "2026-10-15T13:16:00+03:00",
+    "assessed_at": "2026-10-15T14:20:00+03:00",
     "why_en": [
      "Explicitly named on 13 Oct and claimed as a target of the 14 Oct morning operation (11:47 statement)",
      "Houthis claimed a strike here on 3 Oct with fire seen nearby; the only major refinery serving central Saudi Arabia",
@@ -179,7 +179,7 @@
    "prediction": {
     "level": "medium",
     "confidence": "medium",
-    "assessed_at": "2026-10-15T13:16:00+03:00",
+    "assessed_at": "2026-10-15T14:20:00+03:00",
     "why_en": [
      "Military air base inside the city",
      "Cruise-missile debris injured 4 in Riyadh residential areas on 13 Oct",
@@ -239,7 +239,7 @@
    "prediction": {
     "level": "high",
     "confidence": "medium",
-    "assessed_at": "2026-10-15T13:16:00+03:00",
+    "assessed_at": "2026-10-15T14:20:00+03:00",
     "why_en": [
      "Cruise missile intercepted over Al Kharj on 13 Oct",
      "Hosts US forces; targeted by Iran in March",
@@ -268,7 +268,7 @@
    "prediction": {
     "level": "low",
     "confidence": "medium",
-    "assessed_at": "2026-10-15T13:16:00+03:00",
+    "assessed_at": "2026-10-15T14:20:00+03:00",
     "why_en": [
      "High symbolic value but not named in any recent threat",
      "No history of strikes on central government sites in this campaign"
@@ -295,7 +295,7 @@
    "prediction": {
     "level": "low",
     "confidence": "medium",
-    "assessed_at": "2026-10-15T13:16:00+03:00",
+    "assessed_at": "2026-10-15T14:20:00+03:00",
     "why_en": [
      "Not named in any threat; no strikes on diplomatic sites so far"
     ],
@@ -343,7 +343,7 @@
    "prediction": {
     "level": "high",
     "confidence": "high",
-    "assessed_at": "2026-10-15T13:16:00+03:00",
+    "assessed_at": "2026-10-15T14:20:00+03:00",
     "why_en": [
      "Hit on 13 Oct hours after being named; Energy Ministry confirmed a small fire, no casualties",
      "Houthis treat Aramco sites as 'legitimate targets'",
@@ -383,7 +383,7 @@
    "prediction": {
     "level": "high",
     "confidence": "medium",
-    "assessed_at": "2026-10-15T13:16:00+03:00",
+    "assessed_at": "2026-10-15T14:20:00+03:00",
     "why_en": [
      "Attacked on 11 Oct; airports are the campaign's focus",
      "Far from residential areas, so lower debris risk for the city"
@@ -410,7 +410,7 @@
    "prediction": {
     "level": "medium",
     "confidence": "low",
-    "assessed_at": "2026-10-15T13:16:00+03:00",
+    "assessed_at": "2026-10-15T14:20:00+03:00",
     "why_en": [
      "Adjacent to Aramco HQ, which was hit on 13 Oct",
      "Not named in threats"
@@ -448,7 +448,7 @@
    "prediction": {
     "level": "medium",
     "confidence": "medium",
-    "assessed_at": "2026-10-15T13:16:00+03:00",
+    "assessed_at": "2026-10-15T14:20:00+03:00",
     "why_en": [
      "Largest export terminal; targeted in 2019 and 2021",
      "Houthis warned oil workers to leave Aramco sites"
@@ -486,7 +486,7 @@
    "prediction": {
     "level": "medium",
     "confidence": "medium",
-    "assessed_at": "2026-10-15T13:16:00+03:00",
+    "assessed_at": "2026-10-15T14:20:00+03:00",
     "why_en": [
      "World's largest crude processing plant; proven target in 2019",
      "Not named specifically in the 13 Oct threat"
@@ -513,7 +513,7 @@
    "prediction": {
     "level": "low",
     "confidence": "low",
-    "assessed_at": "2026-10-15T13:16:00+03:00",
+    "assessed_at": "2026-10-15T14:20:00+03:00",
     "why_en": [
      "Petrochemical hub, but no strikes or named threats"
     ],
@@ -545,7 +545,7 @@
    "prediction": {
     "level": "low",
     "confidence": "low",
-    "assessed_at": "2026-10-15T13:16:00+03:00",
+    "assessed_at": "2026-10-15T14:20:00+03:00",
     "why_en": [
      "Remote field; last struck in 2019"
     ],
@@ -577,7 +577,7 @@
    "prediction": {
     "level": "low",
     "confidence": "low",
-    "assessed_at": "2026-10-15T13:16:00+03:00",
+    "assessed_at": "2026-10-15T14:20:00+03:00",
     "why_en": [
      "Remote desert field; drone attempt in March"
     ],
@@ -619,7 +619,7 @@
    "prediction": {
     "level": "high",
     "confidence": "high",
-    "assessed_at": "2026-10-15T13:16:00+03:00",
+    "assessed_at": "2026-10-15T14:20:00+03:00",
     "why_en": [
      "Closest major airport to Yemen; struck 6–7 Oct",
      "Alerts continuing in Asir"
@@ -659,7 +659,7 @@
    "prediction": {
     "level": "high",
     "confidence": "high",
-    "assessed_at": "2026-10-15T13:16:00+03:00",
+    "assessed_at": "2026-10-15T14:20:00+03:00",
     "why_en": [
      "Main base for coalition air strikes on Yemen; attacked on 12 and 13 Oct",
      "Houthis claim strikes on it almost daily"
@@ -693,7 +693,7 @@
    "prediction": {
     "level": "medium",
     "confidence": "medium",
-    "assessed_at": "2026-10-15T13:16:00+03:00",
+    "assessed_at": "2026-10-15T14:20:00+03:00",
     "why_en": [
      "Border region hit frequently by drones",
      "Lower value than Abha or Khamis Mushait"
@@ -720,7 +720,7 @@
    "prediction": {
     "level": "medium",
     "confidence": "low",
-    "assessed_at": "2026-10-15T13:16:00+03:00",
+    "assessed_at": "2026-10-15T14:20:00+03:00",
     "why_en": [
      "Border airport within easy drone range; no recent strikes reported"
     ],
@@ -756,7 +756,7 @@
    "prediction": {
     "level": "medium",
     "confidence": "medium",
-    "assessed_at": "2026-10-15T13:16:00+03:00",
+    "assessed_at": "2026-10-15T14:20:00+03:00",
     "why_en": [
      "Busiest airport in the west; airports are the campaign's focus",
      "No strike here yet in this campaign"
@@ -790,7 +790,7 @@
    "prediction": {
     "level": "medium",
     "confidence": "low",
-    "assessed_at": "2026-10-15T13:16:00+03:00",
+    "assessed_at": "2026-10-15T14:20:00+03:00",
     "why_en": [
      "Struck in 2022; covered by the warning to oil facilities"
     ],
@@ -822,7 +822,7 @@
    "prediction": {
     "level": "medium",
     "confidence": "medium",
-    "assessed_at": "2026-10-15T13:16:00+03:00",
+    "assessed_at": "2026-10-15T14:20:00+03:00",
     "why_en": [
      "Drone attempts on Taif in September",
      "Major air base within Houthi drone range"
@@ -860,7 +860,7 @@
    "prediction": {
     "level": "medium",
     "confidence": "medium",
-    "assessed_at": "2026-10-15T13:16:00+03:00",
+    "assessed_at": "2026-10-15T14:20:00+03:00",
     "why_en": [
      "Red Sea export terminal for the East-West pipeline",
      "Attempt thwarted on 19 Sep"
@@ -900,7 +900,7 @@
    "prediction": {
     "level": "low",
     "confidence": "low",
-    "assessed_at": "2026-10-15T13:16:00+03:00",
+    "assessed_at": "2026-10-15T14:20:00+03:00",
     "why_en": [
      "Region hit by Iraqi-militia drones in September; airport itself not targeted"
     ],
@@ -925,7 +925,7 @@
    "prediction": {
     "level": "low",
     "confidence": "low",
-    "assessed_at": "2026-10-15T13:16:00+03:00",
+    "assessed_at": "2026-10-15T14:20:00+03:00",
     "why_en": [
      "Northern base; exposed to Iraqi-militia drones rather than Houthi missiles"
     ],

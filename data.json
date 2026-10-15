@@ -1,18 +1,18 @@
 {
   "schema": 1,
-  "generated_at": "2026-10-15T07:12:00+03:00",
+  "generated_at": "2026-10-15T08:20:00+03:00",
   "monitor": {
-    "last_run": "2026-10-15T07:12:00+03:00",
+    "last_run": "2026-10-15T08:20:00+03:00",
     "cadence_en": "automated monitor checks Saudi sources twice an hour (:30 and :56)",
     "cadence_ar": "مرصد آلي يفحص المصادر السعودية مرتين في الساعة (الدقيقة ٣٠ و٥٦)",
-    "status": "ok",
-    "note_en": "Run at 07:12 on 15 Oct: no new attacks, interceptions, Civil Defense alerts or named threats since the 06:14 run (Arabic and English searches; newest items remain the 14 Oct events). Riyadh level and site ratings unchanged.",
-    "note_ar": "تشغيل عند 07:12 في ١٥ أكتوبر: لا هجمات أو اعتراضات أو إنذارات جديدة من الدفاع المدني أو تهديدات منذ تشغيل 06:14 (بحث بالعربية والإنجليزية؛ أحدث الأخبار أحداث ١٤ أكتوبر). مستوى الرياض وتقييمات المواقع دون تغيير.",
-    "github_en": "push ok at 07:12"
+    "status": "degraded",
+    "note_en": "Run at 08:20 on 15 Oct: added coalition-announced drone interception in the Eastern Province at dawn (no injuries). No new Riyadh alerts. Page fetches failed (DNS), so details come from search snippets; time approximate.",
+    "note_ar": "تشغيل عند 08:20 في ١٥ أكتوبر: إضافة اعتراض مسيّرة أعلنه التحالف فجراً في المنطقة الشرقية دون إصابات. لا إنذارات جديدة في الرياض. تعذّر فتح الصفحات فاعتُمدت مقتطفات البحث؛ الوقت تقريبي.",
+    "github_en": "push pending"
   },
   "summary": {
-    "en": "Riyadh: Civil Defense said at about 17:55 on 14 Oct that debris from the Houthi ballistic missile intercepted over the city on Wednesday morning injured one resident and damaged a house and a vehicle; that interception (announced by the coalition at about 11:00) was behind the early-warning alert for Riyadh city and Al Kharj from about 09:55 (loud explosions heard) to the all-clear at 10:08, after a cruise missile was downed over Al Kharj at 01:12. No new attacks or alerts since the morning (as of 22:55). At 11:47 the Houthi spokesman claimed the operation targeted King Khalid Airport, the Riyadh refinery and Aramco in Dhahran and vowed more strikes on airports and oil facilities; Saudi sources report interceptions only. On 13 Oct debris from two intercepted cruise missiles injured four people in Riyadh and a missile hit the Aramco HQ area in Dhahran (small fire, no casualties); King Khalid Airport (struck 8, 10 and 11 Oct, 17 killed) stays closed through 17 Oct.",
-    "ar": "الرياض: أعلن الدفاع المدني نحو ١٧:٥٥ يوم ١٤ أكتوبر أن شظايا الصاروخ الباليستي الحوثي الذي اعتُرض فوق المدينة صباح الأربعاء أصابت مقيماً وألحقت أضراراً بمنزل ومركبة؛ وهذا الاعتراض (الذي أعلنه التحالف نحو ١١:٠٠) كان سبب الإنذار المبكر لمدينة الرياض والخرج من نحو ٠٩:٥٥ (سُمعت انفجارات قوية) حتى زوال الخطر عند ١٠:٠٨، بعد إسقاط صاروخ كروز فوق الخرج عند ٠١:١٢. لا هجمات أو إنذارات جديدة منذ الصباح (حتى الساعة ٢٢:٥٥). وعند ١١:٤٧ زعم المتحدث الحوثي أن العملية استهدفت مطار الملك خالد ومصفاة الرياض وأرامكو في الظهران وتوعّد بمزيد من الضربات على المطارات والمنشآت النفطية؛ المصادر السعودية تفيد بالاعتراض فقط. وفي ١٣ أكتوبر أصابت شظايا صاروخي كروز معترضين أربعة أشخاص في الرياض وأصاب صاروخ منطقة مقر أرامكو بالظهران (حريق محدود دون إصابات)؛ ويبقى مطار الملك خالد (أُصيب في ٨ و١٠ و١١ أكتوبر، ١٧ قتيلاً) مغلقاً حتى ١٧ أكتوبر."
+    "en": "Eastern Province: the coalition announced at dawn on 15 Oct the interception of a drone, no injuries. No new Riyadh alerts since the 14 Oct morning events. Riyadh: Civil Defense said at about 17:55 on 14 Oct that debris from the Houthi ballistic missile intercepted over the city on Wednesday morning injured one resident and damaged a house and a vehicle; that interception (announced by the coalition at about 11:00) was behind the early-warning alert for Riyadh city and Al Kharj from about 09:55 (loud explosions heard) to the all-clear at 10:08, after a cruise missile was downed over Al Kharj at 01:12. No new attacks or alerts since the morning (as of 22:55). At 11:47 the Houthi spokesman claimed the operation targeted King Khalid Airport, the Riyadh refinery and Aramco in Dhahran and vowed more strikes on airports and oil facilities; Saudi sources report interceptions only. On 13 Oct debris from two intercepted cruise missiles injured four people in Riyadh and a missile hit the Aramco HQ area in Dhahran (small fire, no casualties); King Khalid Airport (struck 8, 10 and 11 Oct, 17 killed) stays closed through 17 Oct.",
+    "ar": "المنطقة الشرقية: أعلن التحالف فجر ١٥ أكتوبر اعتراض مسيّرة دون إصابات. لا إنذارات جديدة في الرياض منذ أحداث صباح ١٤ أكتوبر. الرياض: أعلن الدفاع المدني نحو ١٧:٥٥ يوم ١٤ أكتوبر أن شظايا الصاروخ الباليستي الحوثي الذي اعتُرض فوق المدينة صباح الأربعاء أصابت مقيماً وألحقت أضراراً بمنزل ومركبة؛ وهذا الاعتراض (الذي أعلنه التحالف نحو ١١:٠٠) كان سبب الإنذار المبكر لمدينة الرياض والخرج من نحو ٠٩:٥٥ (سُمعت انفجارات قوية) حتى زوال الخطر عند ١٠:٠٨، بعد إسقاط صاروخ كروز فوق الخرج عند ٠١:١٢. لا هجمات أو إنذارات جديدة منذ الصباح (حتى الساعة ٢٢:٥٥). وعند ١١:٤٧ زعم المتحدث الحوثي أن العملية استهدفت مطار الملك خالد ومصفاة الرياض وأرامكو في الظهران وتوعّد بمزيد من الضربات على المطارات والمنشآت النفطية؛ المصادر السعودية تفيد بالاعتراض فقط. وفي ١٣ أكتوبر أصابت شظايا صاروخي كروز معترضين أربعة أشخاص في الرياض وأصاب صاروخ منطقة مقر أرامكو بالظهران (حريق محدود دون إصابات)؛ ويبقى مطار الملك خالد (أُصيب في ٨ و١٠ و١١ أكتوبر، ١٧ قتيلاً) مغلقاً حتى ١٧ أكتوبر."
   },
   "riyadh_level": 3,
   "sites": [
@@ -327,6 +327,12 @@
           "kind": "intercept",
           "note_en": "Energy Ministry: administrative building hit, small fire, no casualties; missiles toward Dhahran and Haradh intercepted",
           "note_ar": "وزارة الطاقة: إصابة مبنى إداري وحريق محدود دون إصابات؛ اعتراض صواريخ باتجاه الظهران وحرض"
+        },
+        {
+          "date": "2026-10-15",
+          "kind": "intercept",
+          "note_en": "Drone intercepted in Eastern Province at dawn (site not named).",
+          "note_ar": "اعتراض مسيّرة في المنطقة الشرقية فجراً (دون تسمية الموقع)."
         }
       ],
       "threat": {
@@ -1434,6 +1440,28 @@
       "source": {
         "title": "Saudi Press Agency",
         "url": "https://www.spa.gov.sa/en/N2680576"
+      }
+    },
+    {
+      "id": "2026-10-15-eastern-drone-intercept",
+      "time": "2026-10-15T05:00:00+03:00",
+      "tprec": "approx",
+      "kind": "intercept",
+      "weapon": "drone",
+      "severity": 3,
+      "radius_km": 8,
+      "status": "past",
+      "lat": 26.4344,
+      "lng": 50.1033,
+      "place_en": "Eastern Province (drone intercepted)",
+      "place_ar": "المنطقة الشرقية (اعتراض مسيّرة)",
+      "note_en": "Coalition spokesman Turki al-Maliki announced at dawn on Thursday 15 Oct the interception and destruction of a drone in the Eastern Province; no injuries were reported. The exact clock time and location were not given (marker on Dammam, time approximate).",
+      "note_ar": "أعلن المتحدث باسم التحالف اللواء الركن تركي المالكي فجر الخميس ١٥ أكتوبر اعتراض وتدمير طائرة مسيّرة في المنطقة الشرقية دون تسجيل إصابات. لم يُذكر الوقت بدقة ولا الموقع، لذا وُضعت العلامة على الدمام والوقت تقريبي.",
+      "casualties_en": "None reported",
+      "casualties_ar": "لا إصابات",
+      "source": {
+        "title": "Okaz – Coalition: drone intercepted in Eastern Province",
+        "url": "https://www.okaz.com.sa/local/na/2270869"
       }
     }
   ],
